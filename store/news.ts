@@ -22,10 +22,12 @@ export const useNewsStore = defineStore('news', {
   }),
   actions: {
     async getAllNews() {
+      this.isloading = true
       this.news = await Api.get('/news')
       // this.famousPersons = this.news.map((item) => ({
       //   name: item.famousPerson,
       // }))
+      this.isloading = false
     },
     // async getAllNews() {
     //   this.isloading = true

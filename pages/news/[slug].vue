@@ -2,6 +2,8 @@
 // import { mapState } from 'pinia'
 import { useNewsStore } from '@/store/news'
 
+import { ArrowLeftCircleIcon } from '@heroicons/vue/20/solid'
+
 defineProps({
   view: {
     type: String,
@@ -20,13 +22,14 @@ console.log('store', store.currentNews)
   <div>
     <!-- Details of news {{ $route.params.slug }} -->
     <button
-      class="text-white border border-white rounded px-3"
+      class="flex items-center border border-white hover:bg-black hover:text-white active:bg-black active:text-white transition-colors rounded px-2 mb-2"
       @click="$router.go(-1)"
     >
-      Back
+      <ArrowLeftCircleIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
+      <span class="ml-2 pr-2">Back</span>
     </button>
 
-    <div class="lg:flex border border-red-200 mb-12">
+    <div class="lg:flex mb-12">
       <div class="flex-shrink-0">
         <nuxt-img
           v-if="store.currentNews.imageCover"
@@ -41,8 +44,8 @@ console.log('store', store.currentNews)
           class="rounded-t-lg"
         />
       </div>
-      <div class="p-6">
-        <div class="text-xs text-gray-500">
+      <div class="py-2 lg:px-6">
+        <div class="text-xs text-gray-500 text-right lg:text-left">
           <!-- 10/06/2023 -->
           {{ store.currentNews.createdAt }}
         </div>
@@ -51,9 +54,13 @@ console.log('store', store.currentNews)
         >
           {{ store.currentNews.name }}
         </h5>
-        <p class="font-normal text-gray-700 dark:text-gray-400">
+        <p class="font-normal text-gray-700 dark:text-gray-400 mb-2">
           {{ store.currentNews.description }}
         </p>
+        <hr />
+        <div class="border border-gray-200 rounded-md p-3 pt-0 mt-2">
+          <UserInfo :user="store.currentNews.autor" />
+        </div>
       </div>
     </div>
   </div>

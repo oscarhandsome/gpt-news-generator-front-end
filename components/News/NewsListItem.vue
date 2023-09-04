@@ -13,13 +13,12 @@ defineProps({
 
 <template>
   <div
-    class="block relative bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 w-full"
-    :class="{ 'max-w-sm': view === 'tile' }"
+    class="block relative bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
   >
     <nuxt-link
       :to="`/news/${item.id}`"
-      class="cursor-pointer"
       :class="{ flex: view === 'list' }"
+      class="cursor-pointer"
     >
       <div>
         <nuxt-img
@@ -41,13 +40,13 @@ defineProps({
           {{ item.createdAt }}
         </div>
         <h5
-          class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white truncate"
+          class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
         >
           {{ item.name }}
         </h5>
         <p
-          class="font-normal text-gray-700 dark:text-gray-400 break-all truncate"
-          v-html="item.description"
+          class="font-normal text-gray-700 dark:text-gray-400 break-all mt-2"
+          v-html="item.description.substring(0, 50) + '...'"
         ></p>
       </div>
     </nuxt-link>

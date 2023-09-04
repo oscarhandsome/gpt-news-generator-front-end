@@ -23,10 +23,12 @@ defineProps<{
     v-if="user && user.photo && user.name"
     class="flex items-center justify-start space-x-3 mt-2"
   >
+    <!-- 
+      :src="`~/assets/images/${user.photo}`" -->
     <img
       v-if="user.photo"
       class="rounded-full w-9 h-9"
-      :src="`~/assets/images/${user.photo}`"
+      :src="`${user.photo}`"
       :alt="user.name"
     />
     <img v-else src="https://i.pravatar.cc/100" alt="any" />

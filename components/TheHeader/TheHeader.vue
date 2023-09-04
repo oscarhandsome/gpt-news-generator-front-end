@@ -21,7 +21,7 @@ const logout = () => {
 <template>
   <header>
     <nav
-      class="border-green-700 px-4 lg:px-6 py-2.5 dark:bg-gray-800 bg-black text-white mb-5"
+      class="dark:bg-white dark:text-black bg-black text-white px-4 lg:px-6 py-2.5 mb-5"
     >
       <div
         class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl"

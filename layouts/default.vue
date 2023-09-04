@@ -32,7 +32,7 @@
   </ul> -->
   <TheHeader />
   <main>
-    <div class="container mx-auto">
+    <div class="container px-2 md:px-0 mx-auto">
       <TheBreadcrumb class="mb-5" />
       <slot />
     </div>
