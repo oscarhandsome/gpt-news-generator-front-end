@@ -2,7 +2,7 @@
 
 Project will be soon here - [news-generator](https://news-generator.com).
 
-Project based on Chat GPT AI and Leap AI image generator. Idea in automaticallu connect everything and create news. Enjoy!
+Project-based on Chat GPT AI and Leap AI image generator. The idea is to connect everything and create news automatically. Enjoy!
 
 For launching .env required, not inclued yet.
 
