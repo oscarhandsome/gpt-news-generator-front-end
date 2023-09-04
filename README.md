@@ -1,6 +1,23 @@
-# Nuxt 3 Minimal Starter
+# GPT News Generator
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Project will be soon here - [news-generator](https://news-generator.com).
+
+Project based on Chat GPT AI and Leap AI image generator. Idea in automaticallu connect everything and create news. Enjoy!
+
+For launching .env required, not inclued yet.
+
+## Used
+
+```bash
+# node
+node 16.18.0
+
+# pnpm
+pnpm 8.5.1
+
+# git
+git 2.40.0
+```
 
 ## Setup
 
