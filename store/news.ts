@@ -15,6 +15,7 @@ export const useNewsStore = defineStore('news', {
   state: () => ({
     news: [],
     currentNews: {},
+    famousPersons: [],
     isloading: false,
     errors: {},
     success: null,
@@ -22,6 +23,9 @@ export const useNewsStore = defineStore('news', {
   actions: {
     async getAllNews() {
       this.news = await Api.get('/news')
+      // this.famousPersons = this.news.map((item) => ({
+      //   name: item.famousPerson,
+      // }))
     },
     // async getAllNews() {
     //   this.isloading = true

@@ -10,14 +10,10 @@ export default defineNuxtConfig({
   ],
   stripe: {
     // Server
-    apiKey:
-      process.env.STRIPE_SECRET_KEY ||
-      'sk_test_51NiaAtExkB2fabkFd0zvTxx0k8z9HyQEMk9gjyh0N1dk4zFOGCN7SfTGZgrxgbqcsui69OqgZuk81RKx0LTdiuR400Q6W8v8Sx', // required
+    apiKey: process.env.STRIPE_SECRET_KEY, // required
     apiVersion: '2022-11-15', // optional, default is '2022-11-15'
     // Client
-    publishableKey:
-      process.env.STRIPE_PUBLIC_KEY ||
-      'pk_test_51NiaAtExkB2fabkFbosi91uqSk7PI27hhXNiuIcnN0BISxAAI9rMgmwwihcFx5ZSyS5XMqJGIQAci1QxxosCPePG00l6uO1frp', // required
+    publishableKey: process.env.STRIPE_PUBLIC_KEY, // required
   },
   css: ['@/assets/css/fonts.css'],
   // router: {

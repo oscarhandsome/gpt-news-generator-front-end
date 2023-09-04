@@ -9,6 +9,15 @@ import {
 } from '@headlessui/vue'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
 
+// import { storeToRefs } from 'pinia'
+// import { useNewsStore } from '~/store/news'
+
+// // const { createNews } = useNewsStore()
+// const { famousPersons } = storeToRefs(useNewsStore())
+
+// console.log('famousPersons', famousPersons.value)
+
+// const people = famousPersons.value
 const people = [
   { name: 'Wade Cooper' },
   { name: 'Arlene Mccoy' },
@@ -18,6 +27,7 @@ const people = [
   { name: 'Hellen Schmidt' },
 ]
 const selectedPerson = ref(people[0])
+// const selectedPerson = ref('Plese select person')
 </script>
 
 <template>
