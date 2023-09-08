@@ -33,5 +33,10 @@
     "@headlessui/vue": "^1.7.14",
     "@heroicons/vue": "^2.0.18",
     "pnpm": "^8.6.6"
+  },
+  "pnpm": {
+    "overrides": {
+      "node-fetch-native": "1.2.0"
+    }
   }
 }
