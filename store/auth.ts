@@ -45,7 +45,7 @@ export const useAuthStore = defineStore('auth', {
         token.value = data?.value?.token // set token to cookie
         this.isAuthenticated = true // set isAuthenticated  state value to true
         this.user = data.value.data.user
-        localStorage.setItem('user', JSON.stringify(this.user))
+        // localStorage.setItem('user', JSON.stringify(this.user))
         this.success = true
       }
 
