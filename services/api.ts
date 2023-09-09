@@ -1,5 +1,6 @@
 // import { useFetch } from '@nuxt/http'
 // import { useCookies } from '@nuxtjs/cookie-universal-nuxt'
+import { useMyFetch } from '@/composables/useMyFetch'
 
 // const config = useRuntimeConfig()
 // const token = useCookie('token')
@@ -20,7 +21,6 @@ class Api {
           Authorization: `Bearer ${token.value}`,
           'Content-Type': 'application/json',
         },
-        params,
       })
       console.log('response', response)
       if (response.data.value.status === 'success')

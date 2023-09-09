@@ -91,31 +91,36 @@ export const useNewsStore = defineStore('news', {
     },
     async getNews(payload: string) {
       this.isloading = true
-      this.errors = []
-      this.errors = {}
-      // console.log('payload', payload)
-
-      // for (const [key, value] of Object.entries(payload)) {
-      //   if (!value) this.errors[key] = `${key} not exist`
-      // }
-
-      // useFetch from nuxt 3
-      const { data, pending }: any = await useFetch(
-        `http://localhost:8000/api/v1/news/${payload}`,
-        {
-          method: 'get',
-          headers: { 'Content-Type': 'application/json' },
-          // body: payload,
-        },
-      ).catch((error) => console.error('error', error))
-      // this.isloading = pending
-      // console.log('pending', pending)
-      console.log('data', data.value)
-
-      if (data) this.currentNews = data.value.data.data
-
+      this.currentNews = await Api.get(`/news/${payload}`)
       this.isloading = false
     },
+    // async getNews(payload: string) {
+    //   this.isloading = true
+    //   this.errors = []
+    //   this.errors = {}
+    //   // console.log('payload', payload)
+
+    //   // for (const [key, value] of Object.entries(payload)) {
+    //   //   if (!value) this.errors[key] = `${key} not exist`
+    //   // }
+
+    //   // useFetch from nuxt 3
+    //   const { data, pending }: any = await useFetch(
+    //     `http://localhost:8000/api/v1/news/${payload}`,
+    //     {
+    //       method: 'get',
+    //       headers: { 'Content-Type': 'application/json' },
+    //       // body: payload,
+    //     },
+    //   ).catch((error) => console.error('error', error))
+    //   // this.isloading = pending
+    //   // console.log('pending', pending)
+    //   console.log('data', data.value)
+
+    //   if (data) this.currentNews = data.value.data.data
+
+    //   this.isloading = false
+    // },
     async removeNews() {},
   },
   getters: {
