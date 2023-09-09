@@ -23,7 +23,9 @@ await getAllNews()
 <template>
   <BaseLoader v-if="isloading" />
   <div v-else>
+    <BaseTitle v-if="newsList && newsList.length" title="Latest news" />
     <div
+      v-if="newsList && newsList.length"
       class="grid gap-2 lg:gap-4 py-5"
       :class="{
         'sm:grid-cols-2 lg:grid-cols-4': view === 'tile',
@@ -33,10 +35,17 @@ await getAllNews()
       <div v-for="item in newsList" :key="`news-${item.id}`">
         <NewsListItem :item="item" :view="view" />
       </div>
+
+      <div class="text-center py-5">
+        <BasePagination />
+      </div>
     </div>
 
-    <div class="text-center py-5">
-      <BasePagination />
+    <div
+      v-else
+      class="flex justify-center items-center text-center text-2xl font-bold mb-5 h-80"
+    >
+      News not exist
     </div>
   </div>
 </template>

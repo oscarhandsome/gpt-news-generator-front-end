@@ -31,4 +31,7 @@ export default defineNuxtConfig({
   //   format: ['webp'],
   // },
   // plugins: [{ src: '~/plugins/vue-select-tree.js', ssr: false }],
+  experimental: {
+    renderJsonPayloads: false,
+  },
 })

@@ -1,7 +1,7 @@
 // import { useFetch } from '@nuxt/http'
 // import { useCookies } from '@nuxtjs/cookie-universal-nuxt'
 
-const BASE_URL = `http://localhost:8000/api/v1`
+// const config = useRuntimeConfig()
 // const token = useCookie('token')
 
 class Api {
@@ -13,14 +13,16 @@ class Api {
   static async get(path: string, params: object = {}) {
     try {
       const token = useCookie('token')
-      const response: any = await useFetch(`${BASE_URL}${path}`, {
+      const API_BASE_URL = useRuntimeConfig().public.baseURL
+      const response: any = await useFetch(`${API_BASE_URL}${path}`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${token.value}`,
           'Content-Type': 'application/json',
         },
+        params,
       })
-      console.log('response')
+      console.log('response', response)
       if (response.data.value.status === 'success')
         return response.data.value.data.data
     } catch (error) {
@@ -28,22 +30,22 @@ class Api {
     }
   }
 
-  // static async post(path, body = {}) {
-  //   const { fetch, data } = useFetch()
-  //   const cookies = useCookies()
-  //   const token = cookies.get('token')
+  static async post(path, body = {}) {
+    const { fetch, data } = useFetch()
+    const cookies = useCookies()
+    const token = cookies.get('token')
 
-  //   await fetch(path, {
-  //     method: 'POST',
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(body),
-  //   })
+    await fetch(path, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    })
 
-  //   return data.value
-  // }
+    return data.value
+  }
 
   // static async put(path, body = {}) {
   //   const { fetch, data } = useFetch()

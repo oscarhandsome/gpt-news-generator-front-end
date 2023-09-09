@@ -5,6 +5,5 @@ definePageMeta({
 </script>
 
 <template>
-  <BaseTitle title="Latest news" />
   <NewsList />
 </template>
