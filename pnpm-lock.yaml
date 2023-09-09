@@ -4,6 +4,9 @@ overrides:
   node-fetch-native: 1.2.0
 
 dependencies:
+  '@gtm-support/vue-gtm':
+    specifier: ^2.1.0
+    version: 2.1.0(vue@3.3.4)
   '@headlessui/vue':
     specifier: ^1.7.14
     version: 1.7.14(vue@3.3.4)
@@ -27,9 +30,6 @@ devDependencies:
   '@nuxtjs/eslint-config-typescript':
     specifier: ^12.0.0
     version: 12.0.0(eslint@8.44.0)(typescript@5.1.6)
-  '@nuxtjs/google-analytics':
-    specifier: ^2.4.0
-    version: 2.4.0
   '@nuxtjs/tailwindcss':
     specifier: ^6.8.0
     version: 6.8.0(webpack@5.88.1)
@@ -1081,6 +1081,24 @@ packages:
     dev: true
     optional: true
 
+  /@gtm-support/core@2.0.0:
+    resolution: {integrity: sha512-32hyxR/LIB6EWnUcbbrUzjkAE6PSRtqv/AztEnQ8MuCOQ7+u+yXOssfZqNDSWlQkEBn0Co6f7aHG+vcNZCGiLw==}
+    dev: false
+
+  /@gtm-support/vue-gtm@2.1.0(vue@3.3.4):
+    resolution: {integrity: sha512-QLhIk9VAEFcJ+CPoaWpC8crEHBpR+J46jSMIlYcfWWgYwxY1SLlg4wc7DcBHeEl5DxIAAyZYGyOkzdk2BvraFA==}
+    peerDependencies:
+      vue: '>= 3.2.0 < 4.0.0'
+    peerDependenciesMeta:
+      vue-router:
+        optional: true
+    dependencies:
+      '@gtm-support/core': 2.0.0
+      vue: 3.3.4
+    optionalDependencies:
+      vue-router: 4.2.4(vue@3.3.4)
+    dev: false
+
   /@hapi/hoek@9.3.0:
     resolution: {integrity: sha512-/c6rf4UJlmHlC9b5BaNvzAcFv7HZ2QHaV0D4/HNlBdvFnvQq8RI4kYdhyPCl7Xj+oWvTWQ8ujhqS53LIgAe6KQ==}
     dev: true
@@ -1739,12 +1757,6 @@ packages:
       - eslint-import-resolver-typescript
       - eslint-import-resolver-webpack
       - supports-color
-    dev: true
-
-  /@nuxtjs/google-analytics@2.4.0:
-    resolution: {integrity: sha512-rDQTwHIjyjVrx8GywHPuWykJ3jRFGaHl5Iqji/y8tQWUc0yGEeHxOoR0yimzxnTS1Ph2/PubQYpgnVeEPEdL/A==}
-    dependencies:
-      vue-analytics: 5.22.1
     dev: true
 
   /@nuxtjs/tailwindcss@6.8.0(webpack@5.88.1):
@@ -2460,7 +2472,6 @@ packages:
 
   /@vue/devtools-api@6.5.0:
     resolution: {integrity: sha512-o9KfBeaBmCKl10usN4crU53fYtC1r7jJwdGKjPT24t348rHxgfpZ0xL3Xm/gLUYnc0oTp8LAmrxOeLyu6tbk2Q==}
-    dev: true
 
   /@vue/reactivity-transform@3.3.4:
     resolution: {integrity: sha512-MXgwjako4nu5WFLAjpBnCj/ieqcjE2aJBINUNQzkZQfzIZA4xn+0fV1tIYBJvvva3N3OvKGofRLvQIwEQPpaXw==}
@@ -9708,11 +9719,6 @@ packages:
     resolution: {integrity: sha512-eOpPHogvorZRobNqJGhapa0JdwaxpjVvyBp0QIUMRMSf8ZAlqOdEquKuRmw9Qwu0qXtJIWqFtMkmvJjUZmMjVA==}
     dev: true
 
-  /vue-analytics@5.22.1:
-    resolution: {integrity: sha512-HPKQMN7gfcUqS5SxoO0VxqLRRSPkG1H1FqglsHccz6BatBatNtm/Vyy8brApktZxNCfnAkrSVDpxg3/FNDeOgQ==}
-    deprecated: Sorry but vue-analytics is no longer maintained. I would suggest you switch to vue-gtag, with love, the guy who made the package.
-    dev: true
-
   /vue-bundle-renderer@1.0.3:
     resolution: {integrity: sha512-EfjX+5TTUl70bki9hPuVp+54JiZOvFIfoWBcfXsSwLzKEiDYyHNi5iX8srnqLIv3YRnvxgbntdcG1WPq0MvffQ==}
     dependencies:
@@ -9763,7 +9769,6 @@ packages:
     dependencies:
       '@vue/devtools-api': 6.5.0
       vue: 3.3.4
-    dev: true
 
   /vue@3.3.4:
     resolution: {integrity: sha512-VTyEYn3yvIeY1Py0WaYGZsXnz3y5UnGi62GjVEqvEGPl6nxbOrCXbVOTQWBEJUqAyTUk2uJ5JLVnYJ6ZzGbrSw==}
