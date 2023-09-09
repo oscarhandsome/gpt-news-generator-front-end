@@ -30,22 +30,22 @@ class Api {
     }
   }
 
-  static async post(path, body = {}) {
-    const { fetch, data } = useFetch()
-    const cookies = useCookies()
-    const token = cookies.get('token')
+  // static async post(path, body = {}) {
+  //   const { fetch, data } = useFetch()
+  //   const cookies = useCookies()
+  //   const token = cookies.get('token')
 
-    await fetch(path, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
-    })
+  //   await fetch(path, {
+  //     method: 'POST',
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify(body),
+  //   })
 
-    return data.value
-  }
+  //   return data.value
+  // }
 
   // static async put(path, body = {}) {
   //   const { fetch, data } = useFetch()

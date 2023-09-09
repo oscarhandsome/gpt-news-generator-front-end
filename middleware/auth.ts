@@ -11,11 +11,11 @@ export default defineNuxtRouteMiddleware((to) => {
     // check if value exists
     isAuthenticated.value = true // update the state to isAuthenticated
   }
-  // if (process.client) {
-  //   user.value = localStorage.getItem('user')
-  //     ? JSON.parse(localStorage.getItem('user'))
-  //     : null
-  // }
+  if (process.client) {
+    user.value = localStorage.getItem('user')
+      ? JSON.parse(localStorage.getItem('user'))
+      : null
+  }
 
   if (
     (token.value && to?.name === 'auth-login') ||

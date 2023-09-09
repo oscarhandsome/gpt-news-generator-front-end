@@ -45,7 +45,7 @@ export const useAuthStore = defineStore('auth', {
         token.value = data?.value?.token // set token to cookie
         this.isAuthenticated = true // set isAuthenticated  state value to true
         this.user = data.value.data.user
-        // localStorage.setItem('user', JSON.stringify(this.user))
+        localStorage.setItem('user', JSON.stringify(this.user))
         this.success = true
       }
 
@@ -89,21 +89,21 @@ export const useAuthStore = defineStore('auth', {
           },
         },
       )
-      // this.isloading = pending
+      this.isloading = pending
 
       // console.log('this.isloading', this.isloading)
       // console.log('data.value', data.value)
 
-      // if (data.value) {
-      //   const token = useCookie('token') // useCookie new hook in nuxt 3
-      //   token.value = data?.value?.token // set token to cookie
-      //   this.isAuthenticated = true // set isAuthenticated  state value to true
-      //   this.user = data.value.data.user
-      //   localStorage.setItem('user', JSON.stringify(this.user))
-      //   this.success = true
-      // }
+      if (data.value) {
+        const token = useCookie('token') // useCookie new hook in nuxt 3
+        token.value = data?.value?.token // set token to cookie
+        this.isAuthenticated = true // set isAuthenticated  state value to true
+        this.user = data.value.data.user
+        localStorage.setItem('user', JSON.stringify(this.user))
+        this.success = true
+      }
 
-      // if (!data.value) throw new Error('Something went wrong!')
+      if (!data.value) throw new Error('Something went wrong!')
 
       console.log('data.value', data.value)
       console.log('pending.value', pending.value)
