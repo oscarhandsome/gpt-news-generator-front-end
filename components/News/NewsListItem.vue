@@ -26,12 +26,14 @@ defineProps({
           :src="item.imageCover"
           :alt="item.name"
           class="rounded-t-lg"
+          :class="{ 'h-32 rounded-b-lg': view === 'list' }"
         />
         <img
           v-else
           src="/images/no-image.jpeg"
           alt="no-image"
           class="rounded-t-lg"
+          :class="{ 'h-32 rounded-b-lg': view === 'list' }"
         />
       </div>
       <div class="p-6">

@@ -29,7 +29,7 @@ await getAllNews()
       class="grid gap-2 lg:gap-4 py-5"
       :class="{
         'sm:grid-cols-2 lg:grid-cols-4': view === 'tile',
-        'sm:grid-cols-1 ': view === 'list',
+        'grid-cols-1': view === 'list',
       }"
     >
       <div v-for="item in newsList" :key="`news-${item.id}`">
