@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 // import { mapState } from 'pinia'
+import { storeToRefs } from 'pinia'
 import { useNewsStore } from '@/store/news'
 
 import { ArrowLeftCircleIcon } from '@heroicons/vue/20/solid'
@@ -14,8 +15,16 @@ defineProps({
 const route = useRoute()
 const store = useNewsStore()
 
-store.getNews(route.params.slug)
-console.log('store', store.currentNews)
+const { getNews } = useNewsStore() // use authenticateUser action from  auth store
+const { isloading, errors, currentNews } = storeToRefs(useNewsStore()) // make isAuthenticated state reactive with storeToRefs
+
+await getNews(route.params.slug)
+console.log('store', currentNews)
+
+onBeforeUnmount(() => {
+  currentNews.value = []
+  currentNews.value = {}
+})
 </script>
 
 <template>
@@ -32,9 +41,9 @@ console.log('store', store.currentNews)
     <div class="lg:flex mb-12">
       <div class="flex-shrink-0">
         <nuxt-img
-          v-if="store.currentNews.imageCover"
-          :src="store.currentNews.imageCover"
-          :alt="store.currentNews.name"
+          v-if="currentNews.imageCover"
+          :src="currentNews.imageCover"
+          :alt="currentNews.name"
           class="rounded-t-lg"
         />
         <img
@@ -47,19 +56,19 @@ console.log('store', store.currentNews)
       <div class="py-2 lg:px-6">
         <div class="text-xs text-gray-500 text-right lg:text-left">
           <!-- 10/06/2023 -->
-          {{ store.currentNews.createdAt }}
+          {{ currentNews.createdAt }}
         </div>
         <h5
           class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
         >
-          {{ store.currentNews.name }}
+          {{ currentNews.name }}
         </h5>
         <p class="font-normal text-gray-700 dark:text-gray-400 mb-2">
-          {{ store.currentNews.description }}
+          {{ currentNews.description }}
         </p>
         <hr />
         <div class="border border-gray-200 rounded-md p-3 pt-0 mt-2">
-          <UserInfo :user="store.currentNews.autor" />
+          <UserInfo :user="currentNews.autor" />
         </div>
       </div>
     </div>

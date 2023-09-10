@@ -24,7 +24,9 @@ defineProps<{
     class="flex items-center justify-start space-x-3 mt-2"
   >
     <!-- 
-      :src="`~/assets/images/${user.photo}`" -->
+      :src="`~/assets/images/${user.photo}`"
+    https://gpt-chat-news-generator-a4555eba92cd.herokuapp.com/img/users/
+    -->
     <img
       v-if="user.photo"
       class="rounded-full w-9 h-9"
