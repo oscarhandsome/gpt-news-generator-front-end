@@ -34,12 +34,12 @@ export default defineNuxtConfig({
   experimental: {
     renderJsonPayloads: false,
   },
-  buildModules: [
-    [
-      '@nuxtjs/google-analytics',
-      {
-        id: 'G-S2TYG1RNRF',
-      },
-    ],
-  ],
+  // buildModules: [
+  //   [
+  //     '@nuxtjs/google-analytics',
+  //     {
+  //       id: 'G-S2TYG1RNRF',
+  //     },
+  //   ],
+  // ],
 })
