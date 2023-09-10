@@ -27,13 +27,12 @@ defineProps<{
       :src="`~/assets/images/${user.photo}`"
     https://gpt-chat-news-generator-a4555eba92cd.herokuapp.com/img/users/
     -->
-    <img
-      v-if="user.photo"
+    <nuxt-img
+      v-if="user.photo || 'https://i.pravatar.cc/100'"
       class="rounded-full w-9 h-9"
-      :src="`${user.photo}`"
+      :src="`${user.photo}` || 'https://i.pravatar.cc/100'"
       :alt="user.name"
     />
-    <img v-else src="https://i.pravatar.cc/100" alt="any" />
     <div class="space-y-0.5 font-medium dark:text-white text-left">
       <div>{{ user.name }}</div>
       <div class="text-sm text-gray-500 dark:text-gray-400">

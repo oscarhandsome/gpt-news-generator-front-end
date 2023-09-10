@@ -46,7 +46,7 @@ defineProps({
         </h5>
         <p
           class="font-normal text-gray-700 dark:text-gray-400 break-all mt-2"
-          v-html="item.description.substring(0, 50) + '...'"
+          v-html="item.description.substring(0, 60) + '...'"
         ></p>
       </div>
     </nuxt-link>

@@ -28,7 +28,8 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div>
+  <BaseLoader v-if="isloading" />
+  <div v-else>
     <!-- Details of news {{ $route.params.slug }} -->
     <button
       class="flex items-center border border-white hover:bg-black hover:text-white active:bg-black active:text-white transition-colors rounded px-2 mb-2"
