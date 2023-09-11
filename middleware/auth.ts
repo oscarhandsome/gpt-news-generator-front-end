@@ -5,7 +5,7 @@ export default defineNuxtRouteMiddleware((to) => {
   const { isAuthenticated, user } = storeToRefs(useAuthStore()) // make isAuthenticated state reactive
   const token = useCookie('token') // get token from cookies
 
-  console.log('token in auth', token.value)
+  console.log('token in auth middleware', token.value)
 
   if (token.value) {
     // check if value exists
@@ -23,6 +23,11 @@ export default defineNuxtRouteMiddleware((to) => {
   ) {
     // if token exists and url is /login redirect to homepage
     return navigateTo('/')
+  }
+
+  if (!token.value && to?.name === 'news-create') {
+    abortNavigation()
+    return navigateTo('/auth/login')
   }
 
   // if token doesn't exist redirect to log in

@@ -12,73 +12,36 @@ class Api {
   // }
 
   static async get(path: string, params: object = {}) {
-    try {
-      const token = useCookie('token')
-      const API_BASE_URL = useRuntimeConfig().public.baseURL
-      const response: any = await useFetch(`${API_BASE_URL}${path}`, {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token.value}`,
-          'Content-Type': 'application/json',
-        },
-      })
-      console.log('response', response)
-      if (response.data.value.status === 'success')
-        return response.data.value.data.data
-    } catch (error) {
-      return error
-    }
+    return await useMyFetch(`${path}`, { method: 'GET', params })
   }
 
-  // static async post(path, body = {}) {
-  //   const { fetch, data } = useFetch()
-  //   const cookies = useCookies()
-  //   const token = cookies.get('token')
+  static async post(path: string, body: object = {}) {
+    return await useMyFetch(path, {
+      method: 'POST',
+      body: JSON.stringify(body),
+    })
+  }
 
-  //   await fetch(path, {
-  //     method: 'POST',
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(body),
-  //   })
+  static async patch(path: string, body: object = {}) {
+    return await useMyFetch(path, {
+      method: 'PATCH',
+      body: JSON.stringify(body),
+    })
+  }
 
-  //   return data.value
-  // }
+  static async put(path: string, body: object = {}) {
+    return await useMyFetch(path, {
+      method: 'PUT',
+      body: JSON.stringify(body),
+    })
+  }
 
-  // static async put(path, body = {}) {
-  //   const { fetch, data } = useFetch()
-  //   const cookies = useCookies()
-  //   const token = cookies.get('token')
-
-  //   await fetch(path, {
-  //     method: 'PUT',
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(body),
-  //   })
-
-  //   return data.value
-  // }
-
-  // static async delete(path, params = {}) {
-  //   const { fetch, data } = useFetch()
-  //   const cookies = useCookies()
-  //   const token = cookies.get('token')
-
-  //   await fetch(path, {
-  //     method: 'DELETE',
-  //     params,
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //   })
-
-  //   return data.value
-  // }
+  static async delete(path: string, params: object = {}) {
+    return await useMyFetch(path, {
+      method: 'DELETE',
+      params,
+    })
+  }
 }
 
 export default Api

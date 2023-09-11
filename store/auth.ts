@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { UserPayloadInterface } from 'types'
 // import { useToast } from 'tailvue'
+import Api from '~/services/api'
 
 // const $toast = useToast()
 // const { $toast } = useNuxtApp()
@@ -23,18 +24,22 @@ export const useAuthStore = defineStore('auth', {
     async authenticateUser({ email, password }: UserPayloadInterface) {
       // $toast.show('this is a test')
       // useFetch from nuxt 3
-      const { data, pending }: any = await useFetch(
-        `http://localhost:8000/api/v1/users/login`,
-        {
-          method: 'post',
-          headers: { 'Content-Type': 'application/json' },
-          // mode: 'no-cors',
-          body: {
-            email,
-            password,
-          },
-        },
-      )
+      // const { data, pending }: any = await useFetch(
+      //   `http://localhost:8000/api/v1/users/login`,
+      //   {
+      //     method: 'post',
+      //     headers: { 'Content-Type': 'application/json' },
+      //     // mode: 'no-cors',
+      //     body: {
+      //       email,
+      //       password,
+      //     },
+      //   },
+      // )
+      const { data, pending, error }: any = await Api.post('/users/login', {
+        email,
+        password,
+      })
       this.isloading = pending
 
       console.log('this.isloading', this.isloading)
@@ -48,6 +53,8 @@ export const useAuthStore = defineStore('auth', {
         localStorage.setItem('user', JSON.stringify(this.user))
         this.success = true
       }
+
+      if (error.value) this.errors = error.value
 
       if (!data.value) throw new Error('Something went wrong!')
     },

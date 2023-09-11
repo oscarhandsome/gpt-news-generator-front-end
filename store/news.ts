@@ -23,7 +23,8 @@ export const useNewsStore = defineStore('news', {
   actions: {
     async getAllNews() {
       this.isloading = true
-      this.news = await Api.get('/news')
+      const { data, pending }: any = await Api.get('/news')
+      if (data.value) this.news = data.value.data.data
       // this.famousPersons = this.news.map((item) => ({
       //   name: item.famousPerson,
       // }))
@@ -62,27 +63,28 @@ export const useNewsStore = defineStore('news', {
         this.errors = []
         this.errors = {}
         console.log('payload', payload)
-        const token = useCookie('token')
+        // const token = useCookie('token')
 
         for (const [key, value] of Object.entries(payload)) {
           if (!value) this.errors[key] = `${key} not exist`
         }
 
         // useFetch from nuxt 3
-        const { data, pending }: any = await useFetch(
-          `http://localhost:8000/api/v1/news`,
-          {
-            method: 'post',
-            headers: {
-              Authorization: `Bearer ${token.value}`,
-              'Content-Type': 'application/json',
-            },
-            body: payload,
-          },
-        ).catch((error) => error.data)
+        this.currentNews = await Api.post('/news', payload)
+        // const { data, pending }: any = await useFetch(
+        //   `http://localhost:8000/api/v1/news`,
+        //   {
+        //     method: 'post',
+        //     headers: {
+        //       Authorization: `Bearer ${token.value}`,
+        //       'Content-Type': 'application/json',
+        //     },
+        //     body: payload,
+        //   },
+        // ).catch((error) => error.data)
         // this.isloading = pending
-        console.log('pending', pending)
-        console.log('data', data.value)
+        // console.log('pending', pending)
+        // console.log('data', data.value)
 
         this.isloading = false
       } catch (error) {
