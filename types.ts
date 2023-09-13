@@ -1,6 +1,9 @@
 export interface UserPayloadInterface {
+  name?: string
   email: string
   password: string
+  passwordConfirm?: string
+  remember?: boolean
 }
 
 export interface NavLink {

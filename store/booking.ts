@@ -11,7 +11,7 @@ const BASE_URL = 'http://localhost:8000/api/v1'
 export const useBookingStore = defineStore('booking', {
   state: () => ({
     checkoutSession: null,
-    isloading: false,
+    isLoading: false,
     errors: [],
     success: false,
     user: null,
@@ -34,9 +34,9 @@ export const useBookingStore = defineStore('booking', {
           },
         },
       )
-      this.isloading = pending
+      this.isLoading = pending
 
-      console.log('this.isloading', this.isloading)
+      console.log('this.isLoading', this.isLoading)
       console.log('data.value', data.value)
 
       if (data.value.status === 'success') {
@@ -75,9 +75,9 @@ export const useBookingStore = defineStore('booking', {
           },
         },
       )
-      this.isloading = pending
+      this.isLoading = pending
 
-      console.log('this.isloading', this.isloading)
+      console.log('this.isLoading', this.isLoading)
       console.log('data.value', data.value)
 
       if (data.value.status === 'success') {

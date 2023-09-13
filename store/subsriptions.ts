@@ -15,17 +15,17 @@ export const useSubscriptionStore = defineStore('subscription', {
   state: () => ({
     subscriptions: null,
     mySubscription: null,
-    isloading: false,
+    isLoading: false,
     errors: [],
     success: false,
     user: null,
   }),
   actions: {
     async getSubscriptions() {
-      this.isloading = true
+      this.isLoading = true
       const { data, pending }: any = await Api.get('/subscriptions')
       if (data.value) this.subscriptions = data.value.data.data
-      this.isloading = false
+      this.isLoading = false
     },
     // async getSubscriptions() {
     //   // $toast.show('this is a test')
@@ -41,9 +41,9 @@ export const useSubscriptionStore = defineStore('subscription', {
     //       },
     //     },
     //   )
-    //   this.isloading = pending
+    //   this.isLoading = pending
 
-    //   console.log('this.isloading', this.isloading)
+    //   console.log('this.isLoading', this.isLoading)
     //   console.log('data.value', data.value)
 
     //   if (data.value && data.value.status === 'success') {
@@ -69,9 +69,9 @@ export const useSubscriptionStore = defineStore('subscription', {
           },
         },
       )
-      this.isloading = pending
+      this.isLoading = pending
 
-      console.log('this.isloading', this.isloading)
+      console.log('this.isLoading', this.isLoading)
       console.log('data.value', data.value)
 
       if (data.value.status === 'success') {

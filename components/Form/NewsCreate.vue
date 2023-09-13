@@ -3,7 +3,7 @@ import { storeToRefs } from 'pinia' // import storeToRefs helper hook from pinia
 import { useNewsStore } from '~/store/news' // import the news store we just created
 
 const { createNews } = useNewsStore() // use authenticateUser action from  auth store
-const { isloading, errors } = storeToRefs(useNewsStore()) // make isAuthenticated state reactive with storeToRefs
+const { isLoading, errors } = storeToRefs(useNewsStore()) // make isAuthenticated state reactive with storeToRefs
 
 // const router = useRouter()
 
@@ -50,7 +50,7 @@ const submitForm = () => createNews(data)
 </script>
 
 <template>
-  <BaseLoader v-if="isloading" />
+  <BaseLoader v-if="isLoading" />
   <div
     v-else
     class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-6 mx-auto"

@@ -1,8 +1,8 @@
 <script lang="ts" setup>
+import { CheckIcon } from '@heroicons/vue/24/solid'
+
 import { storeToRefs } from 'pinia' // import storeToRefs helper hook from pinia
 import { useAuthStore } from '~/store/auth' // import the auth store we just created
-
-import { CheckIcon } from '@heroicons/vue/24/solid'
 
 definePageMeta({
   layout: 'custom',
@@ -10,9 +10,10 @@ definePageMeta({
 })
 
 const { authenticateUser } = useAuthStore() // use authenticateUser action from  auth store
-const { isAuthenticated, success } = storeToRefs(useAuthStore()) // make isAuthenticated state reactive with storeToRefs
+const { isAuthenticated, success, isLoading, error } = storeToRefs(
+  useAuthStore(),
+) // make isAuthenticated state reactive with storeToRefs
 
-const isLoading = ref(false)
 const data = ref({
   email: 'johndoe1027@gmail.com',
   password: 'pass1234',
@@ -21,14 +22,12 @@ const data = ref({
 const router = useRouter()
 
 const login = async () => {
-  isLoading.value = true
   await authenticateUser(data.value) // call authenticateUser and pass the user object
   // redirect to homepage if user is isAuthenticated
   if (isAuthenticated) {
     // $toast.show('success!')
     setTimeout(() => router.push('/news/create'), 2000)
   }
-  isLoading.value = false
 }
 </script>
 
@@ -53,40 +52,41 @@ const login = async () => {
         @submit.prevent="login"
       >
         <h5 class="text-xl font-medium text-gray-900 dark:text-white">
-          Sign in to our platform
+          Log in to our platform
         </h5>
+        <BaseError :text="error" />
         <div>
           <BaseInput
-            :modelValue="data.email"
-            label="email"
+            :model-value="data.email"
+            label="Email"
             type="string"
             error=""
             placeholder="name@example.com"
             required
-            @update:modelValue="data.email = $event"
+            @update:model-value="data.email = $event"
           />
         </div>
         <div>
           <BaseInput
-            :modelValue="data.password"
-            label="password"
+            :model-value="data.password"
+            label="Password"
             name="password"
             type="password"
             error=""
             placeholder="••••••••"
             required
-            @update:modelValue="data.password = $event"
+            @update:model-value="data.password = $event"
           />
         </div>
         <div class="flex items-start">
           <BaseCheckbox
             id="remember"
             label="Remember me"
-            :modelValue="data.remember"
+            :model-value="data.remember"
             name="remember"
             error=""
             class="h-5"
-            @update:modelValue="data.remember = $event"
+            @update:model-value="data.remember = $event"
           />
           <nuxt-link
             to="/auth/forgot-password"

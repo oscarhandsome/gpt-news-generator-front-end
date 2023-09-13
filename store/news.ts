@@ -16,22 +16,22 @@ export const useNewsStore = defineStore('news', {
     news: [],
     currentNews: {},
     famousPersons: [],
-    isloading: false,
+    isLoading: false,
     errors: {},
     success: null,
   }),
   actions: {
     async getAllNews() {
-      this.isloading = true
+      this.isLoading = true
       const { data, pending }: any = await Api.get('/news')
       if (data.value) this.news = data.value.data.data
       // this.famousPersons = this.news.map((item) => ({
       //   name: item.famousPerson,
       // }))
-      this.isloading = false
+      this.isLoading = false
     },
     // async getAllNews() {
-    //   this.isloading = true
+    //   this.isLoading = true
     //   this.errors = []
     //   this.errors = {}
     //   // console.log('payload', payload)
@@ -49,17 +49,17 @@ export const useNewsStore = defineStore('news', {
     //       // body: payload,
     //     },
     //   ).catch((error) => console.error('error', error))
-    //   // this.isloading = pending
+    //   // this.isLoading = pending
     //   // console.log('pending', pending)
     //   console.log('data', data.value)
 
     //   if (data) this.news = data.value.data.data
 
-    //   this.isloading = false
+    //   this.isLoading = false
     // },
     async createNews(payload: NewsPayloadInterface) {
       try {
-        this.isloading = true
+        this.isLoading = true
         this.errors = []
         this.errors = {}
         console.log('payload', payload)
@@ -82,22 +82,22 @@ export const useNewsStore = defineStore('news', {
         //     body: payload,
         //   },
         // ).catch((error) => error.data)
-        // this.isloading = pending
+        // this.isLoading = pending
         // console.log('pending', pending)
         // console.log('data', data.value)
 
-        this.isloading = false
+        this.isLoading = false
       } catch (error) {
         console.log('error', error)
       }
     },
     async getNews(payload: string) {
-      this.isloading = true
+      this.isLoading = true
       this.currentNews = await Api.get(`/news/${payload}`)
-      this.isloading = false
+      this.isLoading = false
     },
     // async getNews(payload: string) {
-    //   this.isloading = true
+    //   this.isLoading = true
     //   this.errors = []
     //   this.errors = {}
     //   // console.log('payload', payload)
@@ -115,18 +115,18 @@ export const useNewsStore = defineStore('news', {
     //       // body: payload,
     //     },
     //   ).catch((error) => console.error('error', error))
-    //   // this.isloading = pending
+    //   // this.isLoading = pending
     //   // console.log('pending', pending)
     //   console.log('data', data.value)
 
     //   if (data) this.currentNews = data.value.data.data
 
-    //   this.isloading = false
+    //   this.isLoading = false
     // },
     async removeNews() {},
   },
   getters: {
     newsList: (state) => state.news,
-    // isloading: (state) => state.isloading,
+    // isLoading: (state) => state.isLoading,
   },
 })

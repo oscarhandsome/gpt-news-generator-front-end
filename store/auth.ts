@@ -6,22 +6,18 @@ import Api from '~/services/api'
 // const $toast = useToast()
 // const { $toast } = useNuxtApp()
 
-// console.log('user from localstorage')
-// console.log(localStorage.getItem('user'))
-
-// const baseURL = useRuntimeConfig().public.baseURL
-const BASE_URL = 'http://localhost:8000/api/v1'
-
 export const useAuthStore = defineStore('auth', {
   state: () => ({
     isAuthenticated: false,
-    isloading: false,
+    isLoading: false,
     errors: [],
+    error: '',
     success: false,
     user: null,
   }),
   actions: {
-    async authenticateUser({ email, password }: UserPayloadInterface) {
+    async authenticateUser(payload: UserPayloadInterface) {
+      this.isLoading = true
       // $toast.show('this is a test')
       // useFetch from nuxt 3
       // const { data, pending }: any = await useFetch(
@@ -36,16 +32,13 @@ export const useAuthStore = defineStore('auth', {
       //     },
       //   },
       // )
-      const { data, pending, error }: any = await Api.post('/users/login', {
-        email,
-        password,
-      })
-      this.isloading = pending
+      const { data, pending, error }: any = await Api.post(
+        '/users/login',
+        payload,
+      )
+      this.isLoading = pending.value
 
-      console.log('this.isloading', this.isloading)
-      console.log('data.value', data.value)
-
-      if (data.value) {
+      if (data.value && data.status === 'success') {
         const token = useCookie('token') // useCookie new hook in nuxt 3
         token.value = data?.value?.token // set token to cookie
         this.isAuthenticated = true // set isAuthenticated  state value to true
@@ -53,10 +46,15 @@ export const useAuthStore = defineStore('auth', {
         localStorage.setItem('user', JSON.stringify(this.user))
         this.success = true
       }
-
-      if (error.value) this.errors = error.value
-
-      if (!data.value) throw new Error('Something went wrong!')
+      // if (error.value) this.errors = error.value
+      // if (!data.value) throw new Error('Something went wrong!')
+      if (error.value) {
+        // this.error = 'Password or email incorrect!'
+        this.error = error.value.data.message
+        setTimeout(() => {
+          this.error = ''
+        }, 3500)
+      }
     },
     async logUserOut() {
       // const { data, pending }: any = await useFetch(
@@ -67,9 +65,9 @@ export const useAuthStore = defineStore('auth', {
       //   },
       // )
       const { data, pending, error }: any = await Api.get('/users/logout')
-      this.isloading = pending
+      this.isLoading = pending
 
-      console.log('this.isloading', this.isloading)
+      console.log('this.isLoading', this.isLoading)
       console.log('data.value', data.value)
 
       if (data.value) {
@@ -97,13 +95,13 @@ export const useAuthStore = defineStore('auth', {
       //     },
       //   },
       // )
-      const { data, pending, error }: any = await Api.post(
+      const { data, pending, error, refresh }: any = await Api.post(
         '/users/signup',
         payload,
       )
-      this.isloading = pending
+      this.isLoading = pending
 
-      // console.log('this.isloading', this.isloading)
+      // console.log('this.isLoading', this.isLoading)
       // console.log('data.value', data.value)
 
       if (data.value) {

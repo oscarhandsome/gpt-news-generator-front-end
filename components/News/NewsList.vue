@@ -4,7 +4,7 @@ import { storeToRefs } from 'pinia' // import storeToRefs helper hook from pinia
 import { useNewsStore } from '@/store/news'
 
 const { getAllNews } = useNewsStore() // use authenticateUser action from  auth store
-const { isloading, errors, newsList } = storeToRefs(useNewsStore()) // make isAuthenticated state reactive with storeToRefs
+const { isLoading, errors, newsList } = storeToRefs(useNewsStore()) // make isAuthenticated state reactive with storeToRefs
 
 defineProps({
   view: {
@@ -21,7 +21,7 @@ await getAllNews()
 </script>
 
 <template>
-  <BaseLoader v-if="isloading" />
+  <BaseLoader v-if="isLoading" />
   <div v-else>
     <BaseTitle v-if="newsList && newsList.length" title="Latest news" />
     <div
