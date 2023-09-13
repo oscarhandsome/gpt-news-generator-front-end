@@ -39,9 +39,10 @@ export const useBookingStore = defineStore('booking', {
         `/bookings/checkout-session/${payload}`,
       )
       this.isLoading = pending.value
-      if (data.value && data.value.status === 'success') {
+
+      if (data.value.status === 'success') {
         this.success = true
-        this.checkoutSession = data.value.data.data
+        this.checkoutSession = data.value.session
 
         // Use the Stripe instance to interact with the stripe.js library
         // stripe.redirectToCheckout(...)

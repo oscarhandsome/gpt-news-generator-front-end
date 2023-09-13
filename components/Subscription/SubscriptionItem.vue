@@ -1,13 +1,32 @@
 <script lang="ts" setup>
+import { storeToRefs } from 'pinia' // import storeToRefs helper hook from pinia
+import { useBookingStore } from '~/store/booking' // import the auth store we just created
 import type { Subsription } from 'types'
 
 defineProps<{
   item: Subsription
 }>()
 
-const { chooseSubscription } = inject('subscriptions')
+const { getCheckoutSession } = useBookingStore() // use getCheckoutSession action from  auth store
+const { checkoutSession, success } = storeToRefs(useBookingStore()) // make checkoutSession, success state reactive with storeToRefs
 
-const chooseitem = (id: string) => chooseSubscription(id)
+const isLoading = ref(false)
+const route = useRoute()
+const hidden = route.path === '/subscriptions/my-subsriptions'
+
+const chooseSubscription = async (subscriptionId: string) => {
+  isLoading.value = true
+  // 1) Get checkout session from API
+  // 2) Create checkout form + share credit cards
+  console.log('value', subscriptionId)
+
+  await getCheckoutSession(subscriptionId)
+  if (checkoutSession && success) {
+    // $toast.show('success!')
+    // setTimeout(() => router.push('/news/create'), 2000)
+  }
+  isLoading.value = false
+}
 </script>
 
 <template>
@@ -51,7 +70,8 @@ const chooseitem = (id: string) => chooseSubscription(id)
   <button
     type="button"
     class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center"
-    @click="chooseitem(item._id)"
+    :class="{ hidden }"
+    @click="chooseSubscription(item._id)"
   >
     Get started
   </button>
