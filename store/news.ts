@@ -126,6 +126,12 @@ export const useNewsStore = defineStore('news', {
     //   this.isLoading = false
     // },
     async removeNews() {},
+    async getMyNews(payload: string) {
+      this.isLoading = true
+      const { data, pending }: any = await Api.get(`/news/my-news`)
+      if (data.value) this.news = data.value.data.data
+      this.isLoading = pending.value
+    },
   },
   getters: {
     newsList: (state) => state.news,

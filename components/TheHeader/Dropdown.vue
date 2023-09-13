@@ -9,6 +9,8 @@ import {
   PencilSquareIcon as EditIcon,
   TrashIcon as DeleteIcon,
   ArrowRightOnRectangleIcon,
+  ListBulletIcon as ViewListIcon,
+  CreditCardIcon,
 } from '@heroicons/vue/20/solid'
 import { useAuthStore } from '~/store/auth'
 
@@ -66,18 +68,34 @@ const logout = () => {
             </MenuItem>
             <MenuItem v-slot="{ active }">
               <nuxt-link
-                to="/subsriptions/my-subsriptions"
+                to="/subscriptions/my-subsriptions"
                 :class="[
                   active ? 'bg-violet-500 text-white' : 'text-gray-900',
                   'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                 ]"
               >
-                <DocumentIcon
+                <CreditCardIcon
                   :active="active"
                   class="mr-2 h-5 w-5 text-violet-400"
                   aria-hidden="true"
                 />
                 My subsriptions
+              </nuxt-link>
+            </MenuItem>
+            <MenuItem v-slot="{ active }">
+              <nuxt-link
+                to="/news/my-news"
+                :class="[
+                  active ? 'bg-violet-500 text-white' : 'text-gray-900',
+                  'group flex w-full items-center rounded-md px-2 py-2 text-sm',
+                ]"
+              >
+                <ViewListIcon
+                  :active="active"
+                  class="mr-2 h-5 w-5 text-violet-400"
+                  aria-hidden="true"
+                />
+                My news
               </nuxt-link>
             </MenuItem>
             <!-- <MenuItem v-slot="{ active }">

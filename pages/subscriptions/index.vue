@@ -34,6 +34,8 @@ const chooseSubscription = async (subscriptionId: string) => {
   isLoading.value = false
 }
 
+provide('subscriptions', { chooseSubscription })
+
 await getSubscriptions()
 </script>
 

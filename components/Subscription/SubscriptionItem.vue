@@ -4,6 +4,10 @@ import type { Subsription } from 'types'
 defineProps<{
   item: Subsription
 }>()
+
+const { chooseSubscription } = inject('subscriptions')
+
+const chooseitem = (id: string) => chooseSubscription(id)
 </script>
 
 <template>

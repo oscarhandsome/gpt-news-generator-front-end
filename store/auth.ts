@@ -38,7 +38,7 @@ export const useAuthStore = defineStore('auth', {
       )
       this.isLoading = pending.value
 
-      if (data.value && data.status === 'success') {
+      if (data.value && data.value.status === 'success') {
         const token = useCookie('token') // useCookie new hook in nuxt 3
         token.value = data?.value?.token // set token to cookie
         this.isAuthenticated = true // set isAuthenticated  state value to true

@@ -63,3 +63,27 @@ export interface Subsription {
   _id: string
   name: string
 }
+
+export interface News {
+  autor: User
+  autors: User[]
+  checkboxActive: boolean
+  checkboxPublic: boolean
+  createdAt: string
+  description: string
+  durationWeeks: null
+  famousPerson: string
+  id: string
+  imageCover: string
+  images: string[]
+  length: 50
+  name: string
+  place: string
+  ratingsAverage: number
+  ratingsQuantity: number
+  secretNews: boolean
+  slug: string
+  type: string
+  updatedAt: string
+  _id: string
+}
