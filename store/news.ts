@@ -93,8 +93,10 @@ export const useNewsStore = defineStore('news', {
     },
     async getNews(payload: string) {
       this.isLoading = true
-      this.currentNews = await Api.get(`/news/${payload}`)
-      this.isLoading = false
+      // this.currentNews = await Api.get(`/news/${payload}`)
+      const { data, pending }: any = await Api.get('/news')
+      if (data.value) this.currentNews = data.value.data.data
+      this.isLoading = pending.value
     },
     // async getNews(payload: string) {
     //   this.isLoading = true
