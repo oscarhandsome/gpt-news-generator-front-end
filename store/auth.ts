@@ -59,13 +59,14 @@ export const useAuthStore = defineStore('auth', {
       if (!data.value) throw new Error('Something went wrong!')
     },
     async logUserOut() {
-      const { data, pending }: any = await useFetch(
-        `http://localhost:8000/api/v1/users/logout`,
-        {
-          method: 'get',
-          headers: { 'Content-Type': 'application/json' },
-        },
-      )
+      // const { data, pending }: any = await useFetch(
+      //   `http://localhost:8000/api/v1/users/logout`,
+      //   {
+      //     method: 'get',
+      //     headers: { 'Content-Type': 'application/json' },
+      //   },
+      // )
+      const { data, pending, error }: any = await Api.get('/users/logout')
       this.isloading = pending
 
       console.log('this.isloading', this.isloading)
@@ -81,20 +82,24 @@ export const useAuthStore = defineStore('auth', {
         // this.success = true
       }
     },
-    async signUp({ email, password }: UserPayloadInterface) {
+    async signUp(payload: any) {
       // $toast.show('this is a test')
       // useFetch from nuxt 3
-      const { data, pending, error, refresh }: any = await useFetch(
-        `${BASE_URL}/users/signup`,
-        {
-          method: 'post',
-          headers: { 'Content-Type': 'application/json' },
-          // mode: 'no-cors',
-          body: {
-            email,
-            password,
-          },
-        },
+      // const { data, pending, error, refresh }: any = await useFetch(
+      //   `${BASE_URL}/users/signup`,
+      //   {
+      //     method: 'post',
+      //     headers: { 'Content-Type': 'application/json' },
+      //     // mode: 'no-cors',
+      //     body: {
+      //       email,
+      //       password,
+      //     },
+      //   },
+      // )
+      const { data, pending, error }: any = await Api.post(
+        '/users/signup',
+        payload,
       )
       this.isloading = pending
 
@@ -126,18 +131,20 @@ export const useAuthStore = defineStore('auth', {
     async passwordConfirm(payload: UserPayloadInterface) {
       // $toast.show('this is a test')
       // useFetch from nuxt 3
-      const { data, pending, error, refresh }: any = await useFetch(
-        `${BASE_URL}/users/password-confirm/${payload}`,
-        {
-          method: 'get',
-          headers: { 'Content-Type': 'application/json' },
-        },
+      // const { data, pending, error, refresh }: any = await useFetch(
+      //   `${BASE_URL}/users/password-confirm/${payload}`,
+      //   {
+      //     method: 'get',
+      //     headers: { 'Content-Type': 'application/json' },
+      //   },
+      // )
+      const { data, pending, error }: any = await Api.get(
+        `/users/password-confirm/${payload}`,
       )
-
       console.log('data.value', data.value)
       console.log('pending.value', pending.value)
       console.log('error.value', error.value)
-      console.log('refresh.value', refresh.value)
+      // console.log('refresh.value', refresh.value)
     },
   },
 })

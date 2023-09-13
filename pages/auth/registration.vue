@@ -16,7 +16,8 @@ const isLoading = ref(false)
 // const route = useRouter()
 
 const data = reactive({
-  email: 'johndoe1080@gmail.com',
+  name: 'John Doe Main',
+  email: 'johndoe1081@mailsac.com',
   password: 'pass1234',
   passwordConfirm: 'pass1234',
 })

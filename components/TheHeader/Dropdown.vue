@@ -80,7 +80,7 @@ const logout = () => {
                 My subsriptions
               </nuxt-link>
             </MenuItem>
-            <MenuItem v-slot="{ active }">
+            <!-- <MenuItem v-slot="{ active }">
               <button
                 :class="[
                   active ? 'bg-violet-500 text-white' : 'text-gray-900',
@@ -159,7 +159,7 @@ const logout = () => {
                 />
                 Delete
               </button>
-            </MenuItem>
+            </MenuItem> -->
           </div>
 
           <div class="px-1 py-1">
