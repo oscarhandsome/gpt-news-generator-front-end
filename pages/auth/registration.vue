@@ -6,7 +6,7 @@ import { CheckIcon } from '@heroicons/vue/24/solid'
 
 definePageMeta({
   layout: 'custom',
-  middleware: 'auth',
+  // middleware: 'auth',
 })
 const { signUp } = useAuthStore() // use authenticateUser action from  auth store
 const { isAuthenticated, success, errors } = storeToRefs(useAuthStore()) // make isAuthenticated state reactive with storeToRefs

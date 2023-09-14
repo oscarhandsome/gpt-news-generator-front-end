@@ -6,7 +6,7 @@ import { useAuthStore } from '~/store/auth' // import the auth store we just cre
 
 definePageMeta({
   layout: 'custom',
-  middleware: 'auth',
+  // middleware: 'auth',
 })
 
 const { authenticateUser } = useAuthStore() // use authenticateUser action from  auth store
@@ -26,7 +26,12 @@ const login = async () => {
   // redirect to homepage if user is isAuthenticated
   if (isAuthenticated) {
     // $toast.show('success!')
-    setTimeout(() => router.push('/news/create'), 2000)
+    setTimeout(() => {
+      // router.push('/news/create')
+      // router.push('/news/my-news')
+      router.push('/')
+      success.value = false
+    }, 2000)
   }
 }
 </script>

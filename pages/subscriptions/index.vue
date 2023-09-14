@@ -6,7 +6,7 @@ import { useSubscriptionStore } from '~/store/subsriptions'
 
 definePageMeta({
   layout: 'custom',
-  middleware: 'auth',
+  // middleware: 'auth',
 })
 
 const { getSubscriptions } = useSubscriptionStore()

@@ -25,7 +25,7 @@ defineProps({
           v-if="item.imageCover"
           :src="item.imageCover"
           :alt="item.name"
-          class="rounded-t-lg"
+          class="rounded-t-lg hover:scale-105 active:scale-110 transition-transform"
           :class="{ 'h-32 rounded-b-lg': view === 'list' }"
         />
         <img

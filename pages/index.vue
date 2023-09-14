@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia' // import storeToRefs helper hook from pinia
 import { useNewsStore } from '@/store/news'
-definePageMeta({
-  middleware: 'auth',
-})
+// definePageMeta({
+//   middleware: 'auth',
+// })
 const view = ref('tile')
 
 const { getAllNews } = useNewsStore()
