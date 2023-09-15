@@ -1,9 +1,14 @@
+<script lang="ts" setup>
+const route = useRoute()
+console.log('route', route.name)
+</script>
+
 <template>
   <nav class="flex" aria-label="Breadcrumb">
     <ol class="inline-flex items-center space-x-1 md:space-x-3">
       <li class="inline-flex items-center">
-        <a
-          href="#"
+        <nuxt-link
+          to="/"
           class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
         >
           <svg
@@ -18,9 +23,9 @@
             />
           </svg>
           Home
-        </a>
+        </nuxt-link>
       </li>
-      <li>
+      <li v-if="route.name !== 'index'">
         <div class="flex items-center">
           <svg
             class="w-3 h-3 text-gray-400 mx-1"
@@ -38,9 +43,9 @@
             />
           </svg>
           <nuxt-link
-            to="/news"
+            :to="`/${route.name}`"
             class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"
-            >News</nuxt-link
+            >{{ route.name }}</nuxt-link
           >
         </div>
       </li>
