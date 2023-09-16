@@ -181,7 +181,7 @@ const logout = () => {
             </MenuItem> -->
           </div>
 
-          <div class="px-1 py-1">
+          <div class="px-1 py-1 cursor-pointer">
             <MenuItem v-slot="{ active }">
               <nuxt-link
                 :class="[

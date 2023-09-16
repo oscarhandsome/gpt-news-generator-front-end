@@ -24,7 +24,7 @@ const router = useRouter()
 const login = async () => {
   await authenticateUser(data.value) // call authenticateUser and pass the user object
   // redirect to homepage if user is isAuthenticated
-  if (isAuthenticated) {
+  if (isAuthenticated.value) {
     // $toast.show('success!')
     setTimeout(() => {
       // router.push('/news/create')
