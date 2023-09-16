@@ -47,6 +47,10 @@ const newsTypesOptions = ref([
 ])
 
 const submitForm = () => createNews(data)
+
+onBeforeUnmount(() => {
+  errors.value = []
+})
 </script>
 
 <template>
