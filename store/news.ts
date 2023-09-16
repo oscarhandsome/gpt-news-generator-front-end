@@ -132,6 +132,12 @@ export const useNewsStore = defineStore('news', {
       if (data.value) this.news = data.value.data.data
       this.isLoading = pending.value
     },
+    async getNewsByAutorId(payload: string) {
+      this.isLoading = true
+      const { data, pending }: any = await Api.get(`/news/autor/${payload}`)
+      if (data.value) this.news = data.value.data.data
+      this.isLoading = pending.value
+    },
   },
   getters: {
     newsList: (state) => state.news,
