@@ -30,10 +30,13 @@ const login = async () => {
       // router.push('/news/create')
       // router.push('/news/my-news')
       router.push('/')
-      success.value = false
     }, 2000)
   }
 }
+
+onBeforeUnmount(() => {
+  success.value = false
+})
 </script>
 
 <template>
