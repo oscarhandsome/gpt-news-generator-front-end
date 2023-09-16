@@ -5,7 +5,7 @@ defineProps<{
   view?: string
   isLoading?: boolean
   items?: News[]
-  errors: string[]
+  // errors: string[]
 }>()
 </script>
 
