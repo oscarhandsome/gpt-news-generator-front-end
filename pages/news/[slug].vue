@@ -46,13 +46,13 @@ onBeforeUnmount(() => {
           v-if="currentNews.imageCover"
           :src="currentNews.imageCover"
           :alt="currentNews.name"
-          class="rounded-t-lg"
+          class="rounded-lg"
         />
         <img
           v-else
           src="/images/no-image.jpeg"
           alt="no-image"
-          class="rounded-t-lg"
+          class="rounded-lg"
         />
       </div>
       <div class="py-2 lg:px-6">
@@ -69,9 +69,14 @@ onBeforeUnmount(() => {
           {{ currentNews.description }}
         </p>
         <hr />
-        <div class="border border-gray-200 rounded-md p-3 pt-0 mt-2">
-          <UserInfo :user="currentNews.autor" />
-        </div>
+        <nuxt-link
+          :to="`/news/autor/${currentNews.autor._id}`"
+          class="cursor-pointer p-3 pt-0 mt-2"
+        >
+          <div class="border border-gray-200 rounded-md">
+            <UserInfo :user="currentNews.autor" class="pb-3 px-5" />
+          </div>
+        </nuxt-link>
       </div>
     </div>
   </div>

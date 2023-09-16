@@ -17,9 +17,20 @@ await getMyNews()
 </script>
 
 <template>
-  <BaseTitle title="My news" class="mb-5" />
+  <div class="flex items-center justify-between">
+    <BaseTitle title="My news" class="mb-5" />
+    <p>
+      Total news:
+      <span class="ml-2">{{ newsList.length }}</span>
+    </p>
+  </div>
 
   <div class="flex flex-col justify-center items-center mx-auto">
-    <NewsList :view="view" :items="newsList" :is-loading="isLoading" />
+    <NewsList
+      :view="view"
+      :items="newsList"
+      :is-loading="isLoading"
+      :errors="errors"
+    />
   </div>
 </template>
