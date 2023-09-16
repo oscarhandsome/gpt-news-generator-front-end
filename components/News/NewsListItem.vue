@@ -16,7 +16,7 @@ defineProps({
     class="block relative bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
   >
     <nuxt-link
-      :to="`/news/${item.id}`"
+      :to="`/news/${item.slug}`"
       :class="{ flex: view === 'list' }"
       class="cursor-pointer"
     >

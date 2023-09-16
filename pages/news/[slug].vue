@@ -18,6 +18,7 @@ const store = useNewsStore()
 const { getNews } = useNewsStore() // use authenticateUser action from  auth store
 const { isloading, errors, currentNews } = storeToRefs(useNewsStore()) // make isAuthenticated state reactive with storeToRefs
 
+console.log('route.params', route.params)
 await getNews(route.params.slug)
 console.log('store', currentNews)
 
