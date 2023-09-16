@@ -14,7 +14,10 @@ await getNewsByAutorId(route.params.id)
 
 <template>
   <div class="flex items-center justify-between">
-    <BaseTitle title="News by user: ****" class="mb-5" />
+    <BaseTitle
+      :title="`News by user: ${newsList[0].autor.name}`"
+      class="mb-5"
+    />
     <p>
       Total news:
       <span class="ml-2">{{ newsList.length }}</span>
