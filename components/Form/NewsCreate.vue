@@ -54,6 +54,8 @@ const imagesModelOptions = ref(imagesModelIdOptions)
 
 const submitForm = () => createNews(data)
 
+// if (Object.keys(currentNews).length) router.push(`/news/${currentNews.slug}`)
+
 onBeforeUnmount(() => {
   errors.value = []
 })

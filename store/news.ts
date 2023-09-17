@@ -76,8 +76,6 @@ export const useNewsStore = defineStore('news', {
         if (Object.keys(this.errors).length) return
 
         this.isLoading = true
-        this.currentNews = await Api.post('/news', payload)
-
         const { data, pending, error }: any = await Api.post('/news', payload)
         console.log('data, pending, error', data, pending, error)
         if (data.value) this.currentNews = data.value.data.data
