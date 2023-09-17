@@ -2,6 +2,8 @@
 import { storeToRefs } from 'pinia' // import storeToRefs helper hook from pinia
 import { useNewsStore } from '~/store/news' // import the news store we just created
 
+import { imagesModelIdOptions } from '@/assets/data/imagesModelIdOptions'
+
 const { createNews } = useNewsStore() // use authenticateUser action from  auth store
 const { isLoading, errors } = storeToRefs(useNewsStore()) // make isAuthenticated state reactive with storeToRefs
 
@@ -46,6 +48,8 @@ const newsTypesOptions = ref([
   },
 ])
 
+const imagesModelOptions = ref(imagesModelIdOptions)
+
 const submitForm = () => createNews(data)
 
 onBeforeUnmount(() => {
@@ -62,34 +66,34 @@ onBeforeUnmount(() => {
     <form class="grid lg:grid-cols-2 lg:gap-5" @submit.prevent="submitForm">
       <div>
         <BaseInput
-          placeholder="Magnificent new news!"
           v-model="data.name"
+          placeholder="Magnificent new news!"
           label="Name"
           type="string"
           :error="errors.name"
           required
           class="mb-6"
-          @update:modelValue="data.name = $event"
+          @update:model-value="data.name = $event"
         />
 
         <BaseSelect
           label="Choose news type"
           :options="newsTypesOptions"
-          :modelValue="data.type"
-          error=""
+          :model-value="data.type"
+          :error="errors.type"
           class="mb-6"
-          @update:modelValue="data.type = $event"
+          @update:model-value="data.type = $event"
         />
 
         <BaseInput
           v-model="data.famousPerson"
           label="Famous person"
           type="string"
-          error=""
+          :error="data.famousPerson"
           placeholder="Arnold Schwarzenegger"
           required
           class="mb-6"
-          @update:modelValue="data.famousPerson = $event"
+          @update:model-value="data.famousPerson = $event"
         />
       </div>
 
@@ -98,19 +102,19 @@ onBeforeUnmount(() => {
           v-model="data.place"
           label="Place"
           type="string"
-          error=""
+          :error="data.place"
           placeholder="Laguna Beach California"
           required
           class="mb-6"
-          @update:modelValue="data.place = $event"
+          @update:model-value="data.place = $event"
         />
 
         <BaseSlider
           v-model="data.newsLength"
           label="Length"
-          error=""
+          :error="data.newsLength"
           class="mb-5"
-          @update:modelValue="data.newsLength = $event"
+          @update:model-value="data.newsLength = $event"
         />
 
         <div class="mb-6">
@@ -118,19 +122,19 @@ onBeforeUnmount(() => {
             <legend class="sr-only">Checkbox variants</legend>
 
             <BaseCheckbox
-              :modelValue="data.checkboxPublic"
+              :model-value="data.checkboxPublic"
               label="Public view"
               error=""
               class="mb-4"
-              @update:modelValue="data.checkboxPublic = $event"
+              @update:model-value="data.checkboxPublic = $event"
             />
 
             <BaseCheckbox
-              :modelValue="data.checkboxActive"
+              :model-value="data.checkboxActive"
               label="Active"
               error=""
               class="mb-4"
-              @update:modelValue="data.checkboxActive = $event"
+              @update:model-value="data.checkboxActive = $event"
             />
           </fieldset>
         </div>
