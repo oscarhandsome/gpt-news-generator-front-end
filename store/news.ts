@@ -11,6 +11,13 @@ interface NewsPayloadInterface {
   checkboxActive: boolean
 }
 
+const clearObject: object = (obj: object) => {
+  Object.keys(obj).forEach((key) => {
+    delete obj[key]
+  })
+  return obj
+}
+
 export const useNewsStore = defineStore('news', {
   state: () => ({
     news: [],
@@ -60,17 +67,21 @@ export const useNewsStore = defineStore('news', {
     async createNews(payload: NewsPayloadInterface) {
       try {
         this.isLoading = true
-        this.errors = []
-        this.errors = {}
+        this.errors = clearObject(this.errors)
         console.log('payload', payload)
         // const token = useCookie('token')
 
         for (const [key, value] of Object.entries(payload)) {
           if (!value) this.errors[key] = `${key} not exist`
+          console.log('key, value', key, value)
         }
 
         // useFetch from nuxt 3
         this.currentNews = await Api.post('/news', payload)
+
+        const { data, pending, error }: any = await Api.post('/news', payload)
+        console.log('data, pending, error', data, pending, error)
+        if (data.value) this.currentNews = data.value.data.data
         // const { data, pending }: any = await useFetch(
         //   `http://localhost:8000/api/v1/news`,
         //   {
@@ -86,7 +97,8 @@ export const useNewsStore = defineStore('news', {
         // console.log('pending', pending)
         // console.log('data', data.value)
 
-        this.isLoading = false
+        this.isLoading = pending.value
+        if (error.value) this.errors = data.value.errors.value
       } catch (error) {
         console.log('error', error)
       }

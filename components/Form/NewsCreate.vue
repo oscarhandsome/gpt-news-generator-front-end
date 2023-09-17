@@ -18,6 +18,8 @@ const data = reactive({
   checkboxPublic: true,
   checkboxActive: true,
   ratingsAverage: 1.0,
+  imageModelId: '26a1a203-3a46-42cb-8cfa-f4de075907d8',
+  // imageModelId: 'eab32df0-de26-4b83-a908-a83f3015e971',
 })
 
 const newsTypesOptions = ref([
@@ -137,6 +139,17 @@ onBeforeUnmount(() => {
               @update:model-value="data.checkboxActive = $event"
             />
           </fieldset>
+        </div>
+
+        <div>
+          <BaseSelect
+            :model-value="data.imageModelId"
+            :options="imagesModelOptions"
+            label="Image Model Id"
+            error=""
+            class="mb-4"
+            @update:model-value="data.imageModelId = $event"
+          />
         </div>
 
         <button
