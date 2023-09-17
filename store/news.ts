@@ -66,36 +66,21 @@ export const useNewsStore = defineStore('news', {
     // },
     async createNews(payload: NewsPayloadInterface) {
       try {
-        this.isLoading = true
         this.errors = clearObject(this.errors)
-        console.log('payload', payload)
-        // const token = useCookie('token')
 
         for (const [key, value] of Object.entries(payload)) {
-          if (!value) this.errors[key] = `${key} not exist`
-          console.log('key, value', key, value)
+          if (!value) this.errors[key] = `Field required`
         }
 
-        // useFetch from nuxt 3
+        console.log('this.errors', this.errors)
+        if (Object.keys(this.errors).length) return
+
+        this.isLoading = true
         this.currentNews = await Api.post('/news', payload)
 
         const { data, pending, error }: any = await Api.post('/news', payload)
         console.log('data, pending, error', data, pending, error)
         if (data.value) this.currentNews = data.value.data.data
-        // const { data, pending }: any = await useFetch(
-        //   `http://localhost:8000/api/v1/news`,
-        //   {
-        //     method: 'post',
-        //     headers: {
-        //       Authorization: `Bearer ${token.value}`,
-        //       'Content-Type': 'application/json',
-        //     },
-        //     body: payload,
-        //   },
-        // ).catch((error) => error.data)
-        // this.isLoading = pending
-        // console.log('pending', pending)
-        // console.log('data', data.value)
 
         this.isLoading = pending.value
         if (error.value) this.errors = data.value.errors.value

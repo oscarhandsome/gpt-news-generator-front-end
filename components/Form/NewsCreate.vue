@@ -14,7 +14,7 @@ const data = reactive({
   type: 'funny',
   famousPerson: '',
   place: '',
-  length: 50,
+  newsLength: 50,
   checkboxPublic: true,
   checkboxActive: true,
   ratingsAverage: 1.0,
@@ -74,7 +74,7 @@ onBeforeUnmount(() => {
           type="string"
           :error="errors.name"
           required
-          class="mb-6"
+          class="mb-3"
           @update:model-value="data.name = $event"
         />
 
@@ -83,7 +83,7 @@ onBeforeUnmount(() => {
           :options="newsTypesOptions"
           :model-value="data.type"
           :error="errors.type"
-          class="mb-6"
+          class="mb-3"
           @update:model-value="data.type = $event"
         />
 
@@ -91,12 +91,14 @@ onBeforeUnmount(() => {
           v-model="data.famousPerson"
           label="Famous person"
           type="string"
-          :error="data.famousPerson"
+          :error="errors.famousPerson"
           placeholder="Arnold Schwarzenegger"
           required
-          class="mb-6"
+          class="mb-3"
           @update:model-value="data.famousPerson = $event"
         />
+
+        <div class="mt-5"><span class="text-red-500">*</span> - required</div>
       </div>
 
       <div>
@@ -104,22 +106,22 @@ onBeforeUnmount(() => {
           v-model="data.place"
           label="Place"
           type="string"
-          :error="data.place"
+          :error="errors.place"
           placeholder="Laguna Beach California"
           required
-          class="mb-6"
+          class="mb-3"
           @update:model-value="data.place = $event"
         />
 
         <BaseSlider
           v-model="data.newsLength"
           label="Length"
-          :error="data.newsLength"
-          class="mb-5"
+          :error="errors.newsLength"
+          class="mb-3"
           @update:model-value="data.newsLength = $event"
         />
 
-        <div class="mb-6">
+        <div class="mb-3">
           <fieldset>
             <legend class="sr-only">Checkbox variants</legend>
 
@@ -141,20 +143,17 @@ onBeforeUnmount(() => {
           </fieldset>
         </div>
 
-        <div>
-          <BaseSelect
-            :model-value="data.imageModelId"
-            :options="imagesModelOptions"
-            label="Image Model Id"
-            error=""
-            class="mb-4"
-            @update:model-value="data.imageModelId = $event"
-          />
-        </div>
+        <BaseSelect
+          :model-value="data.imageModelId"
+          :options="imagesModelOptions"
+          label="Image Model Id"
+          error=""
+          @update:model-value="data.imageModelId = $event"
+        />
 
         <button
           type="submit"
-          class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-5"
         >
           Create my News!
         </button>

@@ -10,7 +10,7 @@ const id = props.label.toLocaleLowerCase().replaceAll(' ', '-')
   <div>
     <label
       :for="id"
-      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      class="block mb-1 text-sm font-medium text-gray-900 dark:text-white"
       >{{ label }} <span v-if="required" class="text-rose-500">*</span></label
     >
     <slot name="after-label"></slot>
