@@ -65,6 +65,7 @@ export const useNewsStore = defineStore('news', {
     //   this.isLoading = false
     // },
     async createNews(payload: NewsPayloadInterface) {
+      const router = useRouter()
       try {
         this.errors = clearObject(this.errors)
 
@@ -78,7 +79,10 @@ export const useNewsStore = defineStore('news', {
         this.isLoading = true
         const { data, pending, error }: any = await Api.post('/news', payload)
         console.log('data, pending, error', data, pending, error)
-        if (data.value) this.currentNews = data.value.data.data
+        if (data.value) {
+          this.currentNews = data.value.data.data
+          router.push(`/news/${this.currentNews.slug}`)
+        }
 
         this.isLoading = pending.value
         if (error.value) this.errors = data.value.errors.value

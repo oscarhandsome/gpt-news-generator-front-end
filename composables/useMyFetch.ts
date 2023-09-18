@@ -9,6 +9,7 @@ export const useMyFetch: typeof useFetch = (request, opts?) => {
       baseURL: config.public.baseURL,
       headers: {
         Authorization: `Bearer ${token.value}`,
+        Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       ...opts,

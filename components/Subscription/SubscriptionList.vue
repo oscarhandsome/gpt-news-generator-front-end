@@ -17,11 +17,14 @@ defineProps<{
 </script>
 
 <template>
-  <div
-    v-for="subscription in subscriptions"
-    :key="subscription._id"
-    class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700"
-  >
-    <SubscriptionItem :item="subscription" />
+  <div class="flex flex-col">
+    <BaseBackButton />
+    <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-5">
+      <SubscriptionItem
+        v-for="subscription in subscriptions"
+        :key="subscription._id"
+        :item="subscription"
+      />
+    </div>
   </div>
 </template>
