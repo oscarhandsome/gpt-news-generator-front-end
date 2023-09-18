@@ -44,7 +44,7 @@ defineProps({
         <h5
           class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
         >
-          {{ item.name.substring(0, 21) + '...' }}
+          {{ item.name.substring(0, 18) + '...' }}
         </h5>
         <p
           class="font-normal text-gray-700 dark:text-gray-400 break-all mt-2"
