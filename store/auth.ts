@@ -10,6 +10,7 @@ export const useAuthStore = defineStore('auth', {
   state: () => ({
     isAuthenticated: false,
     isLoading: false,
+    isLoadingLocal: false,
     errors: [],
     error: '',
     success: false,
@@ -143,6 +144,24 @@ export const useAuthStore = defineStore('auth', {
       console.log('pending.value', pending.value)
       console.log('error.value', error.value)
       // console.log('refresh.value', refresh.value)
+    },
+    async updatePassword(payload) {
+      this.isLoadingLocal = true
+      const { data, pending, error }: any = await Api.post(
+        '/users/updateMyPassword',
+        payload,
+      )
+      console.log('data, pending, error ')
+      this.isLoadingLocal = pending.value
+    },
+    async updateUserData(payload) {
+      this.isLoading = true
+      const { data, pending, error }: any = await Api.post(
+        '/users/updateMe',
+        payload,
+      )
+      console.log('data, pending, error ')
+      this.isLoading = pending.value
     },
   },
 })
