@@ -17,7 +17,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="flex flex-col">
+  <div class="flex-1 flex-col">
     <BaseBackButton />
     <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-5">
       <SubscriptionItem
