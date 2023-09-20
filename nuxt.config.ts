@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     // '@tailvue/nuxt',
     'nuxt3-stripe',
+    'floating-vue/nuxt',
   ],
   stripe: {
     // Server

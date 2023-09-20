@@ -1,22 +1,9 @@
 import { defineStore } from 'pinia'
 import Api from '~/services/api'
 
-interface NewsPayloadInterface {
-  name: string
-  type: string
-  famousPerson: string
-  place: string
-  length: number
-  checkboxPublic: boolean
-  checkboxActive: boolean
-}
+import { clearObject } from '@/utils/utils'
 
-const clearObject: object = (obj: object) => {
-  Object.keys(obj).forEach((key) => {
-    delete obj[key]
-  })
-  return obj
-}
+import type { NewsPayloadInterface } from 'types'
 
 export const useNewsStore = defineStore('news', {
   state: () => ({

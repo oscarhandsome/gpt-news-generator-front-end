@@ -4,6 +4,8 @@ import { useNewsStore } from '~/store/news' // import the news store we just cre
 
 import { imagesModelIdOptions } from '@/assets/data/imagesModelIdOptions'
 
+import { clearObject } from '@/utils/utils'
+
 const { createNews } = useNewsStore() // use authenticateUser action from  auth store
 const { isLoading, errors } = storeToRefs(useNewsStore()) // make isAuthenticated state reactive with storeToRefs
 
@@ -18,8 +20,9 @@ const data = reactive({
   checkboxPublic: true,
   checkboxActive: true,
   ratingsAverage: 1.0,
-  imageModelId: '26a1a203-3a46-42cb-8cfa-f4de075907d8',
-  // imageModelId: 'eab32df0-de26-4b83-a908-a83f3015e971',
+  imageModelId: '37d42ae9-5f5f-4399-b60b-014d35e762a5', // Realistic Vision v4.0
+  promptStrength: 7,
+  steps: 50,
 })
 
 const newsTypesOptions = ref([
@@ -57,7 +60,7 @@ const submitForm = () => createNews(data)
 // if (Object.keys(currentNews).length) router.push(`/news/${currentNews.slug}`)
 
 onBeforeUnmount(() => {
-  errors.value = []
+  errors.value = clearObject(errors.value)
 })
 </script>
 
@@ -69,6 +72,7 @@ onBeforeUnmount(() => {
   >
     <form class="grid lg:grid-cols-2 lg:gap-5" @submit.prevent="submitForm">
       <div>
+        <BaseTitleSecondary title="News configuration" class="mb-3" />
         <BaseInput
           v-model="data.name"
           placeholder="Magnificent new news!"
@@ -100,10 +104,6 @@ onBeforeUnmount(() => {
           @update:model-value="data.famousPerson = $event"
         />
 
-        <div class="mt-5"><span class="text-red-500">*</span> - required</div>
-      </div>
-
-      <div>
         <BaseInput
           v-model="data.place"
           label="Place"
@@ -118,6 +118,9 @@ onBeforeUnmount(() => {
         <BaseSlider
           v-model="data.newsLength"
           label="Length"
+          :min="50"
+          :max="200"
+          :step="5"
           :error="errors.newsLength"
           class="mb-3"
           @update:model-value="data.newsLength = $event"
@@ -145,12 +148,41 @@ onBeforeUnmount(() => {
           </fieldset>
         </div>
 
+        <div class="mt-5"><span class="text-red-500">*</span> - required</div>
+      </div>
+
+      <div>
+        <BaseTitleSecondary title="Image configuration" class="mb-3" />
         <BaseSelect
           :model-value="data.imageModelId"
           :options="imagesModelOptions"
           label="Image Model Id"
           error=""
+          class="mb-3"
           @update:model-value="data.imageModelId = $event"
+        />
+
+        <BaseSlider
+          v-model="data.promptStrength"
+          tooltip="The higher the prompt strength, the closer the generated image will be to the prompt. Must be between 0 and 30."
+          label="Prompt Strength"
+          :min="0"
+          :max="30"
+          :step="1"
+          error=""
+          class="mb-3"
+          @update:model-value="data.promptStrength = Number($event)"
+        />
+
+        <BaseSlider
+          v-model="data.steps"
+          tooltip="How many steps the AI will take to generate the image. Lower is faster but less detailed, higher is slower more detailed."
+          label="Steps"
+          :min="50"
+          :max="70"
+          :step="5"
+          error=""
+          @update:model-value="data.steps = Number($event)"
         />
 
         <button

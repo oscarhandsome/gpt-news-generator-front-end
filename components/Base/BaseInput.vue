@@ -8,11 +8,15 @@ const id = props.label.toLocaleLowerCase().replaceAll(' ', '-')
 
 <template>
   <div>
-    <label
-      :for="id"
-      class="block mb-1 text-sm font-medium text-gray-900 dark:text-white"
-      >{{ label }} <span v-if="required" class="text-rose-500">*</span></label
-    >
+    <div class="flex items-center">
+      <label
+        :for="id"
+        class="block mb-1 text-sm font-medium text-gray-900 dark:text-white"
+        >{{ label }} <span v-if="required" class="text-rose-500">*</span></label
+      >
+
+      <BaseTooltip v-if="tooltip" :tooltip="tooltip" />
+    </div>
     <slot name="after-label"></slot>
     <input
       :id="id"

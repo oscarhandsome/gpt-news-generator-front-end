@@ -6,6 +6,16 @@ export interface UserPayloadInterface {
   remember?: boolean
 }
 
+export interface NewsPayloadInterface {
+  name: string
+  type: string
+  famousPerson: string
+  place: string
+  length: number
+  checkboxPublic: boolean
+  checkboxActive: boolean
+}
+
 export interface NavLink {
   to: string
   name: string
@@ -20,6 +30,13 @@ export interface InputProps {
   autofocus?: boolean
   type?: 'string' | 'number' | 'email' | 'password'
   modelValue?: string | undefined | null
+  tooltip?: string
+}
+
+export interface InputSliderProps extends InputProps {
+  min: number
+  max: number
+  step: number
 }
 
 export interface Option {
@@ -34,6 +51,7 @@ export interface SelectProps {
   required?: boolean
   options: Option[] | []
   modelValue: string
+  tooltip?: string
 }
 
 export interface CheckboxProps {
