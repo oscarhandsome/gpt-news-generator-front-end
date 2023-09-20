@@ -16,10 +16,10 @@ const isLoading = ref(false)
 // const route = useRouter()
 
 const data = reactive({
-  name: 'John Doe Main',
-  email: 'johndoe1081@mailsac.com',
-  password: 'pass1234',
-  passwordConfirm: 'pass1234',
+  name: '',
+  email: '',
+  password: '',
+  passwordConfirm: '',
 })
 
 const submitForm = async () => {

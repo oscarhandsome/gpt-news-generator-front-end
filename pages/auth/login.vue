@@ -15,8 +15,8 @@ const { isAuthenticated, success, isLoading, error } = storeToRefs(
 ) // make isAuthenticated state reactive with storeToRefs
 
 const data = ref({
-  email: 'johndoe1027@gmail.com',
-  password: 'pass1234',
+  email: '',
+  password: '',
   remember: false,
 })
 const router = useRouter()

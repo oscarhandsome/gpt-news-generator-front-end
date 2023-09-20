@@ -67,7 +67,7 @@ export const useNewsStore = defineStore('news', {
         const { data, pending, error }: any = await Api.post('/news', payload)
         console.log('data, pending, error', data, pending, error)
         if (data.value) {
-          this.currentNews = data.value.data.data
+          this.currentNews = data.value.data.news
           router.push(`/news/${this.currentNews.slug}`)
         }
 
