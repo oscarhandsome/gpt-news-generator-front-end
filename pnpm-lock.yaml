@@ -13,9 +13,6 @@ dependencies:
   '@heroicons/vue':
     specifier: ^2.0.18
     version: 2.0.18(vue@3.3.4)
-  '@types/google.accounts':
-    specifier: ^0.0.10
-    version: 0.0.10
   floating-vue:
     specifier: 2.0.0-beta.24
     version: 2.0.0-beta.24(vue@3.3.4)
@@ -2307,10 +2304,6 @@ packages:
   /@types/estree@1.0.1:
     resolution: {integrity: sha512-LG4opVs2ANWZ1TJoKc937iMmNstM/d0ae1vNbnBvBhqCSezgVUOzcLCqbI5elV8Vy6WKwKjaqR+zO9VKirBBCA==}
     dev: true
-
-  /@types/google.accounts@0.0.10:
-    resolution: {integrity: sha512-5Zm+YxQNClGsWvFt055SO+CMDYEXJtPd0W9IM+yT0alQWF4+tleKYQCp46QeJWdpOOz9Ndus2oCIDLuiXcEgnQ==}
-    dev: false
 
   /@types/http-proxy@1.17.11:
     resolution: {integrity: sha512-HC8G7c1WmaF2ekqpnFq626xd3Zz0uvaqFmBJNRZCGEZCXkvSdJoNFn/8Ygbd9fKNQj8UzLdCETaI0UWPAjK7IA==}

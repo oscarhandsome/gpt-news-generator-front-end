@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-/// <reference types='google.accounts' />
-
 import { storeToRefs } from 'pinia' // import storeToRefs helper hook from pinia
 import { useAuthStore } from '~/store/auth' // import the auth store we just created
 
@@ -46,29 +44,6 @@ const clearErrors = () => {
     error.value = ''
   }, 2500)
 }
-
-onMounted(() => {
-  google.accounts.id.initialize({
-    client_id:
-      '753950879860-7u1vd14ftrvkov4fgp9qmgojeh6cq9gu.apps.googleusercontent.com',
-    callback: handleCredentialResponse,
-    context: 'signin',
-  })
-  google.accounts.id.renderButton(document.getElementById('googleButton'), {
-    type: 'standard',
-    size: 'large',
-    text: 'signin_with',
-    shape: 'pill',
-    logo_alignment: 'left',
-    width: '250',
-  })
-})
-
-const handleCredentialResponse = (response) => {
-  // call your backend API here
-  // the token can be accessed as: response.credential
-  console.log('response', response)
-}
 </script>
 
 <template>
@@ -97,7 +72,6 @@ const handleCredentialResponse = (response) => {
 
         <BaseError :text="error" />
 
-        <div id="googleButton"></div>
         <div class="grid grid-cols-2 gap-4 text-sm text-center">
           <a
             href="#"
