@@ -72,7 +72,8 @@ const clearErrors = () => {
 
         <BaseError :text="error" />
 
-        <div class="grid grid-cols-2 gap-4 text-sm text-center">
+        <!-- grid -->
+        <div class="hidden grid-cols-2 gap-4 text-sm text-center">
           <a
             href="#"
             class="flex items-center justify-center border border-1 rounded-lg hover:bg-gray-500 hover:text-white active:bg-gray-700 active:text-white transition-colors px-3 py-2"
@@ -146,7 +147,8 @@ const clearErrors = () => {
         </div>
 
         <!-- OR  -->
-        <div class="flex items-center w-full">
+        <!-- flex -->
+        <div class="hidden items-center w-full">
           <div class="flex flex-grow h-1 bg-gray-300"></div>
           <div class="text-gray-300 mx-2">or</div>
           <div class="flex flex-grow h-1 bg-gray-300"></div>
@@ -198,7 +200,7 @@ const clearErrors = () => {
         <BaseCheckbox
           :model-value="checkboxActive"
           label="By signing up, you are creating a Flowbite account, and you agree to
-        Flowbite’s Terms of Use and Privacy Policy."
+        GPTNewsGenerator's Terms of Use and Privacy Policy."
           error=""
           class="mb-4"
           @update:model-value="checkboxActive = $event"
