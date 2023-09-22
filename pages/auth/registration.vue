@@ -205,8 +205,8 @@ const clearErrors = () => {
               error=""
               @update:model-value="checkboxActive = $event"
             />
-            By signing up, you are creating a Flowbite account, and you agree to
-            GPTNewsGenerator's
+            By signing up, you are creating a GPTNewsGenerator account, and you
+            agree to GPTNewsGenerator's
             <BaseLink path="/terms">Terms of Use</BaseLink> and
             <BaseLink path="/policy">Privacy Policy</BaseLink>.
           </label>
