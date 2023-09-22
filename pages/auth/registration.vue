@@ -197,14 +197,20 @@ const clearErrors = () => {
         </div>
 
         <!-- TERMS  -->
-        <BaseCheckbox
-          :model-value="checkboxActive"
-          label="By signing up, you are creating a Flowbite account, and you agree to
-        GPTNewsGenerator's Terms of Use and Privacy Policy."
-          error=""
-          class="mb-4"
-          @update:model-value="checkboxActive = $event"
-        />
+        <div class="mb-4 mt-3 text-base">
+          <label>
+            <BaseCheckbox
+              :model-value="checkboxActive"
+              label=""
+              error=""
+              @update:model-value="checkboxActive = $event"
+            />
+            By signing up, you are creating a Flowbite account, and you agree to
+            GPTNewsGenerator's
+            <BaseLink path="/terms">Terms of Use</BaseLink> and
+            <BaseLink path="/policy">Privacy Policy</BaseLink>.
+          </label>
+        </div>
 
         <button
           type="submit"
