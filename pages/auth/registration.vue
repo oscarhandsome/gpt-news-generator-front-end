@@ -75,10 +75,10 @@ const clearErrors = () => {
         <div class="grid grid-cols-2 gap-4 text-sm text-center">
           <a
             href="#"
-            class="border border-1 rounded-lg hover:bg-gray-500 hover:text-white active:bg-gray-700 active:text-white transition-colors px-3 py-2"
+            class="flex items-center justify-center border border-1 rounded-lg hover:bg-gray-500 hover:text-white active:bg-gray-700 active:text-white transition-colors px-3 py-2"
           >
             <svg
-              class="w-6 h-6 inline"
+              class="w-6 h-6 inline mr-1"
               viewBox="0 0 21 20"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -116,10 +116,10 @@ const clearErrors = () => {
           </a>
           <a
             href="#"
-            class="border border-1 rounded-lg hover:bg-gray-500 hover:text-white active:bg-gray-700 active:text-white transition-colors px-3 py-2"
+            class="flex items-center justify-center border border-1 rounded-lg hover:bg-gray-500 hover:text-white active:bg-gray-700 active:text-white transition-colors px-3 py-2"
           >
             <svg
-              class="w-6 h-6 inline"
+              class="w-6 h-6 inline mr-1"
               viewBox="0 0 21 20"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
