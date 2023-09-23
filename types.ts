@@ -68,7 +68,7 @@ export interface User {
   photo: string | null
   role: string
   updatedAt: string
-  _id: string
+  id: string
 }
 
 export interface Subsription {
@@ -103,5 +103,4 @@ export interface News {
   slug: string
   type: string
   updatedAt: string
-  _id: string
 }

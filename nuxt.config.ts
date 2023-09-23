@@ -1,5 +1,16 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  app: {
+    head: {
+      // ...
+      script: [
+        {
+          src: 'https://accounts.google.com/gsi/client',
+        },
+      ],
+      // ...
+    },
+  },
   devtools: { enabled: true },
   modules: [
     '@nuxtjs/tailwindcss',
@@ -26,6 +37,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       baseURL: process.env.API_BASE_URL || 'https://localhost:8000/api/v1',
+      GOOGLE_CLIENT_ID: process.env.GOGGLE_CLIENT_ID_KEY,
     },
   },
   // image: {

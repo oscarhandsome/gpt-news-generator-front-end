@@ -64,7 +64,7 @@ onBeforeUnmount(() => {
         </p>
         <hr />
         <nuxt-link
-          :to="`/news/autor/${currentNews.autor._id}`"
+          :to="`/news/autor/${currentNews.autor.id}`"
           class="cursor-pointer p-3 pt-0 mt-2"
         >
           <div class="border border-gray-200 rounded-md">

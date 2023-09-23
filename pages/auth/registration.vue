@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+/// <reference types='google.accounts' />
 import { storeToRefs } from 'pinia' // import storeToRefs helper hook from pinia
 import { useAuthStore } from '~/store/auth' // import the auth store we just created
 
@@ -8,6 +9,9 @@ definePageMeta({
   layout: 'custom',
   // middleware: 'auth',
 })
+
+const config = useRuntimeConfig()
+
 const { signUp } = useAuthStore() // use authenticateUser action from  auth store
 const { isAuthenticated, success, errors } = storeToRefs(useAuthStore()) // make isAuthenticated state reactive with storeToRefs
 
@@ -44,6 +48,26 @@ const clearErrors = () => {
     error.value = ''
   }, 2500)
 }
+onMounted(() => {
+  google.accounts.id.initialize({
+    client_id: config.public.GOOGLE_CLIENT_ID,
+    callback: handleCredentialResponse,
+    context: 'signin',
+  })
+  google.accounts.id.renderButton(document.getElementById('googleButton'), {
+    type: 'standard',
+    size: 'large',
+    text: 'signin_with',
+    shape: 'pill',
+    logo_alignment: 'left',
+    width: '200',
+  })
+})
+const handleCredentialResponse = (res) => {
+  // login function
+
+  console.log('res', res)
+}
 </script>
 
 <template>
@@ -71,6 +95,8 @@ const clearErrors = () => {
         </h5>
 
         <BaseError :text="error" />
+
+        <div id="googleButton"></div>
 
         <!-- grid -->
         <div class="hidden grid-cols-2 gap-4 text-sm text-center">
@@ -147,8 +173,7 @@ const clearErrors = () => {
         </div>
 
         <!-- OR  -->
-        <!-- flex -->
-        <div class="hidden items-center w-full">
+        <div class="flex items-center w-full">
           <div class="flex flex-grow h-1 bg-gray-300"></div>
           <div class="text-gray-300 mx-2">or</div>
           <div class="flex flex-grow h-1 bg-gray-300"></div>
