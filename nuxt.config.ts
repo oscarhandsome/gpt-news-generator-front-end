@@ -2,23 +2,27 @@
 export default defineNuxtConfig({
   app: {
     head: {
-      // ...
-      script: [
-        {
-          src: 'https://accounts.google.com/gsi/client',
-        },
-      ],
+      charset: 'utf-8',
+      viewport: 'width=device-width, initial-scale=1',
+      // script: [
+      //   {
+      //     // src: 'https://accounts.google.com/gsi/client',
+      //   },
+      // ],
       // ...
     },
+  },
+  googleSignIn: {
+    clientId: process.env.GOGGLE_CLIENT_ID_KEY,
   },
   devtools: { enabled: true },
   modules: [
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
     '@nuxt/image',
-    // '@tailvue/nuxt',
     'nuxt3-stripe',
     'floating-vue/nuxt',
+    'nuxt-vue3-google-signin',
   ],
   stripe: {
     // Server
@@ -37,7 +41,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       baseURL: process.env.API_BASE_URL || 'https://localhost:8000/api/v1',
-      GOOGLE_CLIENT_ID: process.env.GOGGLE_CLIENT_ID_KEY,
+      googleClientId: process.env.GOGGLE_CLIENT_ID_KEY,
     },
   },
   // image: {

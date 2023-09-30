@@ -1,9 +1,10 @@
 export interface UserPayloadInterface {
   name?: string
-  email: string
-  password: string
+  email?: string
+  password?: string
   passwordConfirm?: string
   remember?: boolean
+  token?: string
 }
 
 export interface NewsPayloadInterface {

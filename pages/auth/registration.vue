@@ -1,25 +1,26 @@
 <script lang="ts" setup>
-/// <reference types='google.accounts' />
+import { CheckIcon } from '@heroicons/vue/24/solid'
+
+import { GoogleSignInButton, type CredentialResponse } from 'vue3-google-signin'
 import { storeToRefs } from 'pinia' // import storeToRefs helper hook from pinia
 import { useAuthStore } from '~/store/auth' // import the auth store we just created
-
-import { CheckIcon } from '@heroicons/vue/24/solid'
 
 definePageMeta({
   layout: 'custom',
   // middleware: 'auth',
 })
 
-const config = useRuntimeConfig()
+// const config = useRuntimeConfig()
 
 const { signUp } = useAuthStore() // use authenticateUser action from  auth store
-const { isAuthenticated, success, errors } = storeToRefs(useAuthStore()) // make isAuthenticated state reactive with storeToRefs
+const { isAuthenticated, success, errors, isLoading } = storeToRefs(
+  useAuthStore(),
+) // make isAuthenticated state reactive with storeToRefs
 
-const isLoading = ref(false)
+// const isLoading = ref(false)
 const checkboxActive = ref(false)
 const error = ref('')
-// const router = useRouter()
-// const route = useRouter()
+const router = useRouter()
 
 const data = reactive({
   name: '',
@@ -31,12 +32,14 @@ const data = reactive({
 const submitForm = async () => {
   if (checkboxActive) {
     error.value = 'Sorry terms not accepted from your side'
+    window.scrollTo(0, 0)
     clearErrors()
     return
   }
+
   try {
     await signUp(data)
-    // route.push("/home");
+    if (isAuthenticated.value && success.value) router.push('/auth/success')
   } catch (error) {
     console.error(error)
     alert(error)
@@ -48,25 +51,21 @@ const clearErrors = () => {
     error.value = ''
   }, 2500)
 }
-onMounted(() => {
-  google.accounts.id.initialize({
-    client_id: config.public.GOOGLE_CLIENT_ID,
-    callback: handleCredentialResponse,
-    context: 'signin',
-  })
-  google.accounts.id.renderButton(document.getElementById('googleButton'), {
-    type: 'standard',
-    size: 'large',
-    text: 'signin_with',
-    shape: 'pill',
-    logo_alignment: 'left',
-    width: '200',
-  })
-})
-const handleCredentialResponse = (res) => {
-  // login function
 
-  console.log('res', res)
+// GOOGLE AUTH2.0
+// handle success event
+const handleLoginSuccess = async (response: CredentialResponse) => {
+  const { credential } = response
+  if (credential) {
+    await signUp({ token: credential })
+    if (isAuthenticated.value && success.value) router.push('/auth/success')
+  }
+}
+
+// handle an error event
+const handleLoginError = (error) => {
+  console.error('Signup failed')
+  console.log('error', error)
 }
 </script>
 
@@ -77,26 +76,29 @@ const handleCredentialResponse = (res) => {
     <div
       class="w-full max-w-lg p-4 mx-auto bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 drop-shadow-xl"
     >
-      <div
+      <!-- <div
         v-if="!isLoading && success"
         class="flex flex-col justify-center items-center"
       >
         <CheckIcon class="h-20 w-20 text-green-500 mb-5" />
         <p>Please check your email!</p>
-      </div>
+      </div> -->
+
+      <!-- LOADER -->
       <BaseLoader v-if="isLoading" />
-      <form
-        v-else-if="!isLoading && !success"
-        class="space-y-6"
-        @submit.prevent="submitForm"
-      >
+
+      <!-- v-else-if="!isLoading && !success" -->
+      <form v-else class="space-y-6" @submit.prevent="submitForm">
         <h5 class="text-xl font-medium text-gray-900 dark:text-white">
           Sign up to our platform
         </h5>
 
         <BaseError :text="error" />
 
-        <div id="googleButton"></div>
+        <GoogleSignInButton
+          @success="handleLoginSuccess"
+          @error="handleLoginError"
+        ></GoogleSignInButton>
 
         <!-- grid -->
         <div class="hidden grid-cols-2 gap-4 text-sm text-center">

@@ -23,11 +23,9 @@ const currentColor = ref('#FFF')
 <template>
   <header>
     <nav
-      class="dark:bg-white dark:text-black bg-black text-white px-4 lg:px-6 py-2.5 mb-5"
+      class="bg-black text-white dark:bg-white dark:text-black px-4 lg:px-6 py-2.5 mb-5"
     >
-      <div
-        class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl"
-      >
+      <div class="flex items-center mx-auto max-w-screen-xl">
         <TheLogo />
 
         <div class="flex items-center lg:order-2">
@@ -81,9 +79,10 @@ const currentColor = ref('#FFF')
             </svg>
           </button>
         </div>
+
         <div
           id="mobile-menu-2"
-          class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
+          class="hidden mr-auto justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
         >
           <ul
             class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-2 lg:mt-0"

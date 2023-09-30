@@ -33,9 +33,10 @@
   <TheHeader />
   <main>
     <div class="container px-2 md:px-0 mx-auto">
-      <TheBreadcrumb class="mb-5" />
+      <TheBreadcrumb class="mb-2 lg:mb-5" />
       <slot />
     </div>
   </main>
+  <TheCookie />
   <TheFooter />
 </template>

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { CheckIcon } from '@heroicons/vue/24/solid'
 
+import { GoogleSignInButton, type CredentialResponse } from 'vue3-google-signin'
 import { storeToRefs } from 'pinia' // import storeToRefs helper hook from pinia
 import { useAuthStore } from '~/store/auth' // import the auth store we just created
 
@@ -22,21 +23,55 @@ const data = ref({
 const router = useRouter()
 
 const login = async () => {
-  await authenticateUser(data.value) // call authenticateUser and pass the user object
-  // redirect to homepage if user is isAuthenticated
-  if (isAuthenticated.value) {
-    // $toast.show('success!')
-    setTimeout(() => {
-      // router.push('/news/create')
-      // router.push('/news/my-news')
-      router.push('/')
-    }, 2000)
+  if (!data.email || !data.password) {
+    error.value = 'Sorry fields are empty'
+    window.scrollTo(0, 0)
+    clearErrors()
+    return
+  }
+
+  try {
+    await authenticateUser(data.value) // call authenticateUser and pass the user object
+    // redirect to homepage if user is isAuthenticated
+    if (isAuthenticated.value) {
+      // $toast.show('success!')
+      setTimeout(() => {
+        // router.push('/news/create')
+        // router.push('/news/my-news')
+        router.push('/')
+      }, 2000)
+    }
+  } catch (error) {
+    console.error(error)
+    alert(error)
   }
 }
 
 onBeforeUnmount(() => {
   success.value = false
 })
+
+const clearErrors = () => {
+  setTimeout(() => {
+    error.value = ''
+  }, 2500)
+}
+
+// GOOGLE AUTH2.0
+// handle success event
+const handleLoginSuccess = async (response: CredentialResponse) => {
+  const { credential } = response
+  if (credential) {
+    await authenticateUser({ token: credential })
+    if (isAuthenticated.value && success.value) router.push('/')
+  }
+}
+
+// handle an error event
+const handleLoginError = (error) => {
+  console.error('Login failed')
+  console.log('error', error)
+}
 </script>
 
 <template>
@@ -46,23 +81,35 @@ onBeforeUnmount(() => {
     <div
       class="w-full max-w-sm mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700"
     >
-      <div
+      <!-- <div
         v-if="!isLoading && success"
         class="flex flex-col justify-center items-center"
       >
         <CheckIcon class="h-20 w-20 text-green-500 mb-5" />
         <p>You have logged successful!</p>
-      </div>
+      </div> -->
+
+      <!-- LOADER -->
       <BaseLoader v-if="isLoading" />
-      <form
-        v-else-if="!isLoading && !success"
-        class="space-y-6"
-        @submit.prevent="login"
-      >
+
+      <form v-else class="space-y-6" @submit.prevent="login">
         <h5 class="text-xl font-medium text-gray-900 dark:text-white">
           Log in to our platform
         </h5>
         <BaseError :text="error" />
+
+        <GoogleSignInButton
+          @success="handleLoginSuccess"
+          @error="handleLoginError"
+        ></GoogleSignInButton>
+
+        <!-- OR  -->
+        <div class="flex items-center w-full">
+          <div class="flex flex-grow h-1 bg-gray-300"></div>
+          <div class="text-gray-300 mx-2">or</div>
+          <div class="flex flex-grow h-1 bg-gray-300"></div>
+        </div>
+
         <div>
           <BaseInput
             :model-value="data.email"

@@ -82,6 +82,7 @@ export const useAuthStore = defineStore('auth', {
       }
     },
     async signUp(payload: any) {
+      this.isLoading = true
       // $toast.show('this is a test')
       // useFetch from nuxt 3
       // const { data, pending, error, refresh }: any = await useFetch(
@@ -114,7 +115,7 @@ export const useAuthStore = defineStore('auth', {
         this.success = true
       }
 
-      if (!data.value) throw new Error('Something went wrong!')
+      // if (!data.value) throw new Error('Something went wrong!')
 
       console.log('data.value', data.value)
       console.log('pending.value', pending.value)
