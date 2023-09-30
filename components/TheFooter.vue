@@ -12,10 +12,14 @@
             >
           </li>
           <li>
-            <a href="#" class="mr-4 hover:underline md:mr-6">Privacy Policy</a>
+            <nuxt-link to="/policy" class="mr-4 hover:underline md:mr-6"
+              >Privacy Policy</nuxt-link
+            >
           </li>
           <li>
-            <a href="#" class="mr-4 hover:underline md:mr-6">Licensing</a>
+            <nuxt-link to="/terms" class="mr-4 hover:underline md:mr-6"
+              >Term's and Privacy</nuxt-link
+            >
           </li>
           <li>
             <a href="#" class="hover:underline">Contact</a>
