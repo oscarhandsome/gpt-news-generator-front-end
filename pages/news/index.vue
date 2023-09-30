@@ -18,6 +18,7 @@ await getAllNews()
 
 <template>
   <BaseTitle title="Latest news" />
+
   <div class="flex justify-between items-center">
     <FormFilter />
 
@@ -38,6 +39,11 @@ await getAllNews()
   </div>
 
   <div class="flex flex-col justify-center items-center mx-auto">
-    <NewsList :view="view" :items="newsList" :is-loading="isLoading" />
+    <NewsList
+      :view="view"
+      :items="newsList"
+      :is-loading="isLoading"
+      :pagination-visibility="true"
+    />
   </div>
 </template>

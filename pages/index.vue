@@ -13,5 +13,10 @@ await getAllNews()
 </script>
 
 <template>
-  <NewsList :view="view" :items="newsList" :is-loading="isLoading" />
+  <NewsList
+    :view="view"
+    :items="newsList.slice(0, 12)"
+    :is-loading="isLoading"
+    :pagination-visibility="false"
+  />
 </template>

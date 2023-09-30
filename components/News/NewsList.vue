@@ -6,11 +6,14 @@ defineProps<{
   isLoading?: boolean
   items?: News[]
   // errors: string[]
+  paginationVisibility: boolean
 }>()
 </script>
 
 <template>
+  <!-- LOADER -->
   <BaseLoader v-if="isLoading" />
+
   <div v-else>
     <div v-if="items && items.length" class="flex flex-col">
       <div
@@ -25,7 +28,7 @@ defineProps<{
         </div>
       </div>
 
-      <div class="text-center py-5">
+      <div v-if="paginationVisibility" class="text-center py-5">
         <BasePagination />
       </div>
     </div>
