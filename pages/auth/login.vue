@@ -23,7 +23,7 @@ const data = ref({
 const router = useRouter()
 
 const login = async () => {
-  if (!data.email || !data.password) {
+  if (!data.value.email || !data.value.password) {
     error.value = 'Sorry fields are empty'
     window.scrollTo(0, 0)
     clearErrors()
@@ -35,11 +35,7 @@ const login = async () => {
     // redirect to homepage if user is isAuthenticated
     if (isAuthenticated.value) {
       // $toast.show('success!')
-      setTimeout(() => {
-        // router.push('/news/create')
-        // router.push('/news/my-news')
-        router.push('/')
-      }, 2000)
+      router.push('/')
     }
   } catch (error) {
     console.error(error)
@@ -76,7 +72,7 @@ const handleLoginError = (error) => {
 
 <template>
   <div class="lg:my-5">
-    <h1 class="text-2xl text-center mb-5">Login page</h1>
+    <!-- <h1 class="text-2xl text-center mb-5">Login page</h1> -->
 
     <div
       class="w-full max-w-sm mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700"

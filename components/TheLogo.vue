@@ -7,13 +7,15 @@ const props = defineProps({
 })
 
 const footerStyles = computed(() =>
-  props.small ? 'text-lg lg:text-2xl' : 'text-2xl lg:text-4xl',
+  props.small ? 'text-lg lg:text-2xl' : 'tex-base md:text-2xl lg:text-4xl',
 )
 </script>
 
 <template>
   <NuxtLink to="/">
-    <div class="logo p-5" :class="footerStyles">GPT Chat News Generator</div>
+    <div class="logo lg:py-5" :class="footerStyles">
+      GPT Chat News Generator
+    </div>
   </NuxtLink>
 </template>
 

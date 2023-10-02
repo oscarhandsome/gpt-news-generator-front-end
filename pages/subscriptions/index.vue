@@ -18,7 +18,7 @@ await getSubscriptions()
 </script>
 
 <template>
-  <div class="flex justify-between">
+  <div class="flex justify-between px-5 sm:px-0">
     <SubscriptionList :subscriptions="subscriptions" />
   </div>
 </template>

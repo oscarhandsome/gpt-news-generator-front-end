@@ -17,10 +17,12 @@ onMounted(() => {
 <template>
   <div
     class="fixed bottom-4 sm:bottom-10 right-4 sm:right-10 left-4 sm:left-10 rounded-lg bg-white dark:bg-black dark:text-white shadow-lg p-5"
-    :class="[visibility ? 'sm:flex sm:items-center' : 'hidden']"
+    :class="[
+      visibility ? 'sm:flex sm:items-center sm:justify-between' : 'hidden',
+    ]"
   >
     <CircleStackIcon
-      class="h-14 w-14 text-blue-700 sm:mr-5"
+      class="flex-shrink-0 h-14 w-14 text-blue-700 sm:mr-5 mr-2"
       aria-hidden="true"
     />
     <p class="sm:mr-5 mb-5 sm:mb-0">

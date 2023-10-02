@@ -25,11 +25,11 @@ const logout = () => {
 </script>
 
 <template>
-  <div v-if="user && isAuthenticated" class="relative w-56 text-right">
+  <div v-if="user && isAuthenticated" class="relative sm:w-56 text-right">
     <Menu as="div" class="relative inline-block text-left">
       <div>
         <MenuButton
-          class="inline-flex w-full justify-center rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+          class="inline-flex break-all w-full justify-center rounded-md bg-gray-200 bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
         >
           {{ user.email }}
           <ChevronDownIcon

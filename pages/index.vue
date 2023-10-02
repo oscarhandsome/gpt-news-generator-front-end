@@ -15,7 +15,7 @@ await getAllNews()
 <template>
   <NewsList
     :view="view"
-    :items="newsList.slice(0, 12)"
+    :items="newsList.slice(0, 15)"
     :is-loading="isLoading"
     :pagination-visibility="false"
   />

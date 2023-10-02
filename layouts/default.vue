@@ -30,13 +30,15 @@
       <nuxt-link @click="logout">Logout</nuxt-link>
     </li>
   </ul> -->
-  <TheHeader />
-  <main>
-    <div class="container px-2 md:px-0 mx-auto">
-      <TheBreadcrumb class="mb-2 lg:mb-5" />
-      <slot />
-    </div>
-  </main>
-  <TheCookie />
-  <TheFooter />
+  <div class="flex flex-col min-h-screen">
+    <TheHeader />
+    <main class="flex-grow">
+      <div class="container mx-auto px-5 sm:px-0">
+        <TheBreadcrumb />
+        <slot />
+      </div>
+    </main>
+    <TheCookie />
+    <TheFooter class="mt-auto mb-0" />
+  </div>
 </template>
