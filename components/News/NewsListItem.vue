@@ -13,30 +13,30 @@ defineProps({
 
 <template>
   <div
-    class="block relative bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+    class="flex flex-col grow relative bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
   >
     <nuxt-link
       :to="`/news/${item.slug}`"
       :class="{ flex: view === 'list' }"
       class="cursor-pointer"
     >
-      <div>
+      <div class="flex">
         <nuxt-img
           v-if="item.imageCover"
           :src="item.imageCover"
           :alt="item.name"
-          class="rounded-t-lg hover:scale-105 active:scale-110 transition-transform"
+          class="w-full rounded-t-lg hover:scale-105 active:scale-110 transition-transform"
           :class="{ 'h-32 rounded-b-lg': view === 'list' }"
         />
         <img
           v-else
           src="/images/no-image.jpeg"
           alt="no-image"
-          class="rounded-t-lg"
+          class="w-full rounded-t-lg"
           :class="{ 'h-32 rounded-b-lg': view === 'list' }"
         />
       </div>
-      <div class="p-6">
+      <div class="p-2 sm:p-6">
         <div class="absolute right-2 bottom-1 text-xs text-gray-500">
           <!-- 10/06/2023 -->
           {{ item.createdAt }}
@@ -53,6 +53,6 @@ defineProps({
       </div>
     </nuxt-link>
 
-    <UserInfo :user="item.autor" class="pb-5 px-5" />
+    <UserInfo :user="item.autor" class="pb-2 sm:pb-5 px-2 sm:px-5 mt-auto" />
   </div>
 </template>

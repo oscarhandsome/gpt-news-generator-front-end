@@ -1,5 +1,7 @@
 <template>
-  <footer class="bg-black text-white rounded-lg shadow dark:bg-gray-900 m-4">
+  <footer
+    class="bg-black text-white sm:rounded-lg shadow dark:bg-gray-900 mt-7 sm:m-5"
+  >
     <div class="container mx-auto px-2 lg:px-0 py-4 md:py-8">
       <div class="sm:flex sm:items-center sm:justify-between">
         <TheLogo small />

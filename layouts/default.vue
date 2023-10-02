@@ -33,7 +33,7 @@
   <div class="flex flex-col min-h-screen">
     <TheHeader />
     <main class="flex-grow">
-      <div class="container mx-auto px-5 sm:px-0">
+      <div class="container mx-auto px-2 sm:px-0">
         <TheBreadcrumb />
         <slot />
       </div>

@@ -29,7 +29,7 @@ function toggleMenu() {
 <template>
   <header>
     <nav
-      class="bg-black text-white dark:bg-white dark:text-black px-4 xl:px-6 py-2.5 mb-5"
+      class="bg-black text-white dark:bg-white dark:text-black px-4 xl:px-6 py-2.5 mb-2 sm:mb-5"
     >
       <div class="container mx-auto">
         <div class="flex justify-between items-center">
@@ -58,7 +58,7 @@ function toggleMenu() {
             <button
               data-collapse-toggle="mobile-menu-2"
               type="button"
-              class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg xl:hidden"
+              class="inline-flex items-center text-sm text-gray-500 rounded-lg xl:hidden p-1 sm:p-2 ml-1"
               aria-controls="mobile-menu-2"
               aria-expanded="false"
               @click="toggleMenu"
@@ -91,6 +91,7 @@ function toggleMenu() {
             </button>
           </div>
 
+          <!-- MAIN MENU  -->
           <div
             id="mobile-menu-2"
             class="fixed xl:relative top-0 xl:right-auto z-20 xl:z-0 h-screen xl:h-auto bg-black xl:flex mr-auto justify-between items-center w-full xl:w-auto xl:order-1 transition-all mx-auto"

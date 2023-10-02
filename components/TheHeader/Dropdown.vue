@@ -11,6 +11,7 @@ import {
   ArrowRightOnRectangleIcon,
   ListBulletIcon as ViewListIcon,
   CreditCardIcon,
+  AtSymbolIcon,
 } from '@heroicons/vue/20/solid'
 import { useAuthStore } from '~/store/auth'
 // import { User } from 'types'
@@ -29,11 +30,15 @@ const logout = () => {
     <Menu as="div" class="relative inline-block text-left">
       <div>
         <MenuButton
-          class="inline-flex break-all w-full justify-center rounded-md bg-gray-200 bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+          class="inline-flex break-all w-full justify-center rounded-md bg-gray-200 bg-opacity-20 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 p-1 sm:px-4 sm:py-2"
         >
-          {{ user.email }}
+          <AtSymbolIcon
+            class="shrink-0 h-5 w-5 text-violet-200 hover:text-violet-100 sm:hidden"
+            >@</AtSymbolIcon
+          >
+          <span class="hidden sm:inline">{{ user.email }}</span>
           <ChevronDownIcon
-            class="ml-2 -mr-1 h-5 w-5 text-violet-200 hover:text-violet-100"
+            class="shrink-0 h-5 w-5 text-violet-200 hover:text-violet-100 ml-2 -mr-1"
             aria-hidden="true"
           />
         </MenuButton>
