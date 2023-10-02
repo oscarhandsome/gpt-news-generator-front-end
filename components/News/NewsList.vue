@@ -6,7 +6,7 @@ defineProps<{
   isLoading?: boolean
   items?: News[]
   // errors: string[]
-  paginationVisibility: boolean
+  paginationVisibility?: boolean
 }>()
 </script>
 
