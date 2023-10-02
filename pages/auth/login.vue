@@ -5,13 +5,15 @@ import { GoogleSignInButton, type CredentialResponse } from 'vue3-google-signin'
 import { storeToRefs } from 'pinia' // import storeToRefs helper hook from pinia
 import { useAuthStore } from '~/store/auth' // import the auth store we just created
 
+import { clearObject } from '@/utils/utils'
+
 definePageMeta({
   layout: 'custom',
   // middleware: 'auth',
 })
 
 const { authenticateUser } = useAuthStore() // use authenticateUser action from  auth store
-const { isAuthenticated, success, isLoading, error } = storeToRefs(
+const { isAuthenticated, success, isLoading, error, errors } = storeToRefs(
   useAuthStore(),
 ) // make isAuthenticated state reactive with storeToRefs
 
@@ -23,10 +25,17 @@ const data = ref({
 const router = useRouter()
 
 const login = async () => {
+  clearErrors()
+  window.scrollTo(0, 0)
+
+  // for (const [key, value] of Object.entries(data.value)) {
+  //   console.log('key, value', key, value)
+  //   errors.value[key] = 'Field empty'
+  // }
+  // console.log('errors.value', errors.value)
+
   if (!data.value.email || !data.value.password) {
-    error.value = 'Sorry fields are empty'
-    window.scrollTo(0, 0)
-    clearErrors()
+    error.value = 'Sorry some fields are empty'
     return
   }
 
@@ -50,6 +59,7 @@ onBeforeUnmount(() => {
 const clearErrors = () => {
   setTimeout(() => {
     error.value = ''
+    // errors.value = ref(clearObject(errors.value))
   }, 2500)
 }
 
@@ -71,24 +81,28 @@ const handleLoginError = (error) => {
 </script>
 
 <template>
-  <div class="lg:my-5">
+  <div class="my-2 sm:my-3 lg:my-5">
     <!-- <h1 class="text-2xl text-center mb-5">Login page</h1> -->
 
     <div
-      class="w-full max-w-sm mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700"
+      class="w-full max-w-sm mx-auto p-4 bg-white sm:border sm:border-gray-200 sm:rounded-lg sm:shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700"
     >
-      <!-- <div
+      <div
         v-if="!isLoading && success"
         class="flex flex-col justify-center items-center"
       >
         <CheckIcon class="h-20 w-20 text-green-500 mb-5" />
         <p>You have logged successful!</p>
-      </div> -->
+      </div>
 
       <!-- LOADER -->
       <BaseLoader v-if="isLoading" />
 
-      <form v-else class="space-y-6" @submit.prevent="login">
+      <form
+        v-else-if="!isLoading && !success"
+        class="space-y-1 sm:space-y-3 md:space-y-4 lg:space-y-6"
+        @submit.prevent="login"
+      >
         <h5 class="text-xl font-medium text-gray-900 dark:text-white">
           Log in to our platform
         </h5>
@@ -111,7 +125,7 @@ const handleLoginError = (error) => {
             :model-value="data.email"
             label="Email"
             type="string"
-            error=""
+            :error="errors.email"
             placeholder="name@example.com"
             required
             @update:model-value="data.email = $event"
@@ -123,7 +137,7 @@ const handleLoginError = (error) => {
             label="Password"
             name="password"
             type="password"
-            error=""
+            :error="errors.password"
             placeholder="••••••••"
             required
             @update:model-value="data.password = $event"
@@ -135,7 +149,7 @@ const handleLoginError = (error) => {
             label="Remember me"
             :model-value="data.remember"
             name="remember"
-            error=""
+            :error="errors.remember"
             class="h-5"
             @update:model-value="data.remember = $event"
           />

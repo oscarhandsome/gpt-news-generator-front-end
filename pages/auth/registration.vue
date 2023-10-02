@@ -88,7 +88,11 @@ const handleLoginError = (error) => {
       <BaseLoader v-if="isLoading" />
 
       <!-- v-else-if="!isLoading && !success" -->
-      <form v-else class="space-y-6" @submit.prevent="submitForm">
+      <form
+        v-else
+        class="space-y-1 sm:space-y-3 md:space-y-4 lg:space-y-6"
+        @submit.prevent="submitForm"
+      >
         <h5 class="text-xl font-medium text-gray-900 dark:text-white">
           Sign up to our platform
         </h5>
@@ -224,7 +228,7 @@ const handleLoginError = (error) => {
         </div>
 
         <!-- TERMS  -->
-        <div class="mb-4 mt-3 text-base">
+        <div class="text-base">
           <label>
             <BaseCheckbox
               :model-value="checkboxActive"

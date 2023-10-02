@@ -7,7 +7,7 @@ const id = props.label.toLocaleLowerCase().replaceAll(' ', '-')
 </script>
 
 <template>
-  <div class="flex items-center">
+  <div class="inline">
     <input
       :id="id"
       :ref="id"

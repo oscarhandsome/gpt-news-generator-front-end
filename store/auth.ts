@@ -11,7 +11,7 @@ export const useAuthStore = defineStore('auth', {
     isAuthenticated: false,
     isLoading: false,
     isLoadingLocal: false,
-    errors: [],
+    errors: {},
     error: '',
     success: false,
     user: null,
