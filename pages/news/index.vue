@@ -19,10 +19,10 @@ await getAllNews()
 <template>
   <BaseTitle title="Latest news" />
 
-  <div class="flex justify-between items-center">
+  <div class="flex justify-between items-center mb-2 sm:mb-3 md:mb-5">
     <FormFilter />
 
-    <div class="flex justify-end m-5">
+    <div class="flex justify-end">
       <button
         class="border border-black hover:bg-black hover:text-white rounded p-2 mr-2"
         @click="changeView('list')"

@@ -21,4 +21,10 @@ module.exports = {
     // 'computed-property-spacing': 'off',
   },
   ignorePatterns: ['.history/*'],
+  'prettier/prettier': [
+    'error',
+    {
+      endOfLine: 'auto',
+    },
+  ],
 }

@@ -40,5 +40,7 @@
     </main>
     <TheCookie />
     <TheFooter class="mt-auto mb-0" />
+
+    <BaseUpButton />
   </div>
 </template>

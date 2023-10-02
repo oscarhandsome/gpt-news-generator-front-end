@@ -20,7 +20,7 @@ defineProps({
       :class="{ flex: view === 'list' }"
       class="cursor-pointer"
     >
-      <div class="flex">
+      <div class="flex shrink-0">
         <nuxt-img
           v-if="item.imageCover"
           :src="item.imageCover"
@@ -36,13 +36,13 @@ defineProps({
           :class="{ 'h-32 rounded-b-lg': view === 'list' }"
         />
       </div>
-      <div class="p-2 sm:p-6">
+      <div class="p-2 sm:px-5">
         <div class="absolute right-2 bottom-1 text-xs text-gray-500">
           <!-- 10/06/2023 -->
           {{ item.createdAt }}
         </div>
         <h5
-          class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+          class="text-base sm:text-lg lg:text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
         >
           {{ item.name.substring(0, 18) + '...' }}
         </h5>
@@ -53,6 +53,9 @@ defineProps({
       </div>
     </nuxt-link>
 
-    <UserInfo :user="item.autor" class="pb-2 sm:pb-5 px-2 sm:px-5 mt-auto" />
+    <UserInfo
+      :user="item.autor"
+      class="py-1 pb-5 sm:py-5 px-2 sm:px-5 mt-auto bg-gray-100"
+    />
   </div>
 </template>

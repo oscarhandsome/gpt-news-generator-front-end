@@ -14,14 +14,14 @@ defineProps<{
   <!-- LOADER -->
   <BaseLoader v-if="isLoading" />
 
-  <div v-else>
-    <div v-if="items && items.length" class="flex flex-col">
+  <div v-else class="w-full">
+    <div v-if="items && items.length" class="flex flex-col w-full">
       <div
         class="grid gap-2 sm:gap-3 lg:gap-4 xl:gap-5"
         :class="{
           'sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5':
             view === 'tile',
-          'grid-cols-1': view === 'list',
+          'grid-cols-1 sm:grid-cols-2 ': view === 'list',
         }"
       >
         <div

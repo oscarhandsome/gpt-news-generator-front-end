@@ -3,7 +3,10 @@
 import { storeToRefs } from 'pinia'
 import { useNewsStore } from '@/store/news'
 
-import { ArrowLeftCircleIcon } from '@heroicons/vue/20/solid'
+import {
+  ArrowLeftCircleIcon,
+  ArrowRightCircleIcon,
+} from '@heroicons/vue/20/solid'
 
 defineProps({
   view: {
@@ -35,7 +38,7 @@ onBeforeUnmount(() => {
     <BaseBackButton />
 
     <div class="lg:flex mb-12">
-      <div class="flex-shrink-0">
+      <div class="flex-shrink-0 max-w-lg">
         <nuxt-img
           v-if="currentNews.imageCover"
           :src="currentNews.imageCover"
@@ -67,8 +70,14 @@ onBeforeUnmount(() => {
           :to="`/news/autor/${currentNews.autor.id}`"
           class="cursor-pointer p-3 pt-0 mt-2"
         >
-          <div class="border border-gray-200 rounded-md">
+          <div
+            class="flex justify-between items-center border border-gray-200 hover:bg-gray-200 rounded-md transition-colors"
+          >
             <UserInfo :user="currentNews.autor" class="pb-3 px-5" />
+            <ArrowRightCircleIcon
+              class="flex-shrink-0 h-10 w-10 text-black mr-5"
+              aria-hidden="true"
+            />
           </div>
         </nuxt-link>
       </div>
