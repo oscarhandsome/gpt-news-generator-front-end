@@ -6,7 +6,7 @@
     <div class="mx-auto w-full max-w-lg rounded-2xl bg-white p-2">
       <Disclosure v-slot="{ open }">
         <DisclosureButton
-          class="flex w-full justify-between rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75"
+          class="flex w-full justify-between rounded-lg bg-blue-100 px-4 py-2 text-left text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-75"
         >
           <span
             >How to register? How do I sign up for the GPT Chat News Generator
@@ -14,7 +14,7 @@
           >
           <ChevronUpIcon
             :class="open ? 'rotate-180 transform' : ''"
-            class="h-5 w-5 text-purple-500"
+            class="h-5 w-5 text-blue-500"
           />
         </DisclosureButton>
         <DisclosurePanel class="px-4 pt-4 pb-2 text-sm text-gray-500">
@@ -39,7 +39,7 @@
       </Disclosure>
       <Disclosure v-slot="{ open }" as="div" class="mt-2">
         <DisclosureButton
-          class="flex w-full justify-between rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75"
+          class="flex w-full justify-between rounded-lg bg-blue-100 px-4 py-2 text-left text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-75"
         >
           <span
             >Subscription rules. What are the rules for the subscription
@@ -47,7 +47,7 @@
           >
           <ChevronUpIcon
             :class="open ? 'rotate-180 transform' : ''"
-            class="h-5 w-5 text-purple-500"
+            class="h-5 w-5 text-blue-500"
           />
         </DisclosureButton>
         <DisclosurePanel class="px-4 pt-4 pb-2 text-sm text-gray-500">
@@ -80,7 +80,7 @@
       </Disclosure>
       <Disclosure v-slot="{ open }" as="div" class="mt-2">
         <DisclosureButton
-          class="flex w-full justify-between rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75"
+          class="flex w-full justify-between rounded-lg bg-blue-100 px-4 py-2 text-left text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-75"
         >
           <span
             >How it works? How does the GPT Chat News Generator Application
@@ -88,7 +88,7 @@
           >
           <ChevronUpIcon
             :class="open ? 'rotate-180 transform' : ''"
-            class="h-5 w-5 text-purple-500"
+            class="h-5 w-5 text-blue-500"
           />
         </DisclosureButton>
         <DisclosurePanel class="px-4 pt-4 pb-2 text-sm text-gray-500">
