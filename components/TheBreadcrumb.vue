@@ -25,7 +25,7 @@ console.log('route', route.name)
           Home
         </nuxt-link>
       </li>
-      <li>
+      <li v-if="route.name !== 'index'">
         <div class="flex items-center">
           <svg
             class="w-3 h-3 text-gray-400 mx-1"
