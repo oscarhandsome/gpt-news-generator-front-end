@@ -4,7 +4,7 @@ import { ArrowLeftCircleIcon } from '@heroicons/vue/20/solid'
 
 <template>
   <button
-    class="flex items-center border border-white hover:bg-black hover:text-white active:bg-black active:text-white transition-colors rounded px-2 mb-2"
+    class="flex items-center bg-gray-100 border border-gray-300 hover:bg-black hover:text-white active:bg-black active:text-white transition-colors rounded p-1"
     @click="$router.go(-1)"
   >
     <ArrowLeftCircleIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />

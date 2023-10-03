@@ -4,10 +4,10 @@ import { useSubscriptionStore } from '~/store/subsriptions'
 
 // import { CheckIcon } from '@heroicons/vue/24/solid'
 
-definePageMeta({
-  layout: 'custom',
-  // middleware: 'auth',
-})
+// definePageMeta({
+//   layout: 'custom',
+//   // middleware: 'auth',
+// })
 
 const { getSubscriptions } = useSubscriptionStore()
 const { subscriptions } = storeToRefs(useSubscriptionStore())
@@ -18,7 +18,7 @@ await getSubscriptions()
 </script>
 
 <template>
-  <div class="flex justify-between px-5 sm:px-0">
+  <div class="flex justify-between">
     <SubscriptionList :subscriptions="subscriptions" />
   </div>
 </template>

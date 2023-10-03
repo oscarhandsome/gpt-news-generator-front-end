@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-// const route = useRoute()
-// console.log('route', route)
+const route = useRoute()
+console.log('route', route.name)
 </script>
 
 <template>
@@ -43,13 +43,13 @@
             />
           </svg>
           <nuxt-link
-            :to="`/news`"
-            class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"
-            >News</nuxt-link
+            :to="`/${route.name}`"
+            class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white capitalize"
+            >{{ route.name }}</nuxt-link
           >
         </div>
       </li>
-      <li aria-current="page">
+      <!-- <li aria-current="page">
         <div class="flex items-center">
           <svg
             class="w-3 h-3 text-gray-400 mx-1"
@@ -71,7 +71,7 @@
             >Latest News</span
           >
         </div>
-      </li>
+      </li> -->
     </ol>
   </nav>
 </template>

@@ -18,8 +18,10 @@ defineProps<{
 
 <template>
   <div class="flex-1 flex-col">
-    <BaseBackButton />
-    <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-5">
+    <BaseBackButton class="mb-2 sm:mb-5" />
+    <div
+      class="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-5"
+    >
       <SubscriptionItem
         v-for="subscription in subscriptions"
         :key="subscription._id"
