@@ -1,4 +1,12 @@
 <script lang="ts" setup>
+import { storeToRefs } from 'pinia' // import storeToRefs helper hook from pinia
+
+import { useSettingsStore } from '@/store/settings'
+
+const { settings } = storeToRefs(useSettingsStore())
+
+console.log('settings', settings.value)
+
 const people = [
   { name: 'Wade Cooper' },
   { name: 'Arlene Mccoy' },

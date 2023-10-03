@@ -13,7 +13,7 @@ defineProps({
 
 <template>
   <div
-    class="flex flex-col grow relative bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+    class="flex flex-col grow relative bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition-colors"
   >
     <nuxt-link
       :to="`/news/${item.slug}`"

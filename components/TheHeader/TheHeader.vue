@@ -42,16 +42,20 @@ function toggleMenu() {
           <div class="flex items-center xl:order-2 xl:min-w-[240px]">
             <div v-if="!isAuthenticated" class="flex items-center">
               <BaseButton to="/auth/login" class="flex items-center">
-                <UserCircleIcon class="h-6 w-6 xl:mr-2 shrink-0" />
-                <span class="hidden xl:block">Log in</span>
+                <UserCircleIcon
+                  class="h-5 sm:h-6 w-5 sm:w-6 sm:mr-2 shrink-0"
+                />
+                <span class="hidden sm:block">Log in</span>
               </BaseButton>
               <BaseButton
                 to="/auth/registration"
                 active
-                class="flex items-center ml-3"
+                class="flex items-center ml-1 sm:ml-3"
               >
-                <ArrowRightOnRectangleIcon class="h-6 w-6 xl:mr-2 shrink-0" />
-                <span class="hidden xl:block">Get started</span>
+                <ArrowRightOnRectangleIcon
+                  class="h-5 sm:h-6 w-5 sm:w-6 sm:mr-2 shrink-0"
+                />
+                <span class="hidden sm:block">Get started</span>
               </BaseButton>
             </div>
             <div v-else class="z-20">
