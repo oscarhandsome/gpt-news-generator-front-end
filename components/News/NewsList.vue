@@ -8,6 +8,16 @@ defineProps<{
   // errors: string[]
   paginationVisibility?: boolean
 }>()
+
+const router = useRouter()
+const route = useRoute()
+
+const updatePage = (page: number) => {
+  router.push({
+    path: route.path,
+    query: { page },
+  })
+}
 </script>
 
 <template>
@@ -34,7 +44,12 @@ defineProps<{
       </div>
 
       <div v-if="paginationVisibility" class="text-center py-5">
-        <BasePagination />
+        <BasePagination
+          :current-page="1"
+          :total-pages="items.length"
+          :items-per-page="15"
+          @updatePage="updatePage"
+        />
       </div>
     </div>
 

@@ -20,7 +20,7 @@ await getAllNews()
   <BaseTitle title="Latest news" />
 
   <div class="flex justify-between items-center mb-2 sm:mb-3 md:mb-5">
-    <FormFilter />
+    <Filter />
 
     <div class="flex justify-end">
       <button

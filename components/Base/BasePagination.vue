@@ -1,21 +1,39 @@
+<script lang="ts" setup>
+const props = defineProps<{
+  currentPage?: Number
+  totalPages?: Number
+  itemsPerPage?: Number
+}>()
+
+// const emit = defineEmits(['updatePage'])
+const emits = defineEmits<{
+  (e: 'updatePage', id: number): void
+}>()
+
+const total: number = Math.round(props.totalPages / props.itemsPerPage)
+
+const selectPage = (p: number) => emits('updatePage', p)
+</script>
+
 <template>
   <nav aria-label="Page navigation example">
     <ul class="inline-flex -space-x-px text-sm">
-      <li>
+      <!-- <li>
         <a
           href="#"
           class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
           >Previous</a
         >
-      </li>
-      <li>
-        <a
-          href="#"
+      </li> -->
+      <li v-for="page in total">
+        <button
           class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          >1</a
+          @click="selectPage(page)"
         >
+          {{ page }}
+        </button>
       </li>
-      <li>
+      <!-- <li>
         <a
           href="#"
           class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
@@ -43,14 +61,14 @@
           class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
           >5</a
         >
-      </li>
-      <li>
+      </li> -->
+      <!-- <li>
         <a
           href="#"
           class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
           >Next</a
         >
-      </li>
+      </li> -->
     </ul>
   </nav>
 </template>

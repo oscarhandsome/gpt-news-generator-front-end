@@ -15,9 +15,9 @@ export const useNewsStore = defineStore('news', {
     success: null,
   }),
   actions: {
-    async getAllNews() {
+    async getAllNews(payload?: Object) {
       this.isLoading = true
-      const { data, pending }: any = await Api.get('/news')
+      const { data, pending }: any = await Api.get('/news', payload)
       if (data.value) this.news = data.value.data.data
       // this.famousPersons = this.news.map((item) => ({
       //   name: item.famousPerson,
