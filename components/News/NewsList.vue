@@ -5,8 +5,14 @@ defineProps<{
   view?: string
   isLoading?: boolean
   items?: News[]
+  pageCount?: Number
+  paginationLimit?: Number
+  currentPage?: Number
   // errors: string[]
   paginationVisibility?: boolean
+}>()
+const emits = defineEmits<{
+  (e: 'updatePage', id: number): void
 }>()
 
 const router = useRouter()
@@ -17,6 +23,7 @@ const updatePage = (page: number) => {
     path: route.path,
     query: { page },
   })
+  emits('updatePage', page)
 }
 </script>
 
@@ -43,12 +50,12 @@ const updatePage = (page: number) => {
         </div>
       </div>
 
-      <div v-if="paginationVisibility" class="text-center py-5">
+      <div v-if="paginationVisibility" class="text-center my-5 lg:my-10">
         <BasePagination
-          :current-page="1"
-          :total-pages="items.length"
-          :items-per-page="15"
-          @updatePage="updatePage"
+          :current-page="currentPage"
+          :page-count="pageCount"
+          :pagination-limit="paginationLimit"
+          @update-page="updatePage"
         />
       </div>
     </div>

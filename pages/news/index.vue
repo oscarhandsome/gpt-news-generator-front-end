@@ -10,12 +10,39 @@ const { isLoading, errors, newsList } = storeToRefs(useNewsStore())
 
 const { settings } = storeToRefs(useSettingsStore())
 
+const route = useRoute()
+const router = useRouter()
+
 const changeView = (view: string) => {
   settings.value.view = view
   localStorage.setItem('settings', JSON.stringify({ ...settings.value, view }))
 }
 
 await getAllNews()
+
+const paginationLimit = ref(settings.value.paginationLimit)
+const currentPage = ref(Number(route.query.page) || 1)
+const filteredItems = ref(
+  newsList.value.slice(
+    (currentPage.value - 1) * paginationLimit.value,
+    currentPage.value * paginationLimit.value,
+  ),
+)
+const pageCount = ref(Math.ceil(newsList.value.length / paginationLimit.value))
+
+const updatePage = (page: number = 1) => {
+  currentPage.value = page
+  const currRange = currentPage.value * paginationLimit.value
+  filteredItems.value = newsList.value.slice(
+    (currentPage.value - 1) * paginationLimit.value,
+    currRange,
+  )
+  window.scrollTo(0, 0)
+}
+
+onMounted(() => {
+  router.push({ query: { page: route.query.page || 1 } })
+})
 </script>
 
 <template>
@@ -45,9 +72,13 @@ await getAllNews()
   <div class="flex flex-col justify-center items-center mx-auto">
     <NewsList
       :view="settings.view"
-      :items="newsList"
+      :items="filteredItems"
+      :page-count="pageCount"
+      :pagination-limit="paginationLimit"
+      :current-page="currentPage"
       :is-loading="isLoading"
       :pagination-visibility="true"
+      @update-page="updatePage"
     />
   </div>
 </template>

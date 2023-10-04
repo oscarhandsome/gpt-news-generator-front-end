@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 const props = defineProps<{
   currentPage?: Number
-  totalPages?: Number
-  itemsPerPage?: Number
+  pageCount?: Number
+  paginationLimit?: Number
 }>()
 
 // const emit = defineEmits(['updatePage'])
@@ -10,7 +10,9 @@ const emits = defineEmits<{
   (e: 'updatePage', id: number): void
 }>()
 
-const total: number = Math.round(props.totalPages / props.itemsPerPage)
+const route = useRoute()
+
+// const total: number = Math.ceil(props.itemsLength / props.itemsPerPage)
 
 const selectPage = (p: number) => emits('updatePage', p)
 </script>
@@ -18,57 +20,42 @@ const selectPage = (p: number) => emits('updatePage', p)
 <template>
   <nav aria-label="Page navigation example">
     <ul class="inline-flex -space-x-px text-sm">
-      <!-- <li>
-        <a
-          href="#"
-          class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          >Previous</a
-        >
-      </li> -->
-      <li v-for="page in total">
-        <button
-          class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          @click="selectPage(page)"
-        >
-          {{ page }}
-        </button>
-      </li>
-      <!-- <li>
-        <a
-          href="#"
-          class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          >2</a
-        >
-      </li>
-      <li>
-        <a
-          href="#"
-          aria-current="page"
-          class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
-          >3</a
-        >
-      </li>
-      <li>
-        <a
-          href="#"
-          class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          >4</a
-        >
-      </li>
-      <li>
-        <a
-          href="#"
-          class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          >5</a
-        >
-      </li> -->
-      <!-- <li>
-        <a
-          href="#"
-          class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          >Next</a
-        >
-      </li> -->
+      <template v-for="page in pageCount">
+        <li v-if="page === 1">
+          <button
+            class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none disabled:cursor-not-allowed"
+            :disabled="route.query.page === '1'"
+            @click="selectPage(route.query.page - 1)"
+          >
+            Previous
+          </button>
+        </li>
+
+        <li>
+          <button
+            class="flex items-center justify-center px-3 h-8 leading-tight dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            :class="[
+              page === Number(route.query.page)
+                ? 'text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700'
+                : 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700',
+            ]"
+            @click="selectPage(page)"
+          >
+            {{ page }}
+          </button>
+        </li>
+
+        <li v-if="page === pageCount">
+          <button
+            href="#"
+            class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none disabled:cursor-not-allowed"
+            :disabled="route.query.page === pageCount + ''"
+            @click="selectPage(parseInt(route.query.page) + 1)"
+          >
+            Next
+          </button>
+        </li>
+      </template>
     </ul>
   </nav>
 </template>

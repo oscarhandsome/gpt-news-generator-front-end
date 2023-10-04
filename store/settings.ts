@@ -7,7 +7,7 @@ const getDefaultSettings = () => ({
   tabSize: 2,
   zoomLevel: 0,
   view: 'tile', // tile or list
-  itemsPerPage: 15,
+  paginationLimit: 15,
 })
 
 const getSettings = () => {
