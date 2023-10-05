@@ -5,6 +5,10 @@ import { clearObject } from '@/utils/utils'
 
 import type { NewsPayloadInterface } from 'types'
 
+function onlyUnique(value, index, array) {
+  return array.indexOf(value) === index
+}
+
 export const useNewsStore = defineStore('news', {
   state: () => ({
     news: [],
@@ -18,11 +22,14 @@ export const useNewsStore = defineStore('news', {
     async getAllNews(payload?: Object) {
       this.isLoading = true
       const { data, pending }: any = await Api.get('/news', payload)
-      if (data.value) this.news = data.value.data.data
-      // this.famousPersons = this.news.map((item) => ({
-      //   name: item.famousPerson,
-      // }))
-      this.isLoading = false
+      if (data.value) {
+        this.news = data.value.data.data
+        const unique = [...new Set(this.news.map((item) => item.famousPerson))]
+        this.famousPersons = unique.map((name) => ({
+          name,
+        }))
+      }
+      this.isLoading = pending.value
     },
     // async getAllNews() {
     //   this.isLoading = true
