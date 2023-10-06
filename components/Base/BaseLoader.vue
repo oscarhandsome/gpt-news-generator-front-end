@@ -1,20 +1,38 @@
+<script lang="ts" setup>
+defineProps({
+  show: Boolean,
+  absolute: Boolean,
+})
+</script>
+
 <template>
-  <div class="flex justify-center items-center">
-    <div class="lds-default my-20">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+  <transition name="loader" mode="out-in">
+    <div
+      v-if="show"
+      class="flex flex-col justify-center items-center w-full h-full"
+      :class="{
+        'absolute z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white bg-opacity-60':
+          absolute,
+      }"
+    >
+      <div class="lds-default mb-5">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+
+      <div class="text-2xl">Loading...</div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <style scoped>
@@ -102,5 +120,17 @@
   50% {
     transform: scale(1.5);
   }
+}
+</style>
+
+<style>
+.loader-enter-active,
+.loader-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.loader-enter-from,
+.loader-leave-to {
+  opacity: 0;
 }
 </style>

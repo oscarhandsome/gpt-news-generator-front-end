@@ -83,6 +83,7 @@ export const useAuthStore = defineStore('auth', {
     },
     async signUp(payload: any) {
       this.isLoading = true
+      this.error = ''
       // $toast.show('this is a test')
       // useFetch from nuxt 3
       // const { data, pending, error, refresh }: any = await useFetch(
@@ -101,7 +102,7 @@ export const useAuthStore = defineStore('auth', {
         '/users/signup',
         payload,
       )
-      this.isLoading = pending
+      this.isLoading = pending.value
 
       // console.log('this.isLoading', this.isLoading)
       // console.log('data.value', data.value)
@@ -117,14 +118,30 @@ export const useAuthStore = defineStore('auth', {
 
       // if (!data.value) throw new Error('Something went wrong!')
 
-      console.log('data.value', data.value)
-      console.log('pending.value', pending.value)
-      console.log('error.value', error.value)
-      console.log('refresh.value', refresh.value)
+      // console.log('data.value', data.value)
+      // console.log('pending.value', pending.value)
+      // console.log('error.value', error.value)
+      // console.log('refresh.value', refresh.value)
 
       if (error.value) {
         console.log('error.value.data', error.value.data)
-        this.errors = error.value.data.error.errors
+        if (error.value.data.message) this.error = error.value.data.message
+        // PROD
+        if (error.value.data.errors) {
+          for (const [key, value] of Object.entries(error.value.data.errors)) {
+            this.errors = Object.assign(this.errors, value)
+          }
+        }
+        // DEV
+        if (error.value.data && error.value.data.error) {
+          for (const [key, value] of Object.entries(
+            error.value.data.error.errors,
+          )) {
+            this.errors = Object.assign(this.errors, {
+              [value.path]: value.message,
+            })
+          }
+        }
         // throw new Error(error.value.data.message)
       }
     },

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { CheckIcon } from '@heroicons/vue/24/solid'
+import { CheckIcon, HomeIcon } from '@heroicons/vue/24/solid'
 
 import { GoogleSignInButton, type CredentialResponse } from 'vue3-google-signin'
 import { storeToRefs } from 'pinia' // import storeToRefs helper hook from pinia
@@ -60,7 +60,7 @@ const clearErrors = () => {
   setTimeout(() => {
     error.value = ''
     // errors.value = ref(clearObject(errors.value))
-  }, 2500)
+  }, 3500)
 }
 
 // GOOGLE AUTH2.0
@@ -81,11 +81,12 @@ const handleLoginError = (error) => {
 </script>
 
 <template>
-  <div class="my-2 sm:my-3 lg:my-5">
+  <div
+    class="relative my-2 sm:my-3 lg:my-5 w-full max-w-sm sm:mx-auto mt-0 sm:shadow-2xl"
+  >
     <!-- <h1 class="text-2xl text-center mb-5">Login page</h1> -->
-
     <div
-      class="w-full max-w-sm mx-auto p-4 bg-white sm:border sm:border-gray-200 sm:rounded-lg sm:shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700"
+      class="bg-white sm:border sm:border-gray-200 sm:rounded-lg sm:shadow dark:bg-gray-800 dark:border-gray-700 p-4 sm:p-6 md:p-8 mx-auto"
     >
       <div
         v-if="!isLoading && success"
@@ -96,22 +97,23 @@ const handleLoginError = (error) => {
       </div>
 
       <!-- LOADER -->
-      <BaseLoader v-if="isLoading" />
+      <BaseLoader :show="isLoading" absolute />
 
       <form
-        v-else-if="!isLoading && !success"
-        class="space-y-1 sm:space-y-3 md:space-y-4 lg:space-y-6"
+        class="space-y-1 sm:space-y-2 md:space-y-3 lg:space-y-4"
         @submit.prevent="login"
       >
         <h5 class="text-xl font-medium text-gray-900 dark:text-white">
           Log in to our platform
         </h5>
-        <BaseError :text="error" />
+        <BaseError :text="error" class="z-10" />
 
-        <GoogleSignInButton
-          @success="handleLoginSuccess"
-          @error="handleLoginError"
-        ></GoogleSignInButton>
+        <div class="h-10">
+          <GoogleSignInButton
+            @success="handleLoginSuccess"
+            @error="handleLoginError"
+          ></GoogleSignInButton>
+        </div>
 
         <!-- OR  -->
         <div class="flex items-center w-full">
@@ -172,6 +174,16 @@ const handleLoginError = (error) => {
             class="text-blue-700 hover:underline dark:text-blue-500"
           >
             Create account
+          </nuxt-link>
+        </div>
+
+        <div class="mx-auto text-center">
+          <nuxt-link
+            to="/"
+            class="text-sm font-medium text-gray-500 hover:bg-gray-200 dark:text-gray-300 border transition-colors rounded-lg p-1"
+          >
+            <HomeIcon class="h-5 w-5 inline" />
+            Main page
           </nuxt-link>
         </div>
       </form>
