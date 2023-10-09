@@ -5,13 +5,19 @@ defineEmits(['update:modelValue'])
 const props = defineProps<InputProps>()
 const id = props.label.toLocaleLowerCase().replaceAll(' ', '-')
 
-// const errorLocal = props.error
-// console.log('errorL', errorLocal)
+// const errorLocal = ref(props.error)
+// console.log('errorLocal:', errorLocal)
 // watch(props, (oldVal, newVal) => {
-//   console.log('newVal', newVal.modelValue)
-//   console.log('errorLocal', errorLocal)
 //   // if (!newVal.modelValue?.length) errorLocal = ''
+//   console.log('newVal', newVal.error)
+//   errorLocal.value = newVal.error
 // })
+
+// const clearError = () => {
+//   console.log('errorLocal.value:', errorLocal.value)
+//   errorLocal.value = ''
+//   console.log('errorLocal.value:', errorLocal.value)
+// }
 </script>
 
 <template>

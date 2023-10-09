@@ -11,7 +11,7 @@ defineProps({
   <transition name="top-to-bottom" mode="out-in">
     <div
       v-if="text"
-      class="fixed top-0 left-1/2 -translate-x-1/2 text-red-500 bg-red-100 border border-red-500 rounded-lg px-5 py-2"
+      class="fixed top-2 sm:top-5 left-1/2 -translate-x-1/2 text-red-500 bg-red-100 border border-red-500 rounded-lg px-5 py-2"
     >
       {{ text }}
     </div>

@@ -3,6 +3,8 @@ import { UserPayloadInterface, User } from 'types'
 // import { useToast } from 'tailvue'
 import Api from '~/services/api'
 
+import { clearObject } from '@/utils/utils'
+
 // const $toast = useToast()
 // const { $toast } = useNuxtApp()
 
@@ -19,6 +21,7 @@ export const useAuthStore = defineStore('auth', {
   actions: {
     async authenticateUser(payload: UserPayloadInterface) {
       this.isLoading = true
+      this.clearErrors(true)
       // $toast.show('this is a test')
       // useFetch from nuxt 3
       // const { data, pending }: any = await useFetch(
@@ -56,6 +59,8 @@ export const useAuthStore = defineStore('auth', {
           this.error = ''
         }, 3500)
       }
+
+      this.clearErrors()
     },
     async logUserOut() {
       // const { data, pending }: any = await useFetch(
@@ -83,7 +88,7 @@ export const useAuthStore = defineStore('auth', {
     },
     async signUp(payload: any) {
       this.isLoading = true
-      this.error = ''
+      this.clearErrors(true)
       // $toast.show('this is a test')
       // useFetch from nuxt 3
       // const { data, pending, error, refresh }: any = await useFetch(
@@ -144,6 +149,8 @@ export const useAuthStore = defineStore('auth', {
         }
         // throw new Error(error.value.data.message)
       }
+
+      this.clearErrors()
     },
     async passwordConfirm(payload: UserPayloadInterface) {
       // $toast.show('this is a test')
@@ -180,6 +187,13 @@ export const useAuthStore = defineStore('auth', {
       )
       console.log('data, pending, error ')
       this.isLoading = pending.value
+    },
+    clearErrors(all: boolean = false) {
+      if (all) this.errors = clearObject(this.errors)
+      const runtimeConfig = useRuntimeConfig()
+      setTimeout(() => {
+        this.error = ''
+      }, runtimeConfig.public.clearTimeout)
     },
   },
 })

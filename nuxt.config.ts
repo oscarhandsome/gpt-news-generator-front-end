@@ -40,8 +40,9 @@ export default defineNuxtConfig({
   // },
   runtimeConfig: {
     public: {
-      baseURL: process.env.API_BASE_URL || 'https://localhost:8000/api/v1',
+      baseURL: process.env.API_BASE_URL,
       googleClientId: process.env.GOGGLE_CLIENT_ID_KEY,
+      clearTimeout: process.env.SETTINGS_CLEAR_ERRORS_TIMEOUT,
     },
   },
   // image: {

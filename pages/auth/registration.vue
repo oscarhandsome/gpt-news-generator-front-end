@@ -12,7 +12,7 @@ definePageMeta({
 
 // const config = useRuntimeConfig()
 
-const { signUp } = useAuthStore() // use authenticateUser action from  auth store
+const { signUp, clearErrors } = useAuthStore() // use authenticateUser action from  auth store
 const { isAuthenticated, success, error, errors, isLoading } = storeToRefs(
   useAuthStore(),
 ) // make isAuthenticated state reactive with storeToRefs
@@ -31,7 +31,7 @@ const data = reactive({
 
 const submitForm = async () => {
   if (!checkboxActive.value) {
-    error.value = 'Sorry terms not accepted from your side'
+    error.value = 'Sorry Terms of Use and Privacy Policy not accepted.'
     window.scrollTo(0, 0)
     clearErrors()
     return
@@ -42,16 +42,7 @@ const submitForm = async () => {
     if (isAuthenticated.value && success.value) router.push('/auth/success')
   } catch (error) {
     console.error(error)
-    alert(error)
-  } finally {
-    clearErrors()
   }
-}
-
-const clearErrors = () => {
-  setTimeout(() => {
-    error.value = ''
-  }, 2500)
 }
 
 // GOOGLE AUTH2.0
@@ -72,6 +63,7 @@ const handleLoginError = (error) => {
 </script>
 
 <template>
+  <BaseError :text="error" class="z-10 mx-auto w-[90%] sm:w-auto max-w-xl" />
   <div class="relative lg:my-5 w-full max-w-lg sm:mx-auto mt-0 sm:shadow-2xl">
     <!-- <h1 class="text-2xl text-center mb-5">Register page</h1> -->
 
@@ -97,8 +89,6 @@ const handleLoginError = (error) => {
         <h5 class="text-xl font-medium text-gray-900 dark:text-white">
           Sign up to our platform
         </h5>
-
-        <BaseError :text="error" class="z-10" />
 
         <div class="h-10">
           <GoogleSignInButton
@@ -219,7 +209,7 @@ const handleLoginError = (error) => {
             required
           />
         </div>
-        <div>
+        <div class="mb-10">
           <BaseInput
             v-model="data.passwordConfirm"
             label="Confirm password"

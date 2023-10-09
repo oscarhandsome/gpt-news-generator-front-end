@@ -5,7 +5,7 @@ import { GoogleSignInButton, type CredentialResponse } from 'vue3-google-signin'
 import { storeToRefs } from 'pinia' // import storeToRefs helper hook from pinia
 import { useAuthStore } from '~/store/auth' // import the auth store we just created
 
-import { clearObject } from '@/utils/utils'
+// import { clearObject } from '@/utils/utils'
 
 definePageMeta({
   layout: 'custom',
@@ -25,8 +25,8 @@ const data = ref({
 const router = useRouter()
 
 const login = async () => {
-  clearErrors()
-  window.scrollTo(0, 0)
+  // error.value = ''
+  // window.scrollTo(0, 0)
 
   // for (const [key, value] of Object.entries(data.value)) {
   //   console.log('key, value', key, value)
@@ -34,10 +34,10 @@ const login = async () => {
   // }
   // console.log('errors.value', errors.value)
 
-  if (!data.value.email || !data.value.password) {
-    error.value = 'Sorry some fields are empty'
-    return
-  }
+  // if (!data.value.email || !data.value.password) {
+  //   error.value = 'Sorry some fields are empty'
+  //   return
+  // }
 
   try {
     await authenticateUser(data.value) // call authenticateUser and pass the user object
@@ -48,20 +48,12 @@ const login = async () => {
     }
   } catch (error) {
     console.error(error)
-    alert(error)
   }
 }
 
 onBeforeUnmount(() => {
   success.value = false
 })
-
-const clearErrors = () => {
-  setTimeout(() => {
-    error.value = ''
-    // errors.value = ref(clearObject(errors.value))
-  }, 3500)
-}
 
 // GOOGLE AUTH2.0
 // handle success event
@@ -81,6 +73,7 @@ const handleLoginError = (error) => {
 </script>
 
 <template>
+  <BaseError :text="error" class="z-10 mx-auto w-[90%] sm:w-auto max-w-xl" />
   <div
     class="relative my-2 sm:my-3 lg:my-5 w-full max-w-sm sm:mx-auto mt-0 sm:shadow-2xl"
   >
@@ -106,7 +99,6 @@ const handleLoginError = (error) => {
         <h5 class="text-xl font-medium text-gray-900 dark:text-white">
           Log in to our platform
         </h5>
-        <BaseError :text="error" class="z-10" />
 
         <div class="h-10">
           <GoogleSignInButton
