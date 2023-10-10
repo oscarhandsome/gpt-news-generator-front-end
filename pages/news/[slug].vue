@@ -16,14 +16,14 @@ defineProps({
 })
 
 const route = useRoute()
-const store = useNewsStore()
+// const store = useNewsStore()
 
 const { getNews } = useNewsStore() // use authenticateUser action from  auth store
-const { isloading, errors, currentNews } = storeToRefs(useNewsStore()) // make isAuthenticated state reactive with storeToRefs
+const { isLoading, errors, currentNews } = storeToRefs(useNewsStore()) // make isAuthenticated state reactive with storeToRefs
 
-console.log('route.params', route.params)
-await getNews(route.params.slug)
-console.log('store', currentNews)
+const { slug } = route.params
+await getNews(slug)
+// console.log('store', currentNews)
 
 onBeforeUnmount(() => {
   currentNews.value = []
@@ -32,7 +32,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <BaseLoader v-if="isloading" />
+  <BaseLoader v-if="isLoading" default />
   <div v-else class="mb-12">
     <!-- Details of news {{ $route.params.slug }} -->
     <BaseBackButton class="mb-2 sm:mb-5" />
@@ -43,6 +43,10 @@ onBeforeUnmount(() => {
           v-if="currentNews.imageCover"
           :src="currentNews.imageCover"
           :alt="currentNews.name"
+          loading="lazy"
+          width="512"
+          height="512"
+          placeholder="/placeholder.png"
           class="rounded-lg"
         />
         <img

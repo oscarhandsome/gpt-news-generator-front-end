@@ -32,6 +32,10 @@ defineProps<{
       class="rounded-full w-9 h-9"
       :src="`${user.photo}` || 'https://i.pravatar.cc/100'"
       :alt="user.name"
+      loading="lazy"
+      width="36"
+      height="36"
+      :placeholder="36"
     />
     <div class="space-y-0.5 font-medium dark:text-white text-left">
       <div>{{ user.name }}</div>

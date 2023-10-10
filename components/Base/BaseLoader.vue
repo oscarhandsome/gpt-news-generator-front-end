@@ -2,11 +2,33 @@
 defineProps({
   show: Boolean,
   absolute: Boolean,
+  default: Boolean,
 })
 </script>
 
 <template>
-  <transition name="loader" mode="out-in">
+  <div
+    v-if="default"
+    class="flex flex-grow flex-col justify-center items-center w-full min-h-screen"
+  >
+    <div class="lds-default mb-5">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <div class="text-2xl">Loading...</div>
+  </div>
+  <transition v-else name="loader" mode="out-in">
     <div
       v-if="show"
       class="flex flex-col justify-center items-center w-full h-full"

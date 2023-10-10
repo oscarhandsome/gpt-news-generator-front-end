@@ -39,7 +39,7 @@ const submitForm = async () => {
 
   try {
     await signUp(data)
-    if (isAuthenticated.value && success.value) router.push('/auth/success')
+    if (success.value) router.push('/auth/success')
   } catch (error) {
     console.error(error)
   }

@@ -25,6 +25,11 @@ defineProps({
           v-if="item.imageCover"
           :src="item.imageCover"
           :alt="item.name"
+          loading="lazy"
+          width="289"
+          height="289"
+          placeholder="/placeholder.png"
+          :modifiers="{ roundCorner: '0:100' }"
           class="w-full rounded-t-lg hover:scale-105 active:scale-110 transition-transform"
           :class="{ 'h-32 rounded-b-lg': view === 'list' }"
         />

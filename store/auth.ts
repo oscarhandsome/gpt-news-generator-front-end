@@ -113,11 +113,14 @@ export const useAuthStore = defineStore('auth', {
       // console.log('data.value', data.value)
 
       if (data.value) {
-        const token = useCookie('token') // useCookie new hook in nuxt 3
-        token.value = data?.value?.token // set token to cookie
-        this.isAuthenticated = true // set isAuthenticated  state value to true
-        this.user = data.value.data.user
-        localStorage.setItem('user', JSON.stringify(this.user))
+        if (data.value.data && data.value.data.user) {
+          const token = useCookie('token') // useCookie new hook in nuxt 3
+          token.value = data?.value?.token // set token to cookie
+          this.isAuthenticated = true // set isAuthenticated  state value to true
+          this.user = data.value.data.user
+          localStorage.setItem('user', JSON.stringify(this.user))
+        }
+
         this.success = true
       }
 
@@ -194,6 +197,27 @@ export const useAuthStore = defineStore('auth', {
       setTimeout(() => {
         this.error = ''
       }, runtimeConfig.public.clearTimeout)
+    },
+    async emailConfirm(payload) {
+      const { data, pending, error }: any = await Api.post(
+        `/users/emailConfirm/${payload}`,
+      )
+      console.log('data.value', data.value)
+      console.log('pending.value', pending.value)
+      console.log('error.value', error.value)
+      // console.log('refresh.value', refresh.value)
+      if (data.value) {
+        const token = useCookie('token') // useCookie new hook in nuxt 3
+        token.value = data?.value?.token // set token to cookie
+        this.isAuthenticated = true // set isAuthenticated  state value to true
+        this.user = data.value.data.user
+        localStorage.setItem('user', JSON.stringify(this.user))
+        this.success = true
+      }
+
+      // if (error.value) {
+      //   console.log('error.value.data', error.value.data)
+      // }
     },
   },
 })
