@@ -29,7 +29,7 @@ const updatePage = (page: number) => {
 
 <template>
   <!-- LOADER -->
-  <BaseLoader v-if="isLoading" />
+  <BaseLoader v-if="isLoading" default />
 
   <div v-else class="w-full">
     <div v-if="items && items.length" class="flex flex-col w-full">
