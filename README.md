@@ -1,6 +1,6 @@
 # GPT News Generator [![Netlify Status](https://api.netlify.com/api/v1/badges/ec8ae36c-3834-41aa-997f-d0527b31992f/deploy-status)](https://app.netlify.com/sites/gpt-chat-news-generator/deploys)
 
-Project will be soon here - [news-generator](https://news-generator.com).
+Project link - [news-generator](https://bit.ly/3FdI0MH).
 
 Project-based on Chat GPT AI and Leap AI image generator. The idea is to connect everything and create news automatically. Enjoy!
 
