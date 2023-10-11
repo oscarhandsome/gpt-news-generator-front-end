@@ -26,7 +26,10 @@ export default defineNuxtRouteMiddleware((to) => {
     return navigateTo('/')
   }
 
-  if (!token.value && to?.name === 'news-create') {
+  if (
+    (!token.value && to?.name === 'news-create') ||
+    (!token.value && to?.name === 'me')
+  ) {
     abortNavigation()
     return navigateTo('/auth/login')
   }
