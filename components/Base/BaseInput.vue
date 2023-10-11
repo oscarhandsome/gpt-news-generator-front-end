@@ -35,6 +35,7 @@ const id = props.label.toLocaleLowerCase().replaceAll(' ', '-')
     <input
       :id="id"
       :ref="id"
+      :name="id"
       :type="type ?? 'text'"
       :value="modelValue"
       class="border text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 transition-colors w-full p-2.5"
