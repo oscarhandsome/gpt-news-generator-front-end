@@ -7,7 +7,7 @@ import { imagesModelIdOptions } from '@/assets/data/imagesModelIdOptions'
 import { clearObject } from '@/utils/utils'
 
 const { createNews } = useNewsStore() // use authenticateUser action from  auth store
-const { isLoading, errors } = storeToRefs(useNewsStore()) // make isAuthenticated state reactive with storeToRefs
+const { isLoading, errors, error, success } = storeToRefs(useNewsStore()) // make isAuthenticated state reactive with storeToRefs
 
 // const router = useRouter()
 
@@ -65,13 +65,14 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <BaseLoader v-if="isLoading" />
+  <BaseError :text="error" class="z-10 mx-auto w-[90%] sm:w-auto max-w-xl" />
   <div
-    v-else
-    class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-6 mx-auto"
+    class="relative bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 sm:shadow-2xl p-6 mb-10 mx-auto"
   >
+    <!-- LOADER -->
+    <BaseLoader :show="isLoading" absolute />
     <form class="grid lg:grid-cols-2 lg:gap-5" @submit.prevent="submitForm">
-      <div>
+      <div class="space-y-1 sm:space-y-2 md:space-y-3 lg:space-y-4">
         <BaseTitleSecondary title="News configuration" class="mb-3" />
         <BaseInput
           v-model="data.name"
@@ -151,7 +152,7 @@ onBeforeUnmount(() => {
         <div class="mt-5"><span class="text-red-500">*</span> - required</div>
       </div>
 
-      <div>
+      <div class="space-y-1 sm:space-y-2 md:space-y-3 lg:space-y-4">
         <BaseTitleSecondary title="Image configuration" class="mb-3" />
         <BaseSelect
           :model-value="data.imageModelId"

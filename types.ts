@@ -95,7 +95,7 @@ export interface News {
   id: string
   imageCover: string
   images: string[]
-  newsLength: 50
+  newsLength: number
   name: string
   place: string
   ratingsAverage: number

@@ -93,6 +93,7 @@ const handleLoginError = (error) => {
       <BaseLoader :show="isLoading" absolute />
 
       <form
+        v-if="!success"
         class="space-y-1 sm:space-y-2 md:space-y-3 lg:space-y-4"
         @submit.prevent="login"
       >

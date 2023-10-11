@@ -16,7 +16,8 @@ export const useNewsStore = defineStore('news', {
     famousPersons: [],
     isLoading: false,
     errors: {},
-    success: null,
+    error: '',
+    success: false,
   }),
   actions: {
     async getAllNews(payload?: Object) {
@@ -72,14 +73,26 @@ export const useNewsStore = defineStore('news', {
 
         this.isLoading = true
         const { data, pending, error }: any = await Api.post('/news', payload)
-        console.log('data, pending, error', data, pending, error)
-        if (data.value) {
+        this.isLoading = pending.value
+
+        console.log('data.value', data.value)
+        console.log('pending.value', pending.value)
+        console.log('error.value', error.value)
+
+        if (data.value && data.value.status === 'success') {
           this.currentNews = data.value.data.news
           router.push(`/news/${this.currentNews.slug}`)
         }
 
-        this.isLoading = pending.value
-        if (error.value) this.errors = data.value.errors.value
+        if (error.value) {
+          // if (data.value.errors) this.errors = data.value.errors.value
+          // this.error = 'Password or email incorrect!'
+          this.error = error.value.data.message
+          setTimeout(() => {
+            this.error = ''
+          }, 3500)
+          console.error('this.error', this.error)
+        }
       } catch (error) {
         console.log('error', error)
       }

@@ -193,10 +193,10 @@ export const useAuthStore = defineStore('auth', {
     },
     clearErrors(all: boolean = false) {
       if (all) this.errors = clearObject(this.errors)
-      const runtimeConfig = useRuntimeConfig()
+      // const runtimeConfig = useRuntimeConfig()
       setTimeout(() => {
         this.error = ''
-      }, runtimeConfig.public.clearTimeout)
+      }, 3500)
     },
     async emailConfirm(payload) {
       const { data, pending, error }: any = await Api.post(
@@ -206,7 +206,7 @@ export const useAuthStore = defineStore('auth', {
       console.log('pending.value', pending.value)
       console.log('error.value', error.value)
       // console.log('refresh.value', refresh.value)
-      if (data.value) {
+      if (data.value && data.value.status === 'success') {
         const token = useCookie('token') // useCookie new hook in nuxt 3
         token.value = data?.value?.token // set token to cookie
         this.isAuthenticated = true // set isAuthenticated  state value to true

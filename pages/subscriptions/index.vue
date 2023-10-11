@@ -9,16 +9,24 @@ import { useSubscriptionStore } from '~/store/subsriptions'
 //   // middleware: 'auth',
 // })
 
-const { getSubscriptions } = useSubscriptionStore()
-const { subscriptions } = storeToRefs(useSubscriptionStore())
+const { getSubscriptions, getMySubscriptions } = useSubscriptionStore()
+const { subscriptions, mySubscription } = storeToRefs(useSubscriptionStore())
 
 // const router = useRouter()
 
 await getSubscriptions()
+await getMySubscriptions()
+
+console.log('mySubscription', mySubscription.value)
+const currentSubId = ref('')
+if (mySubscription.value) currentSubId.value = mySubscription.value[0]._id
 </script>
 
 <template>
   <div class="flex justify-between">
-    <SubscriptionList :subscriptions="subscriptions" />
+    <SubscriptionList
+      :subscriptions="subscriptions"
+      :current-sub-id="currentSubId"
+    />
   </div>
 </template>

@@ -13,15 +13,19 @@ const { emailConfirm } = useAuthStore() // use authenticateUser action from  aut
 const { isAuthenticated, success, isLoading } = storeToRefs(useAuthStore()) // make isAuthenticated state reactive with storeToRefs
 
 const route = useRoute()
+const router = useRouter()
 
 // const emailConfirm = async () => {
 //   await emailConfirm(router.params.token) // call authenticateUser and pass the user object
 // }
-if (route.params && route.params.token) await emailConfirm(route?.params?.token)
+await emailConfirm(route?.params?.token)
 // console.log('route', route.params.token)
+if (isAuthenticated.value && success.value) router.push('/')
 </script>
 
 <template>
+  <!-- LOADER -->
+  <!-- <BaseLoader :show="isLoading" absolute /> -->
   <div class="lg:my-5">
     <h1 class="text-2xl text-center mb-5">Email confirm page</h1>
 
@@ -34,6 +38,7 @@ if (route.params && route.params.token) await emailConfirm(route?.params?.token)
       >
         <CheckIcon class="h-20 w-20 text-green-500 mb-5" />
         <p>You have logged successful!</p>
+        <nuxt-link to="/">Main page</nuxt-link>
       </div>
       <BaseLoader v-if="isLoading" />
       <div v-else-if="!isLoading && !success">
