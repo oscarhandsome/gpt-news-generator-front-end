@@ -70,6 +70,7 @@ export interface User {
   role: string
   updatedAt: string
   id: string
+  position: string
 }
 
 export interface Subsription {

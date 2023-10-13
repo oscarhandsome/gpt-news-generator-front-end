@@ -3,7 +3,7 @@ import { storeToRefs } from 'pinia' // import storeToRefs helper hook from pinia
 import { useNewsStore } from '@/store/news'
 import { useSettingsStore } from '@/store/settings'
 
-const { famousPersons } = storeToRefs(useNewsStore())
+const { famousPersons, newsList } = storeToRefs(useNewsStore())
 const { settings } = storeToRefs(useSettingsStore())
 
 console.log('settings', settings.value)

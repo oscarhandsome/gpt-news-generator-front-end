@@ -19,17 +19,13 @@ defineProps<{
 </script>
 
 <template>
-  <figcaption
-    v-if="user && user.photo && user.name"
-    class="flex items-center justify-start space-x-3 mt-2"
-  >
+  <figcaption class="flex items-center justify-start space-x-3 mt-2">
     <!-- 
       :src="`~/assets/images/${user.photo}`"
     https://gpt-chat-news-generator-a4555eba92cd.herokuapp.com/img/users/
     -->
     <!-- https://i.pravatar.cc/100 -->
     <nuxt-img
-      v-if="user.photo"
       class="rounded-full w-9 h-9"
       :src="`${user.photo}` || './user-placeholder.png'"
       :alt="user.name"
@@ -41,7 +37,7 @@ defineProps<{
     <div class="space-y-0.5 font-medium dark:text-white text-left">
       <div>{{ user.name }}</div>
       <div class="text-sm text-gray-500 dark:text-gray-400">
-        Developer at Open AI
+        {{ user.position }}
       </div>
     </div>
   </figcaption>
