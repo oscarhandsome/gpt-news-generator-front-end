@@ -1,9 +1,30 @@
+<script lang="ts" setup>
+// Page metadata
+const title = ref('Terms and Conditions - GPT Chat News Generator Application')
+const description = ref(
+  'Terms and Conditions for GPT Chat News Generator Application',
+)
+
+// This will be reactive even you change title/description above
+useHead({
+  title,
+  meta: [
+    {
+      name: 'description',
+      content: description,
+    },
+  ],
+})
+
+const config = useRuntimeConfig()
+</script>
+
 <template>
   <div class="p-4">
     <h1 class="text-2xl font-semibold mb-4">Terms and Conditions</h1>
 
     <section class="mb-6">
-      <p>Last updated: [Date]</p>
+      <p>Last updated: {{ config.public.dateTimeTerms }}</p>
 
       <p>
         Please read these Terms and Conditions ("Terms", "Terms and Conditions")
@@ -100,25 +121,10 @@
       </p>
     </section>
 
-    <p>© [Year] [Your Company Name]. All rights reserved.</p>
+    <p>
+      © 2023 | GPT Chat News Generator Application. |
+      <a href="http://elbargo.ru/" class="hover:underline">Elbargo™</a>. All
+      Rights Reserved.
+    </p>
   </div>
 </template>
-
-<script>
-export default {
-  // Page metadata
-  head() {
-    return {
-      title: 'Terms and Conditions - GPT Chat News Generator Application',
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content:
-            'Terms and Conditions for GPT Chat News Generator Application',
-        },
-      ],
-    }
-  },
-}
-</script>

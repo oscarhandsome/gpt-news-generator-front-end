@@ -1,3 +1,24 @@
+<script lang="ts" setup>
+// Page metadata
+const title = ref('Privacy Policy - GPT Chat News Generator Application')
+const description = ref(
+  'Privacy Policy for GPT Chat News Generator Application',
+)
+
+// This will be reactive even you change title/description above
+useHead({
+  title,
+  meta: [
+    {
+      name: 'description',
+      content: description,
+    },
+  ],
+})
+
+const config = useRuntimeConfig()
+</script>
+
 <template>
   <div class="p-4">
     <h1 class="text-2xl font-bold mb-4">Privacy Policy</h1>
@@ -117,27 +138,16 @@
     </section>
 
     <section>
-      <p>This Privacy Policy was last updated on [Date].</p>
+      <p>
+        This Privacy Policy was last updated on
+        {{ config.public.dateTimePolicy }}.
+      </p>
 
-      <p>© 2023 GPT Chat News Generator Application. All rights reserved.</p>
+      <p>
+        © 2023 | GPT Chat News Generator Application. |
+        <a href="http://elbargo.ru/" class="hover:underline">Elbargo™</a>. All
+        Rights Reserved.
+      </p>
     </section>
   </div>
 </template>
-
-<script>
-export default {
-  // Page metadata
-  head() {
-    return {
-      title: 'Privacy Policy - GPT Chat News Generator Application',
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: 'Privacy Policy for GPT Chat News Generator Application',
-        },
-      ],
-    }
-  },
-}
-</script>

@@ -43,6 +43,8 @@ export default defineNuxtConfig({
       baseURL: process.env.API_BASE_URL,
       googleClientId: process.env.GOGGLE_CLIENT_ID_KEY,
       clearTimeout: process.env.SETTINGS_CLEAR_ERRORS_TIMEOUT,
+      dateTimeTerms: process.env.DATETIME_TERMS,
+      dateTimePolicy: process.env.DATETIME_POLICY,
     },
   },
   // image: {
