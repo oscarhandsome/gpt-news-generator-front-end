@@ -13,7 +13,7 @@ import type { Subsription } from 'types'
 // const props = defineProps<{
 defineProps<{
   subscriptions: Subsription[]
-  currentSubId: String
+  currentSubId?: String
 }>()
 </script>
 

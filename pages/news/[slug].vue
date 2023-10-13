@@ -71,6 +71,7 @@ onBeforeUnmount(() => {
         </p>
         <hr />
         <nuxt-link
+          v-if="currentNews.autor && currentNews.autor.id"
           :to="`/news/autor/${currentNews.autor.id}`"
           class="cursor-pointer p-3 pt-0 mt-2"
         >

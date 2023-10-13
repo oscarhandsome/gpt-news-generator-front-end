@@ -58,7 +58,10 @@ defineProps({
       </div>
     </nuxt-link>
 
-    <nuxt-link :to="`/news/autor/${item.autor.id}`">
+    <nuxt-link
+      v-if="item.autor && item.autor.id"
+      :to="`/news/autor/${item.autor.id}`"
+    >
       <UserInfo
         :user="item.autor"
         class="py-1 pb-5 sm:py-5 px-2 sm:px-5 mt-auto bg-gray-100 hover:underline"
