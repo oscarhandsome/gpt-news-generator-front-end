@@ -79,7 +79,12 @@ const chooseSubscription = async (subscriptionId: string) => {
     <button
       type="button"
       class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-900 font-medium rounded-lg text-sm inline-flex justify-center w-full text-center px-5 py-2.5 mt-auto mb-0"
-      :class="{ hidden }"
+      :class="{
+        hidden,
+        'disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none disabled:cursor-not-allowed':
+          item.id === currentSubId,
+      }"
+      :disabled="item.id === currentSubId"
       @click="chooseSubscription(item.id)"
     >
       Get started
