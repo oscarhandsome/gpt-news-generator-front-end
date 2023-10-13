@@ -17,7 +17,6 @@ const { subscriptions, mySubscription } = storeToRefs(useSubscriptionStore())
 await getSubscriptions()
 await getMySubscriptions()
 
-console.log('mySubscription', mySubscription.value)
 const currentSubId = ref('')
 if (mySubscription.value && mySubscription.value.length)
   currentSubId.value = mySubscription.value[0].id

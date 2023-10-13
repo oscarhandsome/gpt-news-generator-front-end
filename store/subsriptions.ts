@@ -57,19 +57,6 @@ export const useSubscriptionStore = defineStore('subscription', {
     //   if (!data.value) throw new Error('Something went wrong!')
     // },
     async getMySubscriptions() {
-      // $toast.show('this is a test')
-      // useFetch from nuxt 3
-      // const token = useCookie('token')
-      // const { data, pending }: any = await useFetch(
-      //   `${BASE_URL}/subscriptions/my-subscription`,
-      //   {
-      //     method: 'GET',
-      //     headers: {
-      //       Authorization: `Bearer ${token.value}`,
-      //       'Content-Type': 'application/json',
-      //     },
-      //   },
-      // )
       const { data, pending, error }: any = await Api.get(
         '/subscriptions/my-subscription',
       )
