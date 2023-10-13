@@ -34,7 +34,7 @@ const chooseSubscription = async (subscriptionId: string) => {
   <div
     class="relative flex flex-col justify-start bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 transition-colors p-4 sm:p-6 md:p-8"
   >
-    <div v-if="item._id === currentSubId" class="absolute top-3 right-2">
+    <div v-if="item.id === currentSubId" class="absolute top-3 right-2">
       <span class="bg-green-300 rounded-lg px-2 py-1">Current Plan</span>
     </div>
     <h5 class="mb-4 text-xl font-medium text-gray-500 dark:text-gray-400">
@@ -80,7 +80,7 @@ const chooseSubscription = async (subscriptionId: string) => {
       type="button"
       class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-900 font-medium rounded-lg text-sm inline-flex justify-center w-full text-center px-5 py-2.5 mt-auto mb-0"
       :class="{ hidden }"
-      @click="chooseSubscription(item._id)"
+      @click="chooseSubscription(item.id)"
     >
       Get started
     </button>

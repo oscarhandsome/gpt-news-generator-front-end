@@ -26,7 +26,7 @@ defineProps<{
     >
       <SubscriptionItem
         v-for="subscription in subscriptions"
-        :key="subscription._id"
+        :key="subscription.id"
         :item="subscription"
         :current-sub-id="currentSubId"
       />

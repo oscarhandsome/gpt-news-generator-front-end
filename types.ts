@@ -79,7 +79,7 @@ export interface Subsription {
   features: string[]
   createdAt: string
   updatedAt: string
-  _id: string
+  id: string
   name: string
 }
 

@@ -60,6 +60,10 @@ const handleLoginError = (error) => {
   console.error('Signup failed')
   console.log('error', error)
 }
+
+onBeforeUnmount(() => {
+  success.value = false
+})
 </script>
 
 <template>

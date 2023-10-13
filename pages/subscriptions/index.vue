@@ -19,7 +19,8 @@ await getMySubscriptions()
 
 console.log('mySubscription', mySubscription.value)
 const currentSubId = ref('')
-if (mySubscription.value) currentSubId.value = mySubscription.value[0]._id
+if (mySubscription.value && mySubscription.value.length)
+  currentSubId.value = mySubscription.value[0].id
 </script>
 
 <template>

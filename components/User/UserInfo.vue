@@ -27,10 +27,11 @@ defineProps<{
       :src="`~/assets/images/${user.photo}`"
     https://gpt-chat-news-generator-a4555eba92cd.herokuapp.com/img/users/
     -->
+    <!-- https://i.pravatar.cc/100 -->
     <nuxt-img
-      v-if="user.photo || 'https://i.pravatar.cc/100'"
+      v-if="user.photo"
       class="rounded-full w-9 h-9"
-      :src="`${user.photo}` || 'https://i.pravatar.cc/100'"
+      :src="`${user.photo}` || './user-placeholder.png'"
       :alt="user.name"
       loading="lazy"
       width="36"
