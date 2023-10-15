@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { HandThumbUpIcon, HandThumbDownIcon } from '@heroicons/vue/20/solid'
+
 defineProps({
   item: {
     type: Object,
@@ -20,7 +22,7 @@ defineProps({
       :class="{ flex: view === 'list' }"
       class="cursor-pointer"
     >
-      <div class="flex shrink-0">
+      <div class="flex shrink-0 relative">
         <nuxt-img
           v-if="item.imageCover"
           :src="item.imageCover"
@@ -40,6 +42,24 @@ defineProps({
           class="w-full rounded-t-lg"
           :class="{ 'h-32 rounded-b-lg': view === 'list' }"
         />
+
+        <div
+          class="hidden absolute bottom-0 right-0 bg-white bg-opacity-60 p-1"
+        >
+          <button
+            class="text-black hover:opacity-60 active:opacity-60 transition-opacity rounded-lg p-1"
+          >
+            <HandThumbUpIcon class="flex-shrink-0 h-5 w-5" aria-hidden="true" />
+          </button>
+          <button
+            class="text-black hover:opacity-60 active:opacity-60 transition-opacity rounded-lg p-1"
+          >
+            <HandThumbDownIcon
+              class="flex-shrink-0 h-5 w-5"
+              aria-hidden="true"
+            />
+          </button>
+        </div>
       </div>
       <div class="p-2 sm:px-5">
         <div class="absolute right-2 bottom-1 text-xs text-gray-500">
@@ -56,6 +76,11 @@ defineProps({
           v-html="item.description.substring(0, 60) + '...'"
         ></p>
       </div>
+      <!-- <div
+        class="absolute top-0 right-0 bg-white bg-opacity-60 rounded-bl-lg px-2"
+      >
+        {{ item.type }}
+      </div> -->
     </nuxt-link>
 
     <UserInfo

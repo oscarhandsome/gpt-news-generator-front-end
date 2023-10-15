@@ -4,7 +4,7 @@ import { storeToRefs } from 'pinia'
 import { useNewsStore } from '@/store/news'
 
 import {
-  ArrowLeftCircleIcon,
+  // ArrowLeftCircleIcon,
   ArrowRightCircleIcon,
 } from '@heroicons/vue/20/solid'
 
