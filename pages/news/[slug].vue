@@ -70,21 +70,20 @@ onBeforeUnmount(() => {
           {{ currentNews.description }}
         </p>
         <hr />
-        <nuxt-link
-          v-if="currentNews.autor && currentNews.autor.id"
-          :to="`/news/autor/${currentNews.autor.id}`"
-          class="cursor-pointer p-3 pt-0 mt-2"
+
+        <div
+          class="flex justify-between items-center border border-gray-200 rounded-md transition-colors p-1 sm:p-3 mt-2"
+          :class="{
+            'cursor-pointer hover:bg-gray-200 active:bg-gray-200':
+              currentNews.autor && currentNews.autor.id,
+          }"
         >
-          <div
-            class="flex justify-between items-center border border-gray-200 hover:bg-gray-200 rounded-md transition-colors"
-          >
-            <UserInfo :user="currentNews.autor" class="pb-3 px-5" />
-            <ArrowRightCircleIcon
-              class="flex-shrink-0 h-10 w-10 text-black mr-5"
-              aria-hidden="true"
-            />
-          </div>
-        </nuxt-link>
+          <UserInfo :user="currentNews.autor" />
+          <ArrowRightCircleIcon
+            class="flex-shrink-0 h-10 w-10 text-black"
+            aria-hidden="true"
+          />
+        </div>
       </div>
     </div>
   </div>
