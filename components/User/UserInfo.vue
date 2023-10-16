@@ -12,7 +12,7 @@ import type { User } from 'types'
 
 // const props = defineProps<{
 defineProps<{
-  user: User
+  user: User | null
   // bar?: number
 }>()
 // console.log('props', props)

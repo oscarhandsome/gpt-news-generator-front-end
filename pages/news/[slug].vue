@@ -3,6 +3,8 @@
 import { storeToRefs } from 'pinia'
 import { useNewsStore } from '@/store/news'
 
+import { useGtm } from '@gtm-support/vue-gtm'
+
 import {
   // ArrowLeftCircleIcon,
   ArrowRightCircleIcon,
@@ -29,6 +31,38 @@ onBeforeUnmount(() => {
   currentNews.value = []
   currentNews.value = {}
 })
+
+// SEO
+// Page metadata
+// This will be reactive even you change title/description above
+useHead({
+  title: currentNews.value.name,
+  meta: [
+    {
+      name: 'description',
+      content: currentNews.value.description,
+    },
+  ],
+})
+
+// GTM EVENTS
+// const gtm = useGtm()
+
+// function triggerEvent() {
+//   gtm.trackEvent({
+//     event: 'event name',
+//     category: 'category',
+//     action: 'click',
+//     label: 'My custom component trigger',
+//     value: 5000,
+//     noninteraction: false,
+//   })
+// }
+
+// onMounted(() => {
+//   console.log('triggerEvent', triggerEvent())
+//   triggerEvent()
+// })
 </script>
 
 <template>
