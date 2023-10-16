@@ -32,7 +32,7 @@ defineProps<{
       <!-- https://i.pravatar.cc/100 -->
       <nuxt-img
         class="rounded-full w-9 h-9"
-        :src="`${user && user.photo ? user.photo : './user-placeholder.png'}`"
+        :src="`${user && user.photo ? user.photo : '/user-placeholder.png'}`"
         :alt="user && user.name ? user.name : 'img_desc'"
         loading="lazy"
         width="36"
@@ -60,7 +60,7 @@ defineProps<{
   <div v-else class="flex items-center justify-start space-x-3">
     <nuxt-img
       class="rounded-full w-9 h-9"
-      src="./user-placeholder.png"
+      src="/user-placeholder.png"
       alt="img_desc"
       loading="lazy"
       width="36"

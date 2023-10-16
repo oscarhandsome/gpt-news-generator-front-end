@@ -45,6 +45,7 @@ export default defineNuxtConfig({
       clearTimeout: process.env.SETTINGS_CLEAR_ERRORS_TIMEOUT,
       dateTimeTerms: process.env.DATETIME_TERMS,
       dateTimePolicy: process.env.DATETIME_POLICY,
+      gtagId: process.env.GTAG_ID,
     },
   },
   // image: {
