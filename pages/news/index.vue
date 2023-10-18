@@ -62,6 +62,23 @@ watch(
   },
   { deep: true },
 )
+
+// Page metadata
+const title = ref('GPT Chat News Generator Application news page')
+const description = ref(
+  'Get high-quality, personalized news articles in seconds with the GPT Chat News Generator Application. Craft news on famous people, events, or any topic you desire, with flexible length control. Experience the future of news generation through advanced language models.',
+)
+
+// This will be reactive even you change title/description above
+useHead({
+  title,
+  meta: [
+    {
+      name: 'description',
+      content: description,
+    },
+  ],
+})
 </script>
 
 <template>
