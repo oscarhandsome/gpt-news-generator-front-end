@@ -35,14 +35,23 @@ onBeforeUnmount(() => {
 // SEO
 // Page metadata
 // This will be reactive even you change title/description above
-useHead({
-  title: currentNews.value.name,
-  meta: [
-    {
-      name: 'description',
-      content: currentNews.value.description,
-    },
-  ],
+// useHead({
+//   title: currentNews.value.name,
+//   meta: [
+//     {
+//       name: 'description',
+//       content: currentNews.value.description,
+//     },
+//   ],
+// })
+
+useSeoMeta({
+  title: () => currentNews.value.name,
+  ogTitle: () => currentNews.value.name,
+  description: () => currentNews.value.description,
+  ogDescription: () => currentNews.value.description,
+  ogImage: () => currentNews.value.imageCover,
+  twitterCard: 'summary_large_image',
 })
 
 // GTM EVENTS
