@@ -24,6 +24,7 @@
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "5.0.0-alpha.2",
     "nuxt": "^3.6.2",
+    "nuxt-security": "^0.14.4",
     "nuxt3-stripe": "^1.1.1",
     "prettier": "^3.0.0",
     "typescript": "^5.1.6",

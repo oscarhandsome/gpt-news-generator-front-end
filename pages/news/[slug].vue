@@ -115,15 +115,15 @@ useSeoMeta({
         <hr />
 
         <div
-          class="flex justify-between items-center border border-gray-200 rounded-md transition-colors p-1 sm:p-3 mt-2"
+          class="flex justify-between items-center border border-gray-200 dark:border-gray-600 rounded-md transition-colors p-1 sm:p-3 mt-2"
           :class="{
-            'cursor-pointer hover:bg-gray-200 active:bg-gray-200':
+            'cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 active:bg-gray-200 dark:active:bg-gray-600':
               currentNews.autor && currentNews.autor.id,
           }"
         >
           <UserInfo :user="currentNews.autor" />
           <ArrowRightCircleIcon
-            class="flex-shrink-0 h-10 w-10 text-black"
+            class="flex-shrink-0 h-10 w-10 text-black dark:text-white"
             aria-hidden="true"
           />
         </div>

@@ -32,10 +32,12 @@ const chooseSubscription = async (subscriptionId: string) => {
 
 <template>
   <div
-    class="relative flex flex-col justify-start bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 transition-colors p-4 sm:p-6 md:p-8"
+    class="relative flex flex-col justify-start bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors p-4 sm:p-6 md:p-8"
   >
     <div v-if="item.id === currentSubId" class="absolute top-3 right-2">
-      <span class="bg-green-300 rounded-lg px-2 py-1">Current Plan</span>
+      <span class="bg-green-300 dark:bg-green-600 rounded-lg px-2 py-1"
+        >Current Plan</span
+      >
     </div>
     <h5 class="mb-4 text-xl font-medium text-gray-500 dark:text-gray-400">
       {{ item.name }}

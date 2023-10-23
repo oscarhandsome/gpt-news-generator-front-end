@@ -72,6 +72,15 @@ defineProps({
   border-radius: 50%;
   animation: lds-default 1.2s linear infinite;
 }
+.dark-mode .lds-default div {
+  background: white;
+}
+.dark .lds-default div {
+  background: white;
+}
+.dark-theme .lds-default div {
+  background: white;
+}
 .lds-default div:nth-child(1) {
   animation-delay: 0s;
   top: 37px;

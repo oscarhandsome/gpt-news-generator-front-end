@@ -79,7 +79,7 @@ const handleLoginError = (error) => {
   >
     <!-- <h1 class="text-2xl text-center mb-5">Login page</h1> -->
     <div
-      class="bg-white sm:border sm:border-gray-200 sm:rounded-lg sm:shadow dark:bg-gray-800 dark:border-gray-700 p-4 sm:p-6 md:p-8 mx-auto"
+      class="bg-white sm:border sm:border-gray-200 sm:rounded-lg sm:shadow dark:bg-gray-800 dark:sm:border-gray-700 p-4 sm:p-6 md:p-8 mx-auto"
     >
       <div
         v-if="!isLoading && success"
@@ -173,7 +173,7 @@ const handleLoginError = (error) => {
         <div class="mx-auto text-center">
           <nuxt-link
             to="/"
-            class="text-sm font-medium text-gray-500 hover:bg-gray-200 dark:text-gray-300 border transition-colors rounded-lg p-1"
+            class="text-sm font-medium text-gray-500 hover:bg-gray-200 dark:text-gray-300 border dark:border-gray-700 transition-colors rounded-lg p-1"
           >
             <HomeIcon class="h-5 w-5 inline" />
             Main page

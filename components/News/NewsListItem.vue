@@ -85,7 +85,7 @@ defineProps({
 
     <UserInfo
       :user="item.autor"
-      class="py-1 pb-5 sm:py-5 px-2 sm:px-5 mt-auto bg-gray-100"
+      class="py-1 pb-5 sm:py-5 px-2 sm:px-5 mt-auto bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 rounded-b-lg"
     />
   </div>
 </template>

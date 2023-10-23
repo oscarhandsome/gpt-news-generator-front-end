@@ -23,6 +23,10 @@ export default defineNuxtConfig({
     'nuxt3-stripe',
     'floating-vue/nuxt',
     'nuxt-vue3-google-signin',
+    // TODO add
+    // '@nuxtjs/sentry',
+    // 'nuxt-schema-org',
+    // 'nuxt-security',
   ],
   stripe: {
     // Server
@@ -31,6 +35,18 @@ export default defineNuxtConfig({
     // Client
     publishableKey: process.env.STRIPE_PUBLIC_KEY, // required
   },
+  // TODO add
+  // sentry: {
+  //   dsn: this.config.sentryDsn, // Enter your project's DSN.
+  //   // Additional module options go here.
+  // },
+  // TODO add
+  // schemaOrg: {
+  //   // canonicalHost: 'https://gpt-chat-news-generator.netlify.app'
+  //   meta: {
+  //     host: 'https://gpt-chat-news-generator.netlify.app',
+  //   },
+  // },
   css: ['@/assets/css/fonts.css'],
   // router: {
   //   options: {
@@ -39,6 +55,7 @@ export default defineNuxtConfig({
   //   },
   // },
   runtimeConfig: {
+    // ENV: process.env.ENV,
     public: {
       baseURL: process.env.API_BASE_URL,
       googleClientId: process.env.GOGGLE_CLIENT_ID_KEY,
@@ -46,7 +63,21 @@ export default defineNuxtConfig({
       dateTimeTerms: process.env.DATETIME_TERMS,
       dateTimePolicy: process.env.DATETIME_POLICY,
       gtagId: process.env.GTAG_ID,
+      sentryDsn: process.env.SENTRY_PUBLIC_DSN,
     },
+    // TODO add
+    // sentry: {
+    //   config: {
+    //     // environment: process.env.SENTRY_ENVIRONMENT,
+    //     dsn: process.env.SENTRY_PUBLIC_DSN,
+    //   },
+    //   serverConfig: {
+    //     // Any server-specific config
+    //   },
+    //   clientConfig: {
+    //     // Any client-specific config
+    //   },
+    // },
   },
   // image: {
   //   format: ['webp'],

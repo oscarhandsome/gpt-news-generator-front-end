@@ -84,20 +84,26 @@ useHead({
 <template>
   <BaseTitle title="Latest news" />
 
-  <div class="flex justify-between items-center mb-2 sm:mb-3 md:mb-5">
+  <div
+    class="flex sm:flex-row flex-col sm:justify-between sm:items-center mb-2 sm:mb-3 md:mb-5"
+  >
     <Filter />
 
     <div class="flex justify-end">
       <button
-        class="border border-black hover:bg-black hover:text-white rounded p-2 mr-2"
-        :class="{ 'bg-black text-white': settings.view === 'tile' }"
+        class="border border-black hover:bg-black dark:hover:bg-gray-800 hover:text-white rounded p-2 mr-2"
+        :class="{
+          'bg-black dark:bg-gray-600 text-white': settings.view === 'tile',
+        }"
         @click="changeView('tile')"
       >
         <RectangleGroupIcon class="h-5 w-5" />
       </button>
       <button
-        class="border border-black hover:bg-black hover:text-white rounded p-2"
-        :class="{ 'bg-black text-white': settings.view === 'list' }"
+        class="border border-black hover:bg-black dark:hover:bg-gray-800 hover:text-white rounded p-2"
+        :class="{
+          'bg-black dark:bg-gray-600 text-white': settings.view === 'list',
+        }"
         @click="changeView('list')"
       >
         <ListBulletIcon class="h-5 w-5" />

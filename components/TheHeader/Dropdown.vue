@@ -12,6 +12,7 @@ import {
   ListBulletIcon as ViewListIcon,
   CreditCardIcon,
   AtSymbolIcon,
+  UserCircleIcon,
 } from '@heroicons/vue/20/solid'
 import { useAuthStore } from '~/store/auth'
 // import { User } from 'types'
@@ -32,13 +33,12 @@ const logout = () => {
         <MenuButton
           class="inline-flex break-all w-full justify-center rounded-md bg-gray-200 bg-opacity-20 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 p-1 sm:px-4 sm:py-2"
         >
-          <AtSymbolIcon
+          <UserCircleIcon
             class="shrink-0 h-5 w-5 text-violet-200 hover:text-violet-100 sm:hidden"
-            >@</AtSymbolIcon
-          >
-          <span class="hidden sm:inline">{{ user.email }}</span>
+          />
+          <span class="hidden sm:inline">{{ user.name || user.email }}</span>
           <ChevronDownIcon
-            class="shrink-0 h-5 w-5 text-violet-200 hover:text-violet-100 ml-2 -mr-1"
+            class="shrink-0 h-5 w-5 text-violet-200 hover:text-violet-100 -mr-1"
             aria-hidden="true"
           />
         </MenuButton>
@@ -53,7 +53,7 @@ const logout = () => {
         leave-to-class="transform scale-95 opacity-0"
       >
         <MenuItems
-          class="absolute z-10 right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+          class="absolute z-10 right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white dark:bg-gray-200 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
         >
           <div class="px-1 py-1">
             <MenuItem v-slot="{ active }">

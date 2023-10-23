@@ -33,7 +33,7 @@ function toggleMenu() {
 <template>
   <header>
     <nav
-      class="bg-black text-white dark:bg-white dark:text-black px-4 xl:px-6 py-2.5 mb-2 sm:mb-5"
+      class="bg-black text-white dark:bg-gray-800 px-4 xl:px-6 py-2.5 mb-2 sm:mb-5"
     >
       <div class="container mx-auto">
         <div class="flex justify-between items-center">
@@ -107,7 +107,7 @@ function toggleMenu() {
           <!-- MAIN MENU  -->
           <div
             id="mobile-menu-2"
-            class="fixed xl:relative top-0 xl:right-auto z-20 xl:z-0 h-screen xl:h-auto bg-black xl:flex mr-auto justify-between items-center w-full xl:w-auto xl:order-1 transition-all mx-auto"
+            class="fixed xl:relative top-0 xl:right-auto z-20 xl:z-0 h-screen xl:h-auto bg-black xl:flex mr-auto justify-between items-center w-full xl:w-auto xl:order-1 transition-all rounded-lg mx-auto"
             :class="[mobileVisibility ? ' right-0' : '-right-full']"
           >
             <button
