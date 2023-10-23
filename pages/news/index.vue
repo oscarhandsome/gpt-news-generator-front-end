@@ -111,7 +111,9 @@ useHead({
     </div>
   </div>
 
-  <div class="flex flex-col justify-center items-center mx-auto">
+  <div
+    class="flex flex-grow flex-col justify-center items-center mx-auto w-full"
+  >
     <NewsList
       :view="settings.view"
       :items="filteredItems"

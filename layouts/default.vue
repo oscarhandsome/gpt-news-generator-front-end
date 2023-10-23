@@ -32,8 +32,10 @@
   </ul> -->
   <div class="flex flex-col min-h-screen dark:bg-gray-900 dark:text-white">
     <TheHeader />
-    <main class="flex-grow">
-      <div class="container mx-auto px-2 sm:px-0">
+    <main class="flex flex-col flex-grow">
+      <div
+        class="container flex flex-col flex-grow w-full mx-auto px-2 sm:px-0"
+      >
         <TheBreadcrumb />
         <slot />
       </div>

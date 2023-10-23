@@ -9,7 +9,7 @@ defineProps({
 <template>
   <div
     v-if="default"
-    class="flex flex-grow flex-col justify-center items-center w-full min-h-screen"
+    class="flex flex-grow flex-col justify-center items-center w-full h-full"
   >
     <div class="lds-default mb-5">
       <div></div>
