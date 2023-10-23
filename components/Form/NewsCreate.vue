@@ -65,9 +65,9 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <BaseError :text="error" class="z-10 mx-auto w-[90%] sm:w-auto max-w-xl" />
+  <BaseError :text="error" class="z-10 mx-auto w-full sm:w-auto max-w-xl" />
   <div
-    class="relative bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 sm:shadow-2xl p-6 mb-10 mx-auto"
+    class="relative bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 sm:shadow-2xl p-6 mb-10 mx-auto w-full"
   >
     <!-- LOADER -->
     <BaseLoader :show="isLoading" absolute />
