@@ -23,6 +23,7 @@ const data = reactive({
   imageModelId: '37d42ae9-5f5f-4399-b60b-014d35e762a5', // Realistic Vision v4.0
   promptStrength: 7,
   steps: 50,
+  imageCount: 1,
 })
 
 const newsTypesOptions = ref([
@@ -184,6 +185,16 @@ onBeforeUnmount(() => {
           :step="5"
           error=""
           @update:model-value="data.steps = Number($event)"
+        />
+
+        <BaseSlider
+          v-model="data.imageCount"
+          label="Image count"
+          :min="1"
+          :max="4"
+          :step="1"
+          error=""
+          @update:model-value="data.imageCount = Number($event)"
         />
 
         <button

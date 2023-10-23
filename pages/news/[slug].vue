@@ -112,6 +112,30 @@ useSeoMeta({
         <p class="font-normal text-gray-700 dark:text-gray-400 mb-2">
           {{ currentNews.description }}
         </p>
+
+        <div
+          v-if="currentNews.images && currentNews.images.length"
+          class="flex flex-wrap"
+        >
+          <div
+            v-for="(image, idx) in currentNews.images"
+            class="flex mb-2 xl:mb-0 mr-2"
+            :key="idx"
+          >
+            <a :href="image" target="_blank">
+              <nuxt-img
+                v-if="image"
+                :src="image"
+                :alt="`${currentNews.name}_image_${idx}`"
+                loading="lazy"
+                width="170"
+                height="170"
+                placeholder="/placeholder.png"
+                class="rounded-lg w-36 h-36 xl:w-48 xl:h-48"
+              />
+            </a>
+          </div>
+        </div>
         <hr />
 
         <div
