@@ -32,7 +32,7 @@ defineProps({
           height="289"
           placeholder="/placeholder.png"
           :modifiers="{ roundCorner: '0:100' }"
-          class="w-full rounded-t-lg hover:scale-105 active:scale-110 transition-transform"
+          class="w-full rounded-t-lg hover:scale-105 transition-transform"
           :class="{ 'h-32 rounded-b-lg': view === 'list' }"
         />
         <img
