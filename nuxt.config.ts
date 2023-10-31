@@ -25,7 +25,7 @@ export default defineNuxtConfig({
     'nuxt-vue3-google-signin',
     // TODO add
     // '@nuxtjs/sentry',
-    // 'nuxt-schema-org',
+    'nuxt-schema-org',
     // 'nuxt-security',
   ],
   stripe: {
@@ -41,12 +41,12 @@ export default defineNuxtConfig({
   //   // Additional module options go here.
   // },
   // TODO add
-  // schemaOrg: {
-  //   // canonicalHost: 'https://gpt-chat-news-generator.netlify.app'
-  //   meta: {
-  //     host: 'https://gpt-chat-news-generator.netlify.app',
-  //   },
-  // },
+  schemaOrg: {
+    // canonicalHost: 'https://gpt-chat-news-generator.netlify.app'
+    meta: {
+      host: 'https://gpt-chat-news-generator.netlify.app',
+    },
+  },
   css: ['@/assets/css/fonts.css'],
   // router: {
   //   options: {

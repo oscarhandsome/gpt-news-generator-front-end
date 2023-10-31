@@ -72,6 +72,24 @@ useSeoMeta({
 //   console.log('triggerEvent', triggerEvent())
 //   triggerEvent()
 // })
+
+// SCHEMA ORG
+defineArticle({
+  // '@type': 'TechArticle',
+  headline: currentNews.value.name,
+  description: currentNews.value.description,
+  image: currentNews.value.imageCover,
+  datePublished: new Date(currentNews.value.createdAt),
+  dateModified: new Date(currentNews.value.createdAt),
+  author: currentNews.value.autor.name,
+  thumbnailUrl: currentNews.value.imageCover,
+  // inLanguage: 'en',
+  // attaching an author when the identity is an organization
+  // author: {
+  //   name: currentNews.value.autor ? currentNews.autor.name || ''
+  //   // url: 'https://harlanzw.com',
+  // },
+})
 </script>
 
 <template>
