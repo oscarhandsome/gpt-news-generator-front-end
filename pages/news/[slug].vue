@@ -74,22 +74,23 @@ useSeoMeta({
 // })
 
 // SCHEMA ORG
-defineArticle({
-  // '@type': 'TechArticle',
-  headline: currentNews.value.name,
-  description: currentNews.value.description,
-  image: currentNews.value.imageCover,
-  datePublished: new Date(currentNews.value.createdAt),
-  dateModified: new Date(currentNews.value.createdAt),
-  author: currentNews.value.autor.name,
-  thumbnailUrl: currentNews.value.imageCover,
-  // inLanguage: 'en',
-  // attaching an author when the identity is an organization
-  // author: {
-  //   name: currentNews.value.autor ? currentNews.autor.name || ''
-  //   // url: 'https://harlanzw.com',
-  // },
-})
+useSchemaOrg([
+  defineArticle({
+    '@type': 'NewsArticle',
+    headline: currentNews.value.name,
+    description: currentNews.value.description,
+    image: currentNews.value.imageCover,
+    datePublished: new Date(currentNews.value.createdAt),
+    dateModified: new Date(currentNews.value.createdAt),
+    // author: currentNews.value.autor.name,
+    thumbnailUrl: currentNews.value.imageCover,
+    // attaching an author when the identity is an organization
+    author: {
+      name: currentNews.value.autor.name,
+      url: `/news/autor/${currentNews.value.autor.id}`,
+    },
+  }),
+])
 </script>
 
 <template>
@@ -99,7 +100,7 @@ defineArticle({
     <BaseBackButton class="mb-2 sm:mb-5" />
 
     <div class="lg:flex">
-      <div class="flex-shrink-0 max-w-lg">
+      <div class="flex-shrink-0 max-w-lg mx-auto">
         <nuxt-img
           v-if="currentNews.imageCover"
           :src="currentNews.imageCover"
@@ -108,13 +109,13 @@ defineArticle({
           width="512"
           height="512"
           placeholder="/placeholder.png"
-          class="rounded-lg"
+          class="rounded-lg mx-auto"
         />
         <img
           v-else
           src="/images/no-image.jpeg"
           alt="no-image"
-          class="rounded-lg"
+          class="rounded-lg mx-auto"
         />
       </div>
       <div class="py-2 lg:px-6">
@@ -123,11 +124,13 @@ defineArticle({
           {{ currentNews.createdAt }}
         </div>
         <h5
-          class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+          class="mb-2 text-2xl xl:text-4xl font-bold tracking-tight text-gray-900 dark:text-white font-chomsky"
         >
           {{ currentNews.name }}
         </h5>
-        <p class="font-normal text-gray-700 dark:text-gray-400 mb-2">
+        <p
+          class="first-letter:font-chomsky first-letter:text-7xl first-letter:font-bold first-letter:text-black first-letter:mr-3 first-letter:float-left font-normal text-gray-700 dark:text-gray-400 mb-2"
+        >
           {{ currentNews.description }}
         </p>
 
@@ -154,7 +157,8 @@ defineArticle({
             </a>
           </div>
         </div>
-        <hr />
+
+        <div class="border border-gray-300 border-dashed my-2 sm:my-5"></div>
 
         <div
           class="flex justify-between items-center border border-gray-200 dark:border-gray-600 rounded-md transition-colors p-1 sm:p-3 mt-2"

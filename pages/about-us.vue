@@ -6,6 +6,8 @@
 </script>
 
 <template>
+  <SchemaOrgWebPage type="AboutPage" name="About Us" />
+  
   <p class="text-2xl font-bold mb-5"><b>About Us</b></p>
   <div class="mb-10">
     <p>

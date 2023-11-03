@@ -13,7 +13,11 @@ module.exports = {
     // "./nuxt.config.{js,ts}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        chomsky: ['Chomsky', 'sans-serif'],
+      },
+    },
   },
   variants: {
     extend: {},
