@@ -80,8 +80,8 @@ useSchemaOrg([
     headline: currentNews.value.name,
     description: currentNews.value.description,
     image: currentNews.value.imageCover,
-    datePublished: new Date(currentNews.value.createdAt),
-    dateModified: new Date(currentNews.value.createdAt),
+    datePublished: currentNews.value.createdAt,
+    dateModified: currentNews.value.createdAt,
     // author: currentNews.value.autor.name,
     thumbnailUrl: currentNews.value.imageCover,
     // attaching an author when the identity is an organization

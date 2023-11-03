@@ -1,5 +1,18 @@
 <script lang="ts" setup>
 const route = useRoute()
+
+const breadcrumbs = [
+  { name: 'Home', item: '/' },
+  { name: 'News', item: '/news' },
+  { name: 'About us', item: '/about-us' },
+  { name: 'Subscriptions', item: '/subscriptions' },
+  { name: 'Faq', item: '/faq' },
+]
+useSchemaOrg([
+  defineBreadcrumb({
+    itemListElement: breadcrumbs,
+  }),
+])
 </script>
 
 <template>
