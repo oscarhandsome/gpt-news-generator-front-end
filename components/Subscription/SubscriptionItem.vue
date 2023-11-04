@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia' // import storeToRefs helper hook from pinia
 import { useBookingStore } from '~/store/booking' // import the auth store we just created
+import { useAuthStore } from '~/store/auth'
 import type { Subsription } from 'types'
 
 defineProps<{
@@ -11,11 +12,18 @@ defineProps<{
 const { getCheckoutSession } = useBookingStore() // use getCheckoutSession action from  auth store
 const { checkoutSession, success } = storeToRefs(useBookingStore()) // make checkoutSession, success state reactive with storeToRefs
 
+const { isAuthenticated } = storeToRefs(useAuthStore())
+
 const isLoading = ref(false)
 const route = useRoute()
+const router = useRouter()
 const hidden = route.path === '/subscriptions/my-subsriptions'
 
 const chooseSubscription = async (subscriptionId: string) => {
+  if (!isAuthenticated.value) {
+    router.push('/auth/registration')
+    return
+  }
   isLoading.value = true
   // 1) Get checkout session from API
   // 2) Create checkout form + share credit cards
