@@ -2,6 +2,7 @@
 // import { mapState } from 'pinia'
 import { storeToRefs } from 'pinia'
 import { useNewsStore } from '@/store/news'
+import { formatDate } from '@/utils/utils'
 
 import { useGtm } from '@gtm-support/vue-gtm'
 
@@ -26,6 +27,10 @@ const { isLoading, errors, currentNews } = storeToRefs(useNewsStore()) // make i
 const { slug } = route.params
 await getNews(slug)
 // console.log('store', currentNews)
+
+const formattedCreatedAt = computed(() =>
+  formatDate(currentNews.value.createdAt),
+)
 
 onBeforeUnmount(() => {
   currentNews.value = []
@@ -100,36 +105,46 @@ useSchemaOrg([
     <BaseBackButton class="mb-2 sm:mb-5" />
 
     <div class="lg:flex">
-      <div class="flex-shrink-0 max-w-lg mx-auto">
-        <nuxt-img
-          v-if="currentNews.imageCover"
-          :src="currentNews.imageCover"
-          :alt="currentNews.name"
-          loading="lazy"
-          width="512"
-          height="512"
-          placeholder="/placeholder.png"
-          class="rounded-lg mx-auto"
-        />
-        <img
-          v-else
-          src="/images/no-image.jpeg"
-          alt="no-image"
-          class="rounded-lg mx-auto"
-        />
-      </div>
-      <div class="py-2 lg:px-6">
-        <div class="text-xs text-gray-500 text-right lg:text-left">
+      <div
+        class="relative flex flex-shrink-0 flex-col max-w-lg mx-auto mb-5 lg:mb-0"
+      >
+        <div
+          class="absolute top-0 right-0 font-bold text-xs text-gray-500 text-right lg:text-left bg-white bg-opacity-60 rounded-bl-lg py-2 px-3"
+        >
           <!-- 10/06/2023 -->
-          {{ currentNews.createdAt }}
+          {{ formattedCreatedAt }}
         </div>
+
+        <div class="w-full mb-2">
+          <nuxt-img
+            v-if="currentNews.imageCover"
+            :src="currentNews.imageCover"
+            :alt="currentNews.name"
+            loading="lazy"
+            width="512"
+            height="512"
+            placeholder="/placeholder.png"
+            class="rounded-lg mx-auto"
+          />
+          <img
+            v-else
+            src="/images/no-image.jpeg"
+            alt="no-image"
+            class="rounded-lg mx-auto"
+          />
+        </div>
+
+        <NewsCommentRatring :ratingsAverage="currentNews.ratingsAverage" />
+      </div>
+
+      <div class="pb-2 lg:px-6">
         <h5
           class="mb-2 text-2xl xl:text-4xl font-bold tracking-tight text-gray-900 dark:text-white font-chomsky"
         >
           {{ currentNews.name }}
         </h5>
         <p
-          class="first-letter:font-chomsky first-letter:text-7xl first-letter:font-bold first-letter:text-black first-letter:mr-3 first-letter:float-left font-normal text-gray-700 dark:text-gray-400 mb-2"
+          class="first-letter:font-chomsky first-letter:text-7xl first-letter:font-bold first-letter:text-black dark:first-letter:text-white first-letter:mr-3 first-letter:float-left font-normal text-gray-700 dark:text-gray-400 mb-2"
         >
           {{ currentNews.description }}
         </p>
@@ -175,5 +190,10 @@ useSchemaOrg([
         </div>
       </div>
     </div>
+
+    <NewsCommentList
+      :comments="currentNews.comments"
+      :current-news-id="currentNews.id"
+    />
   </div>
 </template>

@@ -31,13 +31,9 @@ console.log('route', route.params)
         <p>
           Have a great day! <br />And please check email to finish Registration
         </p>
-        <div class="py-10 text-center">
-          <nuxt-link
-            to="/"
-            class="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-lg transition-colors py-3"
-          >
-            Main page
-          </nuxt-link>
+
+        <div class="py-10 r">
+          <BaseMainPageButton />
         </div>
       </div>
     </div>

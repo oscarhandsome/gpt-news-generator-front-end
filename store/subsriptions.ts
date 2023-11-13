@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { UserPayloadInterface } from 'types'
+import { UserPayloadInterface } from 'nuxt'
 // import { useToast } from 'tailvue'
 import Api from '~/services/api'
 

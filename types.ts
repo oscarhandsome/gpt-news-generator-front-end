@@ -84,11 +84,20 @@ export interface Subsription {
   name: string
 }
 
+export interface Comment {
+  comment: string
+  createdAt: string
+  id: string
+  news: string
+  user: string
+}
+
 export interface News {
   autor: User
   autors: User[]
   checkboxActive: boolean
   checkboxPublic: boolean
+  comments: Comment[] | [] | null
   createdAt: string
   description: string
   durationWeeks: null

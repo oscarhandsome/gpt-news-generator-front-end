@@ -3,7 +3,7 @@ import Api from '~/services/api'
 
 import { clearObject } from '@/utils/utils'
 
-import type { NewsPayloadInterface } from 'types'
+import type { NewsPayloadInterface } from 'nuxt'
 
 function onlyUnique(value, index, array) {
   return array.indexOf(value) === index
@@ -15,6 +15,7 @@ export const useNewsStore = defineStore('news', {
     currentNews: {},
     famousPersons: [],
     isLoading: false,
+    isLoadingLocal: false,
     errors: {},
     error: '',
     success: false,
@@ -60,6 +61,7 @@ export const useNewsStore = defineStore('news', {
     //   this.isLoading = false
     // },
     async createNews(payload: NewsPayloadInterface) {
+      const { $toaster } = useNuxtApp()
       const router = useRouter()
       try {
         this.errors = clearObject(this.errors)
@@ -81,6 +83,10 @@ export const useNewsStore = defineStore('news', {
 
         if (data.value && data.value.status === 'success') {
           this.currentNews = data.value.data.news
+          $toaster.info({
+            title: 'Success',
+            message: `News ${this.currentNews.name} successfully created!`,
+          })
           router.push(`/news/${this.currentNews.slug}`)
         }
 
@@ -88,6 +94,11 @@ export const useNewsStore = defineStore('news', {
           // if (data.value.errors) this.errors = data.value.errors.value
           // this.error = 'Password or email incorrect!'
           this.error = error.value.data.message
+          $toaster.error({
+            title: 'Error',
+            message: this.error,
+            type: 'error',
+          })
           setTimeout(() => {
             this.error = ''
           }, 3500)
@@ -143,6 +154,20 @@ export const useNewsStore = defineStore('news', {
       const { data, pending }: any = await Api.get(`/news/autor/${payload}`)
       if (data.value) this.news = data.value.data.data
       this.isLoading = pending.value
+    },
+    async postComment(payload: any) {
+      this.isLoadingLocal = true
+      const { data, pending, error }: any = await Api.post(
+        `/news/${payload.id}/comments`,
+        payload,
+      )
+      // if (data.value) this.currentNews = data.value.data.data
+      this.isLoadingLocal = pending.value
+      console.log(data.value)
+      if (data.value) {
+        this.currentNews.comments.push(data.value.data.data)
+      }
+      console.log(error.value)
     },
   },
   getters: {

@@ -75,3 +75,4 @@ defineProps<{
     </div>
   </div>
 </template>
+nuxt

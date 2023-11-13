@@ -47,7 +47,7 @@ const submitForm = async () => {
 
 // GOOGLE AUTH2.0
 // handle success event
-const handleLoginSuccess = async (response: CredentialResponse) => {
+const handleAuthSuccess = async (response: CredentialResponse) => {
   const { credential } = response
   if (credential) {
     await signUp({ token: credential })
@@ -56,9 +56,12 @@ const handleLoginSuccess = async (response: CredentialResponse) => {
 }
 
 // handle an error event
-const handleLoginError = (error) => {
+const handleAuthError = (error) => {
   console.error('Signup failed')
-  console.log('error', error)
+  console.error('error', error)
+  error.value = 'Sorry Terms of Use and Privacy Policy not accepted.'
+  window.scrollTo(0, 0)
+  clearErrors()
 }
 
 onBeforeUnmount(() => {
@@ -96,8 +99,9 @@ onBeforeUnmount(() => {
 
         <div class="h-10">
           <GoogleSignInButton
-            @success="handleLoginSuccess"
-            @error="handleLoginError"
+            :text="'signup_with'"
+            @success="handleAuthSuccess"
+            @error="handleAuthError"
           ></GoogleSignInButton>
         </div>
 
@@ -255,15 +259,7 @@ onBeforeUnmount(() => {
           >
         </div>
 
-        <div class="mx-auto text-center">
-          <nuxt-link
-            to="/"
-            class="text-sm font-medium text-gray-500 hover:bg-gray-200 dark:text-gray-300 border dark:border-gray-700 transition-colors rounded-lg p-1"
-          >
-            <HomeIcon class="h-5 w-5 inline" />
-            Main page
-          </nuxt-link>
-        </div>
+        <BaseMainPageButton />
       </form>
     </div>
   </div>

@@ -68,3 +68,4 @@ const updatePage = (page: number) => {
     </div>
   </div>
 </template>
+nuxt

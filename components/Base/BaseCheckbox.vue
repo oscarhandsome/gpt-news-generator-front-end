@@ -26,3 +26,4 @@ const id = props.label.toLocaleLowerCase().replaceAll(' ', '-')
     <slot name="after-label"></slot>
   </div>
 </template>
+nuxt

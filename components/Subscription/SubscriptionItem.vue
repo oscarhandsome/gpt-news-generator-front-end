@@ -101,3 +101,4 @@ const chooseSubscription = async (subscriptionId: string) => {
     </button>
   </div>
 </template>
+nuxt

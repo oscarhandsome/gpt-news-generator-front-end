@@ -37,3 +37,4 @@ const id = props.label.toLocaleLowerCase().replaceAll(' ', '-')
     ></p>
   </div>
 </template>
+nuxt

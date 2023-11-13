@@ -27,6 +27,8 @@ export default defineNuxtConfig({
     // '@nuxtjs/sentry',
     'nuxt-schema-org',
     // 'nuxt-security',
+    // '@tailvue/nuxt',
+    '@cssninja/nuxt-toaster',
   ],
   stripe: {
     // Server
@@ -47,7 +49,16 @@ export default defineNuxtConfig({
       host: 'https://gpt-chat-news-generator.netlify.app',
     },
   },
-  css: ['@/assets/css/fonts.css'],
+  // css: ['@/assets/css/fonts.css'],
+  css: [
+    // '@/css/main.scss',
+    '@/assets/css/fonts.css',
+    // '@fancyapps/ui/dist/fancybox.css',
+  ],
+  toaster: {
+    // disable the default plugin
+    installPlugin: false,
+  },
   // router: {
   //   options: {
   //     linkActiveClass: 'active',

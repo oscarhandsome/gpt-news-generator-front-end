@@ -16,10 +16,12 @@ export const useAuthStore = defineStore('auth', {
     errors: {},
     error: '',
     success: false,
-    user: null,
+    user: () => ({}) as User,
   }),
   actions: {
     async authenticateUser(payload: UserPayloadInterface) {
+      const { $toaster } = useNuxtApp()
+
       this.isLoading = true
       this.clearErrors(true)
       // $toast.show('this is a test')
@@ -43,6 +45,10 @@ export const useAuthStore = defineStore('auth', {
       this.isLoading = pending.value
 
       if (data.value && data.value.status === 'success') {
+        $toaster.info({
+          title: 'Success',
+          message: 'Successfully logged in!',
+        })
         const token = useCookie('token') // useCookie new hook in nuxt 3
         token.value = data?.value?.token // set token to cookie
         this.isAuthenticated = true // set isAuthenticated  state value to true
@@ -55,6 +61,11 @@ export const useAuthStore = defineStore('auth', {
       if (error.value) {
         // this.error = 'Password or email incorrect!'
         this.error = error.value.data.message
+        $toaster.error({
+          title: 'Error',
+          message: this.error,
+          type: 'error',
+        })
         setTimeout(() => {
           this.error = ''
         }, 3500)
@@ -87,6 +98,7 @@ export const useAuthStore = defineStore('auth', {
       }
     },
     async signUp(payload: any) {
+      const { $toaster } = useNuxtApp()
       this.isLoading = true
       this.clearErrors(true)
       // $toast.show('this is a test')
@@ -122,6 +134,10 @@ export const useAuthStore = defineStore('auth', {
         }
 
         this.success = true
+        $toaster.info({
+          title: 'Success',
+          message: 'Please check your email.',
+        })
       }
 
       // if (!data.value) throw new Error('Something went wrong!')
@@ -133,7 +149,14 @@ export const useAuthStore = defineStore('auth', {
 
       if (error.value) {
         console.log('error.value.data', error.value.data)
-        if (error.value.data.message) this.error = error.value.data.message
+        if (error.value.data.message) {
+          this.error = error.value.data.message
+          $toaster.error({
+            title: 'Error',
+            message: this.error,
+            type: 'error',
+          })
+        }
         // PROD
         if (error.value.data.errors) {
           for (const [key, value] of Object.entries(error.value.data.errors)) {

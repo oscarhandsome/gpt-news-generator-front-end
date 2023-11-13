@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { HandThumbUpIcon, HandThumbDownIcon } from '@heroicons/vue/20/solid'
+import { formatDate } from '@/utils/utils'
 
-defineProps({
+const props = defineProps({
   item: {
     type: Object,
     default: () => {},
@@ -11,6 +12,8 @@ defineProps({
     default: 'tile',
   },
 })
+
+const formattedCreatedAt = computed(() => formatDate(props.item.createdAt))
 </script>
 
 <template>
@@ -64,7 +67,7 @@ defineProps({
       <div class="p-2 sm:px-5">
         <div class="absolute right-2 bottom-1 text-xs text-gray-500">
           <!-- 10/06/2023 -->
-          {{ item.createdAt }}
+          {{ formattedCreatedAt }}
         </div>
         <h5
           class="text-base sm:text-lg lg:text-2xl font-bold tracking-tight text-gray-900 dark:text-white"

@@ -1,11 +1,14 @@
 <script lang="ts" setup>
-import { CheckIcon, HomeIcon } from '@heroicons/vue/24/solid'
+import { CheckIcon } from '@heroicons/vue/24/solid'
+// import { useToast } from 'tailvue'
 
 import { GoogleSignInButton, type CredentialResponse } from 'vue3-google-signin'
 import { storeToRefs } from 'pinia' // import storeToRefs helper hook from pinia
 import { useAuthStore } from '~/store/auth' // import the auth store we just created
 
 // import { clearObject } from '@/utils/utils'
+
+const { $toaster } = useNuxtApp()
 
 definePageMeta({
   layout: 'custom',
@@ -25,35 +28,9 @@ const data = ref({
 const router = useRouter()
 
 const login = async () => {
-  // error.value = ''
-  // window.scrollTo(0, 0)
-
-  // for (const [key, value] of Object.entries(data.value)) {
-  //   console.log('key, value', key, value)
-  //   errors.value[key] = 'Field empty'
-  // }
-  // console.log('errors.value', errors.value)
-
-  // if (!data.value.email || !data.value.password) {
-  //   error.value = 'Sorry some fields are empty'
-  //   return
-  // }
-
-  try {
-    await authenticateUser(data.value) // call authenticateUser and pass the user object
-    // redirect to homepage if user is isAuthenticated
-    if (isAuthenticated.value) {
-      // $toast.show('success!')
-      router.push('/')
-    }
-  } catch (error) {
-    console.error(error)
-  }
+  await authenticateUser(data.value) // call authenticateUser and pass the user object
+  if (isAuthenticated.value) router.push('/') // redirect to homepage if user is isAuthenticated
 }
-
-onBeforeUnmount(() => {
-  success.value = false
-})
 
 // GOOGLE AUTH2.0
 // handle success event
@@ -68,8 +45,18 @@ const handleLoginSuccess = async (response: CredentialResponse) => {
 // handle an error event
 const handleLoginError = (error) => {
   console.error('Login failed')
-  console.log('error', error)
+  console.error('error', error)
+  // error.value = error
+  // window.scrollTo(0, 0)
+  $toaster.error({
+    title: 'Error',
+    message: error,
+  })
 }
+
+onBeforeUnmount(() => {
+  success.value = false
+})
 </script>
 
 <template>
@@ -170,15 +157,7 @@ const handleLoginError = (error) => {
           </nuxt-link>
         </div>
 
-        <div class="mx-auto text-center">
-          <nuxt-link
-            to="/"
-            class="text-sm font-medium text-gray-500 hover:bg-gray-200 dark:text-gray-300 border dark:border-gray-700 transition-colors rounded-lg p-1"
-          >
-            <HomeIcon class="h-5 w-5 inline" />
-            Main page
-          </nuxt-link>
-        </div>
+        <BaseMainPageBUtton />
       </form>
     </div>
   </div>

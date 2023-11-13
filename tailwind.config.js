@@ -11,6 +11,7 @@ module.exports = {
     // "./plugins/**/*.{js,ts}",
     // "./*.{vue,js,ts}",
     // "./nuxt.config.{js,ts}",
+    // 'node_modules/tailvue/dist/module.cjs',
   ],
   theme: {
     extend: {

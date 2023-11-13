@@ -38,11 +38,14 @@ if (isAuthenticated.value && success.value) router.push('/')
       >
         <CheckIcon class="h-20 w-20 text-green-500 mb-5" />
         <p>You have logged successful!</p>
-        <nuxt-link to="/">Main page</nuxt-link>
+
+        <BaseMainPageButton />
       </div>
       <BaseLoader v-if="isLoading" />
       <div v-else-if="!isLoading && !success">
         Something went wrong, please contact with support.
+
+        <BaseMainPageButton />
       </div>
     </div>
   </div>

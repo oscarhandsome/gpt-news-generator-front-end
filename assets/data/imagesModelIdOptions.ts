@@ -1,4 +1,4 @@
-import type { Option } from 'types'
+import type { Option } from 'nuxt'
 
 const imagesModelIdOptions: Option[] = [
   {
