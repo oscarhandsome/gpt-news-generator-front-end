@@ -154,9 +154,8 @@ useSchemaOrg([
         </h5>
         <p
           class="first-letter:font-chomsky first-letter:text-7xl first-letter:font-bold first-letter:text-black dark:first-letter:text-white first-letter:mr-3 first-letter:float-left font-normal text-gray-700 dark:text-gray-400 mb-2"
-        >
-          {{ currentNews.description }}
-        </p>
+          v-html="currentNews.description"
+        ></p>
 
         <div
           v-if="currentNews.images && currentNews.images.length"
