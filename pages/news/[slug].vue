@@ -9,6 +9,7 @@ import { useGtm } from '@gtm-support/vue-gtm'
 import {
   // ArrowLeftCircleIcon,
   ArrowRightCircleIcon,
+  StarIcon,
 } from '@heroicons/vue/20/solid'
 
 defineProps({
@@ -114,6 +115,16 @@ useSchemaOrg([
           <!-- 10/06/2023 -->
           {{ formattedCreatedAt }}
         </div>
+        <div
+          class="flex items-center absolute top-0 left-0 font-bold text-xs text-gray-500 text-right lg:text-left bg-white bg-opacity-60 rounded-br-lg py-2 px-3"
+        >
+          <span class="mr-2">Rating:</span>
+          <StarIcon
+            v-for="star in currentNews.ratingsAverage"
+            class="inline w-5 h-5 text-amber-500"
+            aria-hidden="true"
+          />
+        </div>
 
         <div class="w-full mb-2">
           <nuxt-img
@@ -135,7 +146,7 @@ useSchemaOrg([
         </div>
       </div>
 
-      <div class="pb-2 lg:px-6">
+      <div class="pb-2 lg:ml-4 xl:ml-6">
         <h5
           class="mb-2 text-2xl xl:text-4xl font-bold tracking-tight text-gray-900 dark:text-white font-chomsky"
         >
