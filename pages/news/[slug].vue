@@ -133,8 +133,6 @@ useSchemaOrg([
             class="rounded-lg mx-auto"
           />
         </div>
-
-        <NewsCommentRatring :ratingsAverage="currentNews.ratingsAverage" />
       </div>
 
       <div class="pb-2 lg:px-6">
@@ -194,6 +192,7 @@ useSchemaOrg([
     <NewsCommentList
       :comments="currentNews.comments"
       :current-news-id="currentNews.id"
+      :ratings-average="currentNews.ratingsAverage"
     />
   </div>
 </template>

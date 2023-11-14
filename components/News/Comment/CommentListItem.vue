@@ -16,7 +16,7 @@ const formattedCreatedAt = computed(() => formatDate(props.item.createdAt, 1))
 </script>
 
 <template>
-  <article class="p-6 text-base bg-white rounded-lg dark:bg-gray-900">
+  <article class="py-3 text-base bg-white rounded-lg dark:bg-gray-900">
     <footer class="relative flex justify-between items-center mb-2">
       <div class="flex items-center">
         <p

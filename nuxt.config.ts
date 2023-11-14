@@ -27,7 +27,6 @@ export default defineNuxtConfig({
     // '@nuxtjs/sentry',
     'nuxt-schema-org',
     // 'nuxt-security',
-    // '@tailvue/nuxt',
     '@cssninja/nuxt-toaster',
   ],
   stripe: {

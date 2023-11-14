@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { CheckIcon } from '@heroicons/vue/24/solid'
 // import { useToast } from 'tailvue'
+// const $toast = useToast()
 
 import { GoogleSignInButton, type CredentialResponse } from 'vue3-google-signin'
 import { storeToRefs } from 'pinia' // import storeToRefs helper hook from pinia
@@ -53,6 +54,10 @@ const handleLoginError = (error) => {
     message: error,
   })
 }
+
+onMounted(() => {
+  $toast.show('onMounted success!')
+})
 
 onBeforeUnmount(() => {
   success.value = false
