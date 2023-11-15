@@ -116,12 +116,11 @@ useSchemaOrg([
           {{ formattedCreatedAt }}
         </div>
         <div
-          class="flex items-center absolute top-0 left-0 font-bold text-xs text-gray-500 text-right lg:text-left bg-white bg-opacity-60 rounded-br-lg py-2 px-3"
+          class="flex items-center absolute top-0 left-0 font-bold text-xs text-gray-500 text-right lg:text-left rounded-br-lg py-1 px-2"
         >
-          <span class="mr-2">Rating:</span>
           <StarIcon
             v-for="star in currentNews.ratingsAverage"
-            class="inline w-5 h-5 text-amber-500"
+            class="inline w-7 h-7 text-amber-500"
             aria-hidden="true"
           />
         </div>

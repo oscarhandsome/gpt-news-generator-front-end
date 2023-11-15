@@ -43,6 +43,8 @@ useHead({
     :is-loading="isLoading"
     :pagination-visibility="false"
   />
-  <LazyTheSocialProof />
-  <LazyTheNewsletter />
+  <div v-if="!isLoading" class="w-full">
+    <TheNewsletter />
+    <TheSocialProof />
+  </div>
 </template>
