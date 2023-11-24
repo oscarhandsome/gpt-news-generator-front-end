@@ -12,7 +12,7 @@ const toggleDropdown = (value: string) => {
   dropdownVisibility.value = !dropdownVisibility.value
 }
 
-const formattedCreatedAt = computed(() => formatDate(props.item.createdAt, 1))
+const formattedCreatedAt = computed(() => formatDate(props.item.createdAt, 3))
 </script>
 
 <template>

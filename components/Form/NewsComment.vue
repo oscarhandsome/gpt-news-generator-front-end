@@ -19,7 +19,10 @@ const data = reactive({
   comment: '',
 })
 
-const submitForm = () => postComment(data)
+const submitForm = async () => {
+  const res = await postComment(data)
+  if (res) data.comment = ''
+}
 </script>
 
 <template>
@@ -44,7 +47,7 @@ const submitForm = () => postComment(data)
       </div>
       <button
         type="submit"
-        class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-black dark:text-black dark:bg-white rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800"
+        class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-black dark:text-black dark:bg-white hover:opacity-60 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800 transition-opacity"
         :class="{
           'disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none disabled:cursor-not-allowed':
             !isAuthenticated,

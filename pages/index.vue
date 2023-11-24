@@ -44,7 +44,7 @@ useHead({
     :pagination-visibility="false"
   />
   <div v-if="!isLoading" class="w-full">
-    <TheNewsletter />
     <TheSocialProof />
+    <TheNewsletter />
   </div>
 </template>

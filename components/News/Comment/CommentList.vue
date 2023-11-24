@@ -13,7 +13,7 @@ defineProps<{
     <div class="px-0">
       <div class="flex justify-between items-center mb-6">
         <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
-          Discussion (20)
+          Discussion {{ comments.length ? `(${comments.length})` : '' }}
         </h2>
 
         <NewsCommentRatring

@@ -1,4 +1,4 @@
-import type { NavLink } from 'nuxt'
+import type { NavLink } from 'types'
 
 const mainMenu: NavLink[] = [
   {

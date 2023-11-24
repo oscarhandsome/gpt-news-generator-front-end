@@ -3,7 +3,7 @@ import Api from '~/services/api'
 
 import { clearObject } from '@/utils/utils'
 
-import type { NewsPayloadInterface } from 'nuxt'
+import type { NewsPayloadInterface, News } from 'types'
 
 function onlyUnique(value, index, array) {
   return array.indexOf(value) === index
@@ -11,9 +11,9 @@ function onlyUnique(value, index, array) {
 
 export const useNewsStore = defineStore('news', {
   state: () => ({
-    news: [],
-    currentNews: {},
-    famousPersons: [],
+    news: [] as News[],
+    currentNews: {} as News,
+    famousPersons: [] as String[],
     isLoading: false,
     isLoadingLocal: false,
     errors: {},
@@ -166,8 +166,12 @@ export const useNewsStore = defineStore('news', {
       console.log(data.value)
       if (data.value) {
         this.currentNews.comments.push(data.value.data.data)
+        return true
       }
       console.log(error.value)
+      if (error.value) {
+        return false
+      }
     },
   },
   getters: {
