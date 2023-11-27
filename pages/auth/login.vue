@@ -55,9 +55,9 @@ const handleLoginError = (error) => {
   })
 }
 
-onMounted(() => {
-  $toast.show('onMounted success!')
-})
+// onMounted(() => {
+//   $toast.show('onMounted success!')
+// })
 
 onBeforeUnmount(() => {
   success.value = false
