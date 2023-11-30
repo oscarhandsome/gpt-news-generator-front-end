@@ -6,7 +6,9 @@ export const useMyFetch: typeof useFetch = (request, opts?) => {
 
   try {
     return useFetch(request, {
-      baseURL: config.public.baseURL,
+      // baseURL: config.public.baseURL,
+      baseURL:
+        'https://gpt-chat-news-generator-a4555eba92cd.herokuapp.com/api/v1',
       headers: {
         Authorization: `Bearer ${token.value}`,
         Accept: 'application/json',
