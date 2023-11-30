@@ -105,10 +105,10 @@ export default defineNuxtConfig({
   //   ],
   // ],
   // Fixing error for unavaliable images with _ipx path at netlify
-  image: {
-    provider: 'netlify',
-    netlify: {
-      baseURl: process.env.IMAGES_URL,
-    },
-  },
+  // image: {
+  //   provider: 'netlify',
+  //   netlify: {
+  //     baseURl: process.env.IMAGES_URL,
+  //   },
+  // },
 })
