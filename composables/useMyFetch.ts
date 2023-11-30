@@ -1,5 +1,5 @@
 export const useMyFetch: typeof useFetch = (request, opts?) => {
-  const config = useRuntimeConfig()
+  // const config = useRuntimeConfig()
   const token = useCookie('token')
 
   // return useFetch(request, { baseURL: config.public.baseURL, ...opts })
