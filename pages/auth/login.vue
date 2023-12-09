@@ -162,7 +162,7 @@ onBeforeUnmount(() => {
           </nuxt-link>
         </div>
 
-        <BaseMainPageBUtton />
+        <BaseMainPageButton />
       </form>
     </div>
   </div>
