@@ -46,6 +46,7 @@ const submitForm = async () => {
         ></textarea>
       </div>
       <button
+        aria-label="News Comment"
         type="submit"
         class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-black dark:text-black dark:bg-white hover:opacity-60 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800 transition-opacity"
         :class="{

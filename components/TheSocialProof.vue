@@ -2,11 +2,11 @@
   <div class="bg-gray-100 dark:bg-gray-900 mt-5">
     <section class="py-4 px-4 mx-auto w-full lg:py-8 lg:px-6">
       <div class="mx-auto max-w-screen-md sm:text-center">
-        <h2
+        <h1
           class="mb-4 text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl dark:text-white"
         >
           Sign up to get news!
-        </h2>
+        </h1>
         <p>
           Transform your news experience with the GPT Chat News Generator
           Application. Instantly create personalized news articles on famous

@@ -47,9 +47,9 @@ const chooseSubscription = async (subscriptionId: string) => {
         >Current Plan</span
       >
     </div>
-    <h5 class="mb-4 text-xl font-medium text-gray-500 dark:text-gray-400">
+    <p class="mb-4 text-xl font-medium text-gray-500 dark:text-gray-400">
       {{ item.name }}
-    </h5>
+    </p>
     <div class="flex items-baseline text-gray-900 dark:text-white">
       <span class="text-3xl font-semibold">$</span>
       <span class="text-5xl font-extrabold tracking-tight">{{
@@ -88,6 +88,7 @@ const chooseSubscription = async (subscriptionId: string) => {
     </ul>
     <button
       type="button"
+      aria-label="Choose Subscription"
       class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-900 font-medium rounded-lg text-sm inline-flex justify-center w-full text-center px-5 py-2.5 mt-auto mb-0"
       :class="{
         hidden,

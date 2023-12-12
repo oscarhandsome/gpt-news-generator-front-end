@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { HandThumbUpIcon, HandThumbDownIcon } from '@heroicons/vue/20/solid'
-import { formatDate } from '@/utils/utils'
+import { formatDate } from '../../utils/utils'
 
 const props = defineProps({
   item: {
@@ -46,34 +46,39 @@ const formattedCreatedAt = computed(() => formatDate(props.item.createdAt))
           :class="{ 'h-32 rounded-b-lg': view === 'list' }"
         />
 
-        <div
+        <!-- TODO: MOVE UP from A tag  -->
+        <!-- <div
           class="hidden absolute bottom-0 right-0 bg-white bg-opacity-60 p-1"
         >
           <button
+            aria-label="Like News"
             class="text-black hover:opacity-60 active:opacity-60 transition-opacity rounded-lg p-1"
+            type="button"
           >
             <HandThumbUpIcon class="flex-shrink-0 h-5 w-5" aria-hidden="true" />
           </button>
           <button
+            aria-label="Dislike News"
             class="text-black hover:opacity-60 active:opacity-60 transition-opacity rounded-lg p-1"
+            type="button"
           >
             <HandThumbDownIcon
               class="flex-shrink-0 h-5 w-5"
               aria-hidden="true"
             />
           </button>
-        </div>
+        </div> -->
       </div>
       <div class="p-2 sm:px-5">
         <div class="absolute right-2 bottom-1 text-xs text-gray-500">
           <!-- 10/06/2023 -->
           {{ formattedCreatedAt }}
         </div>
-        <h5
+        <p
           class="text-base sm:text-lg lg:text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
         >
           {{ item.name.substring(0, 18) + '...' }}
-        </h5>
+        </p>
         <p
           class="font-normal text-gray-700 dark:text-gray-400 break-all mt-2"
           v-html="item.description.substring(0, 60) + '...'"

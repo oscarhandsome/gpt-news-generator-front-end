@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { InputProps } from 'types'
+import type { InputProps } from '@/types'
 
 defineEmits(['update:modelValue'])
 const props = defineProps<InputProps>()

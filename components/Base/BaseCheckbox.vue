@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { CheckboxProps } from 'types'
+import type { CheckboxProps } from '@/types'
 
 defineEmits(['update:modelValue'])
 const props = defineProps<CheckboxProps>()

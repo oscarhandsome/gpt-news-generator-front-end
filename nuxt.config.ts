@@ -2,13 +2,12 @@
 export default defineNuxtConfig({
   app: {
     head: {
+      htmlAttrs: {
+        lang: 'en',
+      },
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
-      // script: [
-      //   {
-      //     // src: 'https://accounts.google.com/gsi/client',
-      //   },
-      // ],
+      // script: [{src: 'https://accounts.google.com/gsi/client'}],
       // ...
     },
   },
@@ -23,11 +22,12 @@ export default defineNuxtConfig({
     'nuxt3-stripe',
     'floating-vue/nuxt',
     'nuxt-vue3-google-signin',
-    // TODO add
+    // TODO: add
     // '@nuxtjs/sentry',
     'nuxt-schema-org',
     // 'nuxt-security',
     '@cssninja/nuxt-toaster',
+    '@nuxtjs/html-validator', // https://nuxt.com/modules/html-validator
   ],
   stripe: {
     // Server
@@ -36,17 +36,21 @@ export default defineNuxtConfig({
     // Client
     publishableKey: process.env.STRIPE_PUBLIC_KEY, // required
   },
-  // TODO add
+  // TODO: add
   // sentry: {
   //   dsn: this.config.sentryDsn, // Enter your project's DSN.
   //   // Additional module options go here.
   // },
-  // TODO add
-  schemaOrg: {
-    // canonicalHost: 'https://gpt-chat-news-generator.netlify.app'
-    meta: {
-      host: 'https://gpt-chat-news-generator.netlify.app',
-    },
+  // TODO: add
+  // schemaOrg: {
+  //   // canonicalHost: 'https://gpt-chat-news-generator.netlify.app'
+  //   meta: {
+  //     host: 'https://gpt-chat-news-generator.netlify.app',
+  //   },
+  // },
+  site: {
+    url: 'https://gpt-chat-news-generator.netlify.app',
+    name: 'GPT Chat News Generator',
   },
   // css: ['@/assets/css/fonts.css'],
   css: [

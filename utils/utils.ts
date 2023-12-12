@@ -1,4 +1,4 @@
-const clearObject: object = (obj: object) => {
+const clearObject: object = (obj: { [key: string]: any }) => {
   Object.keys(obj).forEach((key) => {
     delete obj[key]
   })

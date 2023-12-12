@@ -5,7 +5,7 @@ import { CheckIcon } from '@heroicons/vue/24/solid'
 
 import { GoogleSignInButton, type CredentialResponse } from 'vue3-google-signin'
 import { storeToRefs } from 'pinia' // import storeToRefs helper hook from pinia
-import { useAuthStore } from '~/store/auth' // import the auth store we just created
+import { useAuthStore } from '@/store/auth' // import the auth store we just created
 
 // import { clearObject } from '@/utils/utils'
 
@@ -44,7 +44,7 @@ const handleLoginSuccess = async (response: CredentialResponse) => {
 }
 
 // handle an error event
-const handleLoginError = (error) => {
+const handleLoginError = (error: string) => {
   console.error('Login failed')
   console.error('error', error)
   // error.value = error
@@ -89,9 +89,9 @@ onBeforeUnmount(() => {
         class="space-y-1 sm:space-y-2 md:space-y-3 lg:space-y-4"
         @submit.prevent="login"
       >
-        <h5 class="text-xl font-medium text-gray-900 dark:text-white">
+        <p class="text-xl font-medium text-gray-900 dark:text-white">
           Log in to our platform
-        </h5>
+        </p>
 
         <div class="h-10">
           <GoogleSignInButton
@@ -147,6 +147,7 @@ onBeforeUnmount(() => {
           </nuxt-link>
         </div>
         <button
+          aria-label="Login"
           type="submit"
           class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >

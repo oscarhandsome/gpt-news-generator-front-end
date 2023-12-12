@@ -45,6 +45,7 @@ const formattedCreatedAt = computed(() => formatDate(props.item.createdAt, 3))
       </div>
       <button
         :id="item.id"
+        aria-label="Toggle menu for current comment"
         :data-dropdown-toggle="item.id"
         class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
         type="button"

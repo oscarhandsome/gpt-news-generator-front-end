@@ -91,19 +91,23 @@ useHead({
 
     <div class="flex justify-end">
       <button
+        aria-label="Change View tile"
         class="border border-black hover:bg-black dark:hover:bg-gray-800 hover:text-white rounded p-2 mr-2"
         :class="{
           'bg-black dark:bg-gray-600 text-white': settings.view === 'tile',
         }"
+        type="button"
         @click="changeView('tile')"
       >
         <RectangleGroupIcon class="h-5 w-5" />
       </button>
       <button
+        aria-label="Change View block"
         class="border border-black hover:bg-black dark:hover:bg-gray-800 hover:text-white rounded p-2"
         :class="{
           'bg-black dark:bg-gray-600 text-white': settings.view === 'list',
         }"
+        type="button"
         @click="changeView('list')"
       >
         <ListBulletIcon class="h-5 w-5" />

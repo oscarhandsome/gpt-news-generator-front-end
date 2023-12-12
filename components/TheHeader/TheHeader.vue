@@ -69,6 +69,7 @@ function toggleMenu() {
             for btn
             hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 -->
             <button
+              aria-label="Menu toggle"
               data-collapse-toggle="mobile-menu-2"
               type="button"
               class="inline-flex items-center text-sm text-gray-500 rounded-lg xl:hidden p-1 sm:p-2 ml-1"
@@ -111,7 +112,9 @@ function toggleMenu() {
             :class="[mobileVisibility ? ' right-0' : '-right-full']"
           >
             <button
+              aria-label="Toggle menu"
               class="absolute top-2 right-2 xl:hidden"
+              type="button"
               @click="toggleMenu"
             >
               <XCircleIcon class="h-7 w-7 text-white" />

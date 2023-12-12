@@ -3,9 +3,9 @@ import Api from '~/services/api'
 
 import { clearObject } from '@/utils/utils'
 
-import type { NewsPayloadInterface, News } from 'types'
+import type { NewsPayloadInterface, News } from '@/types'
 
-function onlyUnique(value, index, array) {
+function onlyUnique(value: string, index: number, array: string[]) {
   return array.indexOf(value) === index
 }
 

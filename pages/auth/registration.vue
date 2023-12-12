@@ -93,9 +93,9 @@ onBeforeUnmount(() => {
         class="space-y-1 sm:space-y-2 md:space-y-3 lg:space-y-4"
         @submit.prevent="submitForm"
       >
-        <h5 class="text-xl font-medium text-gray-900 dark:text-white">
+        <p class="text-xl font-medium text-gray-900 dark:text-white">
           Sign up to our platform
-        </h5>
+        </p>
 
         <div class="h-10">
           <GoogleSignInButton
@@ -245,6 +245,7 @@ onBeforeUnmount(() => {
         </div>
 
         <button
+          aria-label="Register"
           type="submit"
           class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >

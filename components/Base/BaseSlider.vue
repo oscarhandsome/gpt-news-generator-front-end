@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { InputSliderProps } from 'types'
+import type { InputSliderProps } from '@/types'
 
 defineEmits(['update:modelValue'])
 const props = defineProps<InputSliderProps>()

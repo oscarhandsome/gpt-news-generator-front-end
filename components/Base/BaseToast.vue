@@ -23,9 +23,14 @@ const { percent, endAt, closeIn } = useNinjaToasterProgress()
       props.type === 'error' && 'bg-rose-600 text-rose-500',
     ]"
   >
-    <h5>{{ props.title }}</h5>
+    <p>{{ props.title }}</p>
     <p v-if="props.message">{{ props.message }}</p>
-    <button class="absolute top-1 right-1" @click="close()">
+    <button
+      aria-label="Close toast"
+      class="absolute top-1 right-1"
+      type="button"
+      @click="close()"
+    >
       <XCircleIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
     </button>
   </div>

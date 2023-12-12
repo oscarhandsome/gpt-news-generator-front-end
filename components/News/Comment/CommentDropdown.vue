@@ -16,7 +16,7 @@ defineProps({
   <div
     :id="itemId"
     :ref="itemId"
-    class="absolute right-0 top-9 z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 shadow-lg"
+    class="absolute right-0 top-9 z-10 w-36 bg-white rounded divide-y divide-gray-100 dark:bg-gray-700 dark:divide-gray-600 shadow-lg"
     :class="{ hidden: !dropdownVisibility }"
   >
     <ul

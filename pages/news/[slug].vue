@@ -146,11 +146,11 @@ useSchemaOrg([
       </div>
 
       <div class="pb-2 lg:ml-4 xl:ml-6">
-        <h5
+        <h1
           class="mb-2 text-2xl xl:text-4xl font-bold tracking-tight text-gray-900 dark:text-white font-chomsky"
         >
           {{ currentNews.name }}
-        </h5>
+        </h1>
         <p
           class="first-letter:font-chomsky first-letter:text-7xl first-letter:font-bold first-letter:text-black dark:first-letter:text-white first-letter:mr-3 first-letter:float-left font-normal text-gray-700 dark:text-gray-400 mb-2"
           v-html="currentNews.description"
