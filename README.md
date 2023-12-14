@@ -1,5 +1,3 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/ec8ae36c-3834-41aa-997f-d0527b31992f/deploy-status)](https://app.netlify.com/sites/gpt-chat-news-generator/deploys)
-
 # GPT News Generator [![Netlify Status](https://api.netlify.com/api/v1/badges/ec8ae36c-3834-41aa-997f-d0527b31992f/deploy-status)](https://app.netlify.com/sites/gpt-chat-news-generator/deploys)
 
 Project link - [news-generator](https://bit.ly/3FdI0MH).
