@@ -63,7 +63,7 @@ defineProps<{
     </div>
   </nuxt-link>
   <div v-else class="flex items-center justify-start space-x-3">
-    <nuxt-img
+    <!-- <nuxt-img
       class="rounded-full w-9 h-9"
       src="/user-placeholder.png"
       alt="img_desc"
@@ -71,6 +71,11 @@ defineProps<{
       width="36"
       height="36"
       :placeholder="36"
+    /> -->
+    <img
+      class="rounded-full w-9 h-9"
+      src="/user-placeholder.png"
+      alt="img_desc"
     />
     <div class="space-y-0.5 font-medium dark:text-white text-left w-full">
       <div class="w-full rounded-lg">Autor not avaliable</div>
