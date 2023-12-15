@@ -19,12 +19,12 @@ module.exports = {
     // 'no-unused-vars': 'warn',
     // 'space-in-parens': 'off',
     // 'computed-property-spacing': 'off',
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
   },
   ignorePatterns: ['.history/*'],
-  'prettier/prettier': [
-    'error',
-    {
-      endOfLine: 'auto',
-    },
-  ],
 }
