@@ -96,10 +96,10 @@ export default defineNuxtConfig({
   // TODO: Fixing error for unavaliable images with _ipx path at netlify
   image: {
     format: ['webp'],
-    provider: 'netlify',
-    netlify: {
-      baseURl: process.env.IMAGES_URL,
-    },
+    // provider: 'netlify',
+    // netlify: {
+    //   baseURl: process.env.IMAGES_URL,
+    // },
   },
   // plugins: [{ src: '~/plugins/vue-select-tree.js', ssr: false }],
   experimental: {
