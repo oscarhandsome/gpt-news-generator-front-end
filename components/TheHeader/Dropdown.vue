@@ -15,7 +15,7 @@ import {
   UserCircleIcon,
 } from '@heroicons/vue/20/solid'
 import { useAuthStore } from '~/store/auth'
-// import { User } from 'types'
+// import { User } from '@/types'
 
 const router = useRouter()
 const { user, logUserOut, isAuthenticated } = useAuthStore()

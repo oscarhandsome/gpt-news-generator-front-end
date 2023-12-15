@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { News } from 'types'
+import type { News } from '@/types'
 
 defineProps<{
   view?: string

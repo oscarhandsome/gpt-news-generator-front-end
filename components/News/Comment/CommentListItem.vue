@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Comment } from 'types'
+import type { Comment } from '@/types'
 import { formatDate } from '@/utils/utils'
 
 // const props = defineProps<Comment>()

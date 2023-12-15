@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-// import type { Option } from 'types'
+// import type { Option } from '@/types'
 
 import {
   Listbox,

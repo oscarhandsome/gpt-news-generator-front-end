@@ -1,4 +1,4 @@
-import type { NavLink } from 'types'
+import type { NavLink } from '@/types'
 
 const mainMenu: NavLink[] = [
   {
