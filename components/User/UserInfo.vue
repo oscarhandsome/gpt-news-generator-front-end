@@ -30,7 +30,7 @@ defineProps<{
       https://gpt-chat-news-generator-a4555eba92cd.herokuapp.com/img/users/
       -->
       <!-- https://i.pravatar.cc/100 -->
-      <!-- <nuxt-img
+      <nuxt-img
         class="rounded-full w-9 h-9"
         :src="`${user && user.photo ? user.photo : '/user-placeholder.png'}`"
         :alt="user && user.name ? user.name : 'img_desc'"
@@ -38,11 +38,6 @@ defineProps<{
         width="36"
         height="36"
         :placeholder="36"
-      /> -->
-      <img
-        class="rounded-full w-9 h-9"
-        :src="`${user && user.photo ? user.photo : '/user-placeholder.png'}`"
-        :alt="user && user.name ? user.name : 'img_desc'"
       />
       <div class="space-y-0.5 font-medium dark:text-white text-left">
         <div v-if="user && user.name">{{ user.name }}</div>
@@ -63,7 +58,7 @@ defineProps<{
     </div>
   </nuxt-link>
   <div v-else class="flex items-center justify-start space-x-3">
-    <!-- <nuxt-img
+    <nuxt-img
       class="rounded-full w-9 h-9"
       src="/user-placeholder.png"
       alt="img_desc"
@@ -71,11 +66,6 @@ defineProps<{
       width="36"
       height="36"
       :placeholder="36"
-    /> -->
-    <img
-      class="rounded-full w-9 h-9"
-      src="/user-placeholder.png"
-      alt="img_desc"
     />
     <div class="space-y-0.5 font-medium dark:text-white text-left w-full">
       <div class="w-full rounded-lg">Autor not avaliable</div>
