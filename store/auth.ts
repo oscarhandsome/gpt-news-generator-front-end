@@ -60,18 +60,13 @@ export const useAuthStore = defineStore('auth', {
       const { data, pending, error }: any = await Api.get('/users/logout')
       this.isLoading = pending
 
-      console.log('this.isLoading', this.isLoading)
-      console.log('data.value', data.value)
-
       if (data.value) {
-        const token = useCookie('token') // useCookie new hook in nuxt 3
-        this.isAuthenticated = false // set isAuthenticated  state value to false
-        token.value = null // clear the token cookie
-        this.isAuthenticated = false
-        this.user = null
-        localStorage.removeItem('user')
-        // this.success = true
+        this.setCookieToken('')
+        this.clear()
+        this.clearLocalStorage()
       }
+
+      if (error) console.error(error)
     },
     async signUp(payload: any) {
       const { $toaster } = useNuxtApp()
@@ -208,6 +203,9 @@ export const useAuthStore = defineStore('auth', {
     },
     setLocalStorage(input: IUser) {
       localStorage.setItem('user', JSON.stringify(input))
+    },
+    clearLocalStorage() {
+      localStorage.removeItem('user')
     },
     setCookieToken(input: string) {
       const token = useCookie('token') // useCookie new hook in nuxt 3
