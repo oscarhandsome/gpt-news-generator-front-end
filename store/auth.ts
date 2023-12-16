@@ -61,7 +61,7 @@ export const useAuthStore = defineStore('auth', {
       this.isLoading = pending
 
       if (data.value) {
-        this.setCookieToken('')
+        this.clearCookieToken()
         this.clear()
         this.clearLocalStorage()
       }
@@ -210,6 +210,10 @@ export const useAuthStore = defineStore('auth', {
     setCookieToken(input: string) {
       const token = useCookie('token') // useCookie new hook in nuxt 3
       token.value = input // set token to cookie
+    },
+    clearCookieToken() {
+      const token = useCookie('token')
+      token.value = null
     },
     showToaster(title: string, message: string, error?: boolean) {
       const { $toaster } = useNuxtApp()
