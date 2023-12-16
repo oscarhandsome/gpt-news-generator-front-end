@@ -1,4 +1,10 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+// const isFeedbackModal = ref(false)
+
+// function toggleFeedback() {
+//   isFeedbackModal.value = !isFeedbackModal.value
+// }
+</script>
 
 <template>
   <div class="flex flex-col min-h-screen dark:bg-gray-900 dark:text-white">
@@ -15,6 +21,10 @@
     <TheFooter class="mt-auto mb-0" />
 
     <BaseUpButton />
-    <!-- <BaseModal><TheFeedback /></BaseModal> -->
+    <!-- <BaseFeedbackButton @toggle-feedback-btn="toggleFeedback" />
+
+    <LazyBaseModal>
+      <TheFeedback />
+    </LazyBaseModal> -->
   </div>
 </template>
