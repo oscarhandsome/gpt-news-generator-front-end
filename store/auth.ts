@@ -107,7 +107,6 @@ export const useAuthStore = defineStore('auth', {
           $toaster.error({
             title: 'Error',
             message: this.error,
-            type: 'error',
           })
         }
         // PROD
@@ -149,22 +148,22 @@ export const useAuthStore = defineStore('auth', {
       console.log('error.value', error.value)
       // console.log('refresh.value', refresh.value)
     },
-    async updatePassword(payload) {
+    async updatePassword(payload: Object) {
       this.isLoadingLocal = true
       const { data, pending, error }: any = await Api.post(
         '/users/updateMyPassword',
         payload,
       )
-      console.log('data, pending, error ')
+      console.log(data, pending, error)
       this.isLoadingLocal = pending.value
     },
-    async updateUserData(payload) {
+    async updateUserData(payload: Object) {
       this.isLoading = true
       const { data, pending, error }: any = await Api.post(
         '/users/updateMe',
         payload,
       )
-      console.log('data, pending, error ')
+      console.log(data, pending, error)
       this.isLoading = pending.value
     },
     clearErrors(all: boolean = false) {
@@ -174,7 +173,7 @@ export const useAuthStore = defineStore('auth', {
         this.error = ''
       }, 3500)
     },
-    async emailConfirm(payload) {
+    async emailConfirm(payload: string) {
       const { data, pending, error }: any = await Api.post(
         `/users/emailConfirm/${payload}`,
       )
