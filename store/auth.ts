@@ -1,43 +1,36 @@
 import { defineStore } from 'pinia'
-import { UserPayloadInterface, User } from '@/types'
-// import { useToast } from 'tailvue'
+import type { UserPayloadInterface, IAuthStore, IUser } from '@/types'
 import Api from '~/services/api'
 
 import { clearObject } from '@/utils/utils'
 
-// const $toast = useToast()
-// const { $toast } = useNuxtApp()
+const defaultUserValue: IUser = {
+  createdAt: '',
+  email: '',
+  name: null,
+  photo: null,
+  role: '',
+  updatedAt: '',
+  id: '',
+  position: '',
+}
+
+const defalutAuthValue: IAuthStore = {
+  isAuthenticated: false,
+  isLoading: false,
+  isLoadingLocal: false,
+  errors: {},
+  error: '',
+  success: false,
+  user: defaultUserValue,
+}
 
 export const useAuthStore = defineStore('auth', {
-  state: () => ({
-    isAuthenticated: false,
-    isLoading: false,
-    isLoadingLocal: false,
-    errors: {},
-    error: '',
-    success: false,
-    user: () => ({}) as User,
-  }),
+  state: () => defalutAuthValue,
   actions: {
     async authenticateUser(payload: UserPayloadInterface) {
-      const { $toaster } = useNuxtApp()
-
       this.isLoading = true
       this.clearErrors(true)
-      // $toast.show('this is a test')
-      // useFetch from nuxt 3
-      // const { data, pending }: any = await useFetch(
-      //   `http://localhost:8000/api/v1/users/login`,
-      //   {
-      //     method: 'post',
-      //     headers: { 'Content-Type': 'application/json' },
-      //     // mode: 'no-cors',
-      //     body: {
-      //       email,
-      //       password,
-      //     },
-      //   },
-      // )
       const { data, pending, error }: any = await Api.post(
         '/users/login',
         payload,
@@ -45,27 +38,17 @@ export const useAuthStore = defineStore('auth', {
       this.isLoading = pending.value
 
       if (data.value && data.value.status === 'success') {
-        $toaster.info({
-          title: 'Success',
-          message: 'Successfully logged in!',
-        })
-        const token = useCookie('token') // useCookie new hook in nuxt 3
-        token.value = data?.value?.token // set token to cookie
+        this.showToaster('Success', 'Successfully logged in!')
+        this.setCookieToken(data?.value?.token)
         this.isAuthenticated = true // set isAuthenticated  state value to true
         this.user = data.value.data.user
-        localStorage.setItem('user', JSON.stringify(this.user))
+        this.setLocalStorage(data.value.data.user)
         this.success = true
       }
-      // if (error.value) this.errors = error.value
-      // if (!data.value) throw new Error('Something went wrong!')
+
       if (error.value) {
-        // this.error = 'Password or email incorrect!'
         this.error = error.value.data.message
-        $toaster.error({
-          title: 'Error',
-          message: this.error,
-          type: 'error',
-        })
+        this.showToaster('Error', this.error, true)
         setTimeout(() => {
           this.error = ''
         }, 3500)
@@ -74,13 +57,6 @@ export const useAuthStore = defineStore('auth', {
       this.clearErrors()
     },
     async logUserOut() {
-      // const { data, pending }: any = await useFetch(
-      //   `http://localhost:8000/api/v1/users/logout`,
-      //   {
-      //     method: 'get',
-      //     headers: { 'Content-Type': 'application/json' },
-      //   },
-      // )
       const { data, pending, error }: any = await Api.get('/users/logout')
       this.isLoading = pending
 
@@ -101,29 +77,11 @@ export const useAuthStore = defineStore('auth', {
       const { $toaster } = useNuxtApp()
       this.isLoading = true
       this.clearErrors(true)
-      // $toast.show('this is a test')
-      // useFetch from nuxt 3
-      // const { data, pending, error, refresh }: any = await useFetch(
-      //   `${BASE_URL}/users/signup`,
-      //   {
-      //     method: 'post',
-      //     headers: { 'Content-Type': 'application/json' },
-      //     // mode: 'no-cors',
-      //     body: {
-      //       email,
-      //       password,
-      //     },
-      //   },
-      // )
       const { data, pending, error, refresh }: any = await Api.post(
         '/users/signup',
         payload,
       )
       this.isLoading = pending.value
-
-      // console.log('this.isLoading', this.isLoading)
-      // console.log('data.value', data.value)
-
       if (data.value) {
         if (data.value.data && data.value.data.user) {
           const token = useCookie('token') // useCookie new hook in nuxt 3
@@ -242,5 +200,35 @@ export const useAuthStore = defineStore('auth', {
       //   console.log('error.value.data', error.value.data)
       // }
     },
+    clear() {
+      this.$patch(defalutAuthValue)
+    },
+    set(input: IUser) {
+      this.$patch({ user: input })
+    },
+    setLocalStorage(input: IUser) {
+      localStorage.setItem('user', JSON.stringify(input))
+    },
+    setCookieToken(input: string) {
+      const token = useCookie('token') // useCookie new hook in nuxt 3
+      token.value = input // set token to cookie
+    },
+    showToaster(title: string, message: string, error?: boolean) {
+      const { $toaster } = useNuxtApp()
+      if (error) {
+        $toaster.error({
+          title,
+          message,
+        })
+        return
+      }
+      $toaster.info({
+        title,
+        message,
+      })
+    },
+  },
+  getters: {
+    isAuth: (state) => state.isAuthenticated,
   },
 })

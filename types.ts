@@ -62,7 +62,7 @@ export interface CheckboxProps {
   modelValue: boolean
 }
 
-export interface User {
+export interface IUser {
   createdAt: string
   email: string
   name: string | null
@@ -71,6 +71,16 @@ export interface User {
   updatedAt: string
   id: string
   position: string
+}
+
+export interface IAuthStore {
+  isAuthenticated: boolean
+  isLoading: boolean
+  isLoadingLocal: boolean
+  errors: Object
+  error: string
+  success: boolean
+  user: IUser
 }
 
 export interface Subsription {
