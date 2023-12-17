@@ -1,16 +1,20 @@
 <script lang="ts" setup>
-// import { mapState } from 'pinia'
-import { storeToRefs } from 'pinia'
-import { useNewsStore } from '@/store/news'
-import { formatDate } from '@/utils/utils'
-
-import { useGtm } from '@gtm-support/vue-gtm'
-
 import {
   // ArrowLeftCircleIcon,
   ArrowRightCircleIcon,
   StarIcon,
 } from '@heroicons/vue/20/solid'
+
+import { useGtm } from '@gtm-support/vue-gtm'
+
+// import { mapState } from 'pinia'
+import { storeToRefs } from 'pinia'
+import { useNewsStore } from '@/store/news'
+import { formatDate } from '@/utils/utils'
+
+import { useCommonStore } from '@/store/common'
+
+const { setModal } = useCommonStore()
 
 defineProps({
   view: {
@@ -18,6 +22,8 @@ defineProps({
     default: 'tile',
   },
 })
+
+const fullImage = ref<null | string>(null)
 
 const route = useRoute()
 // const store = useNewsStore()
@@ -32,6 +38,12 @@ await getNews(slug)
 const formattedCreatedAt = computed(() =>
   formatDate(currentNews.value.createdAt),
 )
+
+const toggleFullImageView = (image: string) => {
+  console.log('toggleFullImageView', image)
+  fullImage.value = image
+  setModal(true)
+}
 
 onBeforeUnmount(() => {
   currentNews.value = []
@@ -120,6 +132,7 @@ useSchemaOrg([
         >
           <StarIcon
             v-for="star in currentNews.ratingsAverage"
+            :key="star"
             class="inline w-7 h-7 text-amber-500"
             aria-hidden="true"
           />
@@ -162,10 +175,10 @@ useSchemaOrg([
         >
           <div
             v-for="(image, idx) in currentNews.images"
-            class="flex mb-2 xl:mb-0 mr-2"
             :key="idx"
+            class="flex mb-2 xl:mb-0 mr-2"
           >
-            <a :href="image" target="_blank">
+            <div class="cursor-pointer" @click="toggleFullImageView(image)">
               <nuxt-img
                 v-if="image"
                 :src="image"
@@ -176,7 +189,7 @@ useSchemaOrg([
                 placeholder="/placeholder.png"
                 class="rounded-lg w-36 h-36 xl:w-48 xl:h-48"
               />
-            </a>
+            </div>
           </div>
         </div>
 
@@ -204,5 +217,9 @@ useSchemaOrg([
       :current-news-id="currentNews.id"
       :ratings-average="currentNews.ratingsAverage"
     />
+
+    <LazyBaseModal>
+      <LazyNewsImageView :image="fullImage" />
+    </LazyBaseModal>
   </div>
 </template>

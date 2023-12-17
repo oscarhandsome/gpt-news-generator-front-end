@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-const props = defineProps<{
-  currentPage?: Number
-  pageCount?: Number
-  paginationLimit?: Number
+defineProps<{
+  currentPage?: number
+  pageCount?: number
+  paginationLimit?: number
 }>()
 
 // const emit = defineEmits(['updatePage'])
@@ -20,7 +20,7 @@ const selectPage = (p: number) => emits('updatePage', p)
 <template>
   <nav aria-label="Page navigation example">
     <ul class="inline-flex -space-x-px text-sm">
-      <template v-for="page in pageCount">
+      <template v-for="(page, idx) in pageCount" :key="idx">
         <li v-if="page === 1">
           <button
             aria-label="Go to previous page"
