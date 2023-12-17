@@ -1,8 +1,15 @@
 <script lang="ts" setup>
+// // import { storeToRefs } from 'pinia'
+// import { useCommonStore } from '@/store/common'
+
+// const { setModal } = useCommonStore()
+// // const { isOpen } = storeToRefs(useCommonStore())
+
 // const isFeedbackModal = ref(false)
 
-// function toggleFeedback() {
+// function toggleFeedbackModal() {
 //   isFeedbackModal.value = !isFeedbackModal.value
+//   setModal(isFeedbackModal.value)
 // }
 </script>
 
@@ -21,7 +28,7 @@
     <TheFooter class="mt-auto mb-0" />
 
     <BaseUpButton />
-    <!-- <BaseFeedbackButton @toggle-feedback-btn="toggleFeedback" />
+    <!-- <BaseFeedbackButton @toggle-feedback-btn="toggleFeedbackModal" />
 
     <LazyBaseModal>
       <TheFeedback />

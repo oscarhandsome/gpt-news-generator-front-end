@@ -28,8 +28,8 @@ const fullImage = ref<null | string>(null)
 const route = useRoute()
 // const store = useNewsStore()
 
-const { getNews } = useNewsStore() // use authenticateUser action from  auth store
-const { isLoading, errors, currentNews } = storeToRefs(useNewsStore()) // make isAuthenticated state reactive with storeToRefs
+const { getNews } = useNewsStore()
+const { isLoading, errors, currentNews } = storeToRefs(useNewsStore())
 
 const { slug } = route.params
 await getNews(slug)
@@ -40,7 +40,6 @@ const formattedCreatedAt = computed(() =>
 )
 
 const toggleFullImageView = (image: string) => {
-  console.log('toggleFullImageView', image)
   fullImage.value = image
   setModal(true)
 }
