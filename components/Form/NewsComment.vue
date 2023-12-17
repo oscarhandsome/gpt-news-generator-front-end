@@ -32,7 +32,12 @@ const submitForm = async () => {
     <BaseLoader :show="isLoadingLocal" absolute />
     <form class="mb-6" @submit.prevent="submitForm">
       <div
-        class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700"
+        class="py-2 px-4 mb-4 rounded-lg rounded-t-lg border border-gray-200 dark:border-gray-700"
+        :class="[
+          isAuthenticated
+            ? 'bg-white dark:bg-gray-800'
+            : 'bg-gray-100 cursor-not-allowed',
+        ]"
       >
         <label for="comment" class="sr-only">Your comment</label>
         <textarea
@@ -40,7 +45,12 @@ const submitForm = async () => {
           v-model="data.comment"
           rows="6"
           class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
-          placeholder="Write a comment..."
+          :class="{
+            'cursor-not-allowed': !isAuthenticated,
+          }"
+          :placeholder="
+            isAuthenticated ? 'Write a comment...' : 'Sign in required...'
+          "
           required
           :disabled="!isAuthenticated"
         ></textarea>
