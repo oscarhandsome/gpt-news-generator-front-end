@@ -1,16 +1,14 @@
 <script lang="ts" setup>
-// // import { storeToRefs } from 'pinia'
-// import { useCommonStore } from '@/store/common'
+import { storeToRefs } from 'pinia'
+import { useCommonStore } from '@/store/common'
 
-// const { setModal } = useCommonStore()
-// // const { isOpen } = storeToRefs(useCommonStore())
+const { setModal, setModalFeedback } = useCommonStore()
+const { getFeedbackStatus } = storeToRefs(useCommonStore())
 
-// const isFeedbackModal = ref(false)
-
-// function toggleFeedbackModal() {
-//   isFeedbackModal.value = !isFeedbackModal.value
-//   setModal(isFeedbackModal.value)
-// }
+function toggleFeedbackModal() {
+  setModalFeedback(true)
+  setModal(true)
+}
 </script>
 
 <template>
@@ -24,14 +22,15 @@
         <slot />
       </div>
     </main>
-    <TheCookie />
+    <LazyTheCookie />
     <TheFooter class="mt-auto mb-0" />
 
-    <BaseUpButton />
-    <!-- <BaseFeedbackButton @toggle-feedback-btn="toggleFeedbackModal" />
+    <LazyBaseUpButton />
+    <LazyBaseFeedbackButton @toggle-feedback-btn="toggleFeedbackModal" />
 
     <LazyBaseModal>
-      <TheFeedback />
-    </LazyBaseModal> -->
+      <LazyTheFeedback v-if="getFeedbackStatus" />
+      <LazyNewsImageView />
+    </LazyBaseModal>
   </div>
 </template>

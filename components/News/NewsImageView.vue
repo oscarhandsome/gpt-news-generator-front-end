@@ -1,13 +1,22 @@
 <script lang="ts" setup>
-defineProps<{
-  image: string | null
-}>()
+import { storeToRefs } from 'pinia'
+import { useCommonStore } from '@/store/common'
+
+// const { setModal } = useCommonStore()
+const { fullImageUrl } = storeToRefs(useCommonStore())
+
+// defineProps<{
+//   image: string | null
+// }>()
 </script>
 
 <template>
-  <div v-if="image" class="flex justify-center items-center w-full h-full">
+  <div
+    v-if="fullImageUrl"
+    class="flex justify-center items-center w-full h-full"
+  >
     <nuxt-img
-      :src="image"
+      :src="fullImageUrl"
       :alt="`image-desc`"
       loading="lazy"
       width="100%"

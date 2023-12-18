@@ -14,7 +14,7 @@ import { formatDate } from '@/utils/utils'
 
 import { useCommonStore } from '@/store/common'
 
-const { setModal } = useCommonStore()
+const { setModal, setFullImageUrl } = useCommonStore()
 
 defineProps({
   view: {
@@ -22,8 +22,6 @@ defineProps({
     default: 'tile',
   },
 })
-
-const fullImage = ref<null | string>(null)
 
 const route = useRoute()
 // const store = useNewsStore()
@@ -39,8 +37,8 @@ const formattedCreatedAt = computed(() =>
   formatDate(currentNews.value.createdAt),
 )
 
-const toggleFullImageView = (image: string) => {
-  fullImage.value = image
+const toggleFullImageView = (imageUrl: string) => {
+  setFullImageUrl(imageUrl)
   setModal(true)
 }
 
@@ -216,9 +214,5 @@ useSchemaOrg([
       :current-news-id="currentNews.id"
       :ratings-average="currentNews.ratingsAverage"
     />
-
-    <LazyBaseModal>
-      <LazyNewsImageView :image="fullImage" />
-    </LazyBaseModal>
   </div>
 </template>

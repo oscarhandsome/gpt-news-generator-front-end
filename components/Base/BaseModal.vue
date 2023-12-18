@@ -11,7 +11,7 @@ import { XCircleIcon } from '@heroicons/vue/20/solid'
 import { storeToRefs } from 'pinia'
 import { useCommonStore } from '@/store/common'
 
-const { setModal } = useCommonStore()
+const { setModal, clearModal } = useCommonStore()
 const { isOpen } = storeToRefs(useCommonStore())
 
 defineProps({
@@ -28,6 +28,7 @@ defineProps({
 function setIsOpen(value) {
   // isOpen.value = value
   setModal(value)
+  clearModal()
 }
 </script>
 
