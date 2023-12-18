@@ -39,6 +39,8 @@ const formatDate: any = (dateISO: any, variant: number = 0) => {
   // Feb(En). 8, 2022 | 13:20
   if (variant === 3)
     return `${monthNamesEn} ${day}, ${year}. ${hours}:${minutes}:${seconds}`
+  // 2008-02-14
+  if (variant === 5) return `${year}-${month}-${day}`
 }
 
 export { clearObject, formatDate }

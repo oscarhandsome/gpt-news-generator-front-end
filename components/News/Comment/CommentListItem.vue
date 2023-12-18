@@ -12,7 +12,13 @@ const toggleDropdown = (value: string) => {
   dropdownVisibility.value = !dropdownVisibility.value
 }
 
+const formattedCreatedAtWithoutTime = computed(() =>
+  formatDate(props.item.createdAt, 2),
+)
 const formattedCreatedAt = computed(() => formatDate(props.item.createdAt, 3))
+const formattedCreatedAtString = computed(() =>
+  formatDate(props.item.createdAt, 5),
+)
 </script>
 
 <template>
@@ -37,7 +43,11 @@ const formattedCreatedAt = computed(() => formatDate(props.item.createdAt, 3))
           {{ item.user && item.user.name ? item.user.name : '' }}
         </p>
         <p class="text-sm text-gray-600 dark:text-gray-400">
-          <time pubdate datetime="2022-02-08" title="February 8th, 2022">
+          <time
+            pubdate
+            :datetime="formattedCreatedAtString"
+            :title="formattedCreatedAtWithoutTime"
+          >
             <!-- Feb. 8, 2022 -->
             {{ formattedCreatedAt }}
           </time>
