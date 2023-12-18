@@ -107,7 +107,7 @@ export interface News {
   autors: IUser[]
   checkboxActive: boolean
   checkboxPublic: boolean
-  comments: Comment[] | [] | null
+  comments: IComment[]
   createdAt: string
   description: string
   durationWeeks: null
