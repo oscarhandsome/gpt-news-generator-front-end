@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { Comment } from '@/types'
+import type { IComment } from '@/types'
 import { formatDate } from '@/utils/utils'
 
 // const props = defineProps<Comment>()
-const props = defineProps<{ item: Comment }>()
+const props = defineProps<{ item: IComment }>()
 
 const dropdownVisibility = ref(false)
 

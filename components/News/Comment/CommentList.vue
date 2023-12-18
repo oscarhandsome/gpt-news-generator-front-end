@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { Comment } from '@/types'
+import type { IComment } from '@/types'
 
 defineProps<{
-  comments: Comment[]
+  comments: IComment[]
   currentNewsId: string
   ratingsAverage: Number
 }>()

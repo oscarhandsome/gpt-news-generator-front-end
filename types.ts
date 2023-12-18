@@ -99,7 +99,7 @@ export interface IComment {
   createdAt: string
   id: string
   news: string
-  user: string
+  user: IUser
 }
 
 export interface News {
