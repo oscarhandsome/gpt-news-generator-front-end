@@ -5,5 +5,8 @@
 </script>
 
 <template>
-  <!-- <p>Counter: {{ store.count }}</p> -->
+  <p>
+    Counter: 0
+    <!-- {{ store.count }} -->
+  </p>
 </template>

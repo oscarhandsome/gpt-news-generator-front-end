@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { IComment } from '@/types'
+import type { Comment } from '@/types'
 
 defineProps<{
-  comments: IComment[]
+  comments: Comment[]
   currentNewsId: string
   ratingsAverage: Number
 }>()
@@ -24,13 +24,13 @@ defineProps<{
 
       <FormNewsComment :current-news-id="currentNewsId" />
 
-      <template
-        v-if="comments && comments.length"
-        v-for="item in comments"
-        :key="item.id"
-      >
-        <NewsCommentListItem v-if="item" :item="item" />
-      </template>
+      <div class="w-full">
+        <NewsCommentListItem
+          v-for="item in comments"
+          :key="item.id"
+          :item="item"
+        />
+      </div>
     </div>
   </section>
 </template>
