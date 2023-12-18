@@ -77,7 +77,7 @@ const formattedCreatedAt = computed(() => formatDate(props.item.createdAt))
         <p
           class="text-base sm:text-lg lg:text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
         >
-          {{ item.name.substring(0, 18) + '...' }}
+          {{ item.name.substring(0, 16) + '...' }}
         </p>
         <p
           class="font-normal text-gray-700 dark:text-gray-400 break-all mt-2"
