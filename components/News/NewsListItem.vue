@@ -77,11 +77,13 @@ const formattedCreatedAt = computed(() => formatDate(props.item.createdAt))
         <p
           class="text-base sm:text-lg lg:text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
         >
-          {{ item.name.substring(0, 16) + '...' }}
+          {{ item.name.substring(0, view === 'list' ? 50 : 16) + '...' }}
         </p>
         <p
           class="font-normal text-gray-700 dark:text-gray-400 break-all mt-2"
-          v-html="item.description.substring(0, 60) + '...'"
+          v-html="
+            item.description.substring(0, view === 'list' ? 180 : 60) + '...'
+          "
         ></p>
       </div>
       <!-- <div
