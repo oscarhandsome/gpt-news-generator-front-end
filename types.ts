@@ -93,7 +93,8 @@ export interface ISubsription extends IBaseField {
   features: string[]
 }
 
-export interface Comment {
+export interface IComment {
+  comments: IComment[]
   comment: string
   createdAt: string
   id: string
@@ -102,8 +103,8 @@ export interface Comment {
 }
 
 export interface News {
-  autor: User
-  autors: User[]
+  autor: IUser
+  autors: IUser[]
   checkboxActive: boolean
   checkboxPublic: boolean
   comments: Comment[] | [] | null
