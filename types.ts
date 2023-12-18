@@ -1,3 +1,10 @@
+interface IBaseField {
+  createdAt?: string
+  updatedAt?: string
+  id: string
+  name: string
+}
+
 export interface UserPayloadInterface {
   name?: string
   email?: string
@@ -62,14 +69,10 @@ export interface CheckboxProps {
   modelValue: boolean
 }
 
-export interface IUser {
-  createdAt: string
+export interface IUser extends IBaseField {
   email: string
-  name: string | null
   photo: string | null
   role: string
-  updatedAt: string
-  id: string
   position: string
 }
 
@@ -83,15 +86,11 @@ export interface IAuthStore {
   user: IUser
 }
 
-export interface Subsription {
+export interface ISubsription extends IBaseField {
   price: number
   description: string
   allowedRequiests: number
   features: string[]
-  createdAt: string
-  updatedAt: string
-  id: string
-  name: string
 }
 
 export interface Comment {

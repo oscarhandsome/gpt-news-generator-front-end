@@ -2,10 +2,10 @@
 import { storeToRefs } from 'pinia' // import storeToRefs helper hook from pinia
 import { useBookingStore } from '~/store/booking' // import the auth store we just created
 import { useAuthStore } from '~/store/auth'
-import type { Subsription } from '@/types'
+import type { ISubsription } from '@/types'
 
 defineProps<{
-  item: Subsription
+  item: ISubsription
   currentSubId: String
 }>()
 

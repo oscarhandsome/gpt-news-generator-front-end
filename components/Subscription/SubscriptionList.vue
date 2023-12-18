@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Subsription } from '@/types'
+import type { ISubsription } from '@/types'
 
 // defineProps<User>({
 //   user: {
@@ -12,8 +12,8 @@ import type { Subsription } from '@/types'
 
 // const props = defineProps<{
 defineProps<{
-  subscriptions: Subsription[]
-  currentSubId?: String
+  subscriptions: ISubsription[]
+  currentSubId?: string
 }>()
 </script>
 
