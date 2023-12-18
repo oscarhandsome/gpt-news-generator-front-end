@@ -76,8 +76,8 @@ const formattedCreatedAtString = computed(() =>
       </button>
       <!-- Dropdown menu -->
       <NewsCommentDropdown
-        :itemId="item.id"
-        :dropdownVisibility="dropdownVisibility"
+        :item-id="item.id"
+        :dropdown-visibility="dropdownVisibility"
       />
     </footer>
     <p class="text-gray-500 dark:text-gray-400">
