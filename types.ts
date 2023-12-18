@@ -102,7 +102,7 @@ export interface IComment {
   user: IUser
 }
 
-export interface News {
+export interface News extends IBaseField {
   autor: IUser
   autors: IUser[]
   checkboxActive: boolean
@@ -112,16 +112,13 @@ export interface News {
   description: string
   durationWeeks: null
   famousPerson: string
-  id: string
   imageCover: string
   images: string[]
   newsLength: number
-  name: string
   place: string
   ratingsAverage: number
   ratingsQuantity: number
   secretNews: boolean
   slug: string
   type: string
-  updatedAt: string
 }
