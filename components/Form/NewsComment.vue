@@ -1,25 +1,27 @@
 <script lang="ts" setup>
 // import { mapState } from 'pinia'
 import { storeToRefs } from 'pinia'
-import { useNewsStore } from '@/store/news'
+import { useCommentsStore } from '@/store/comments'
 import { useAuthStore } from '~/store/auth'
 
-const prop = defineProps<{ currentNewsId: string }>()
+const props = defineProps<{
+  currentNewsId: string
+  parentId?: string
+}>()
 
-const { postComment } = useNewsStore() // use authenticateUser action from  auth store
-const { isLoadingLocal, error, errors, currentNews } = storeToRefs(
-  useNewsStore(),
-) // make isAuthenticated state reactive with storeToRefs
+const { postComment } = useCommentsStore()
+const { isLoadingLocal, error } = storeToRefs(useCommentsStore())
 
 // const { updatePassword } = useAuthStore()
 const { isAuthenticated } = storeToRefs(useAuthStore()) // make isAuthenticated state reactive with storeToRefs
 
 const data = reactive({
-  id: prop.currentNewsId,
+  id: props.currentNewsId,
   comment: '',
 })
 
 const submitForm = async () => {
+  if (props.parentId) data.parentId = props.parentId
   const res = await postComment(data)
   if (res) data.comment = ''
 }

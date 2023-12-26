@@ -48,11 +48,12 @@ function setIsOpen(value) {
             <slot />
 
             <button
-              class="absolute top-2 right-2 bg-white rounded-full outline-none hover:text-red-400 active:text-red-400 transition-colors"
+              type="button"
+              class="absolute top-2 right-2 bg-white rounded-full outline-none hover:text-red-400 active:text-red-400 transition-colors h-5 lg:h-10 w-5 lg:w-10"
               @click="setIsOpen(false)"
             >
               <XCircleIcon
-                class="inline h-5 lg:h-10 w-5 lg:w-10"
+                class="inline h-5 lg:h-10 w-5 lg:w-10 -mt-2 lg:mt-0"
                 aria-hidden="true"
               />
             </button>

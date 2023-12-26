@@ -16,11 +16,11 @@ const { percent, endAt, closeIn } = useNinjaToasterProgress()
 
 <template>
   <div
-    class="relative sm:border sm:border-gray-200 sm:rounded-lg sm:shadow p-4"
+    class="relative sm:border sm:rounded-lg sm:shadow p-4"
     :class="[
       props.type === 'info' &&
-        'bg-white text-black dark:bg-white dark:text-white ',
-      props.type === 'error' && 'bg-rose-600 text-rose-500',
+        'bg-white text-black dark:bg-white dark:text-white sm:border-gray-200',
+      props.type === 'error' && 'bg-rose-100 text-rose-500 sm:border-rose-600',
     ]"
   >
     <p>{{ props.title }}</p>

@@ -7,7 +7,7 @@ import { clearObject } from '@/utils/utils'
 const defaultUserValue: IUser = {
   createdAt: '',
   email: '',
-  name: null,
+  name: '',
   photo: null,
   role: '',
   updatedAt: '',

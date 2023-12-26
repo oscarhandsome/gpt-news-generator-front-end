@@ -12,12 +12,13 @@ export default defineNuxtPlugin(() => {
     containerId: 'nt-container-bottom-right',
     containerClass: [
       'absolute',
+      'z-20',
       'inset-0',
       'pointer-events-none',
       'p-4',
       'flex',
-      'flex-col-reverse',
-      'items-start',
+      'flex-col',
+      'items-end',
       'gap-2',
     ],
     wrapperClass: ['pointer-events-auto', 'cursor-pointer'],
@@ -49,7 +50,7 @@ export default defineNuxtPlugin(() => {
     async error(options: ToasterOptions) {
       // wait for the toast to be mounted
       const { el, close } = await nt.show(() =>
-        h(MyToastError, {
+        h(MyToast, {
           ...options,
           type: 'error',
         }),

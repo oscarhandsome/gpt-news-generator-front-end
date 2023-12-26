@@ -5,17 +5,15 @@ interface IBaseField {
   name: string
 }
 
-export interface UserPayloadInterface {
-  name?: string
-  email?: string
-  password?: string
-  passwordConfirm?: string
-  remember?: boolean
-  token?: string
+export interface UserPayloadInterface extends Pick<IBaseField, 'name'> {
+  email: string
+  password: string
+  passwordConfirm: string
+  remember: boolean
+  token: string
 }
 
-export interface NewsPayloadInterface {
-  name: string
+export interface NewsPayloadInterface extends Pick<IBaseField, 'name'> {
   type: string
   famousPerson: string
   place: string
@@ -47,9 +45,7 @@ export interface InputSliderProps extends InputProps {
   step: number
 }
 
-export interface Option {
-  id: number
-  name: string
+export interface Option extends Pick<IBaseField, 'id' | 'name'> {
   value: string
 }
 
@@ -93,13 +89,12 @@ export interface ISubsription extends IBaseField {
   features: string[]
 }
 
-export interface IComment {
+export interface IComment extends Pick<IBaseField, 'createdAt' | 'id'> {
   comments: IComment[]
   comment: string
-  createdAt: string
-  id: string
   news: string
   user: IUser
+  parentId: string
 }
 
 export interface News extends IBaseField {
@@ -108,7 +103,6 @@ export interface News extends IBaseField {
   checkboxActive: boolean
   checkboxPublic: boolean
   comments: IComment[]
-  createdAt: string
   description: string
   durationWeeks: null
   famousPerson: string
@@ -122,3 +116,16 @@ export interface News extends IBaseField {
   slug: string
   type: string
 }
+
+export type QueryOptions = {
+  limit?: number
+  sort?: 'desc' | 'asc'
+  category?: string
+}
+
+export type QueryParameters = Record<
+  string,
+  string | number | boolean | undefined
+>
+
+export type Category = string

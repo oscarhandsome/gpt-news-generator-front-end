@@ -5,9 +5,9 @@ import { clearObject } from '@/utils/utils'
 
 import type { NewsPayloadInterface, News } from '@/types'
 
-function onlyUnique(value: string, index: number, array: string[]) {
-  return array.indexOf(value) === index
-}
+// function onlyUnique(value: string, index: number, array: string[]) {
+//   return array.indexOf(value) === index
+// }
 
 export const useNewsStore = defineStore('news', {
   state: () => ({
@@ -154,24 +154,6 @@ export const useNewsStore = defineStore('news', {
       const { data, pending }: any = await Api.get(`/news/autor/${payload}`)
       if (data.value) this.news = data.value.data.data
       this.isLoading = pending.value
-    },
-    async postComment(payload: any) {
-      this.isLoadingLocal = true
-      const { data, pending, error }: any = await Api.post(
-        `/news/${payload.id}/comments`,
-        payload,
-      )
-      // if (data.value) this.currentNews = data.value.data.data
-      this.isLoadingLocal = pending.value
-      console.log(data.value)
-      if (data.value) {
-        this.currentNews.comments.push(data.value.data.data)
-        return true
-      }
-      console.log(error.value)
-      if (error.value) {
-        return false
-      }
     },
   },
   getters: {

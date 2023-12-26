@@ -19,10 +19,10 @@ const { fullImageUrl } = storeToRefs(useCommonStore())
       :src="fullImageUrl"
       :alt="`image-desc`"
       loading="lazy"
-      width="100%"
-      height="100%"
+      width="512px"
+      height="512px"
       placeholder="/placeholder.png"
-      class="rounded-lg min-h-screen object-fill"
+      class="rounded-lg object-cover w-full"
     />
   </div>
 </template>
