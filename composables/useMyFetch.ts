@@ -16,18 +16,14 @@ export const useMyFetch: typeof useFetch = async (request, opts?) => {
       ...opts,
     })
     const { data, pending, error }: any = response
-    console.log('data, pending, error', data, pending, error)
 
     if (error && error.value) {
+      // console.log('data, pending, error', data, pending, error)
       console.error(error.value.data)
       $toaster.error({
-        title: `Error`,
-        message: 'Something went wrong',
+        title: `Error, status: ${error.value.data.status}`,
+        message: error.value.data.message,
       })
-      // $toaster.error({
-      //   title: `Error, status: ${error.value.data.status}, code: ${error.value.data.error.statusCode}`,
-      //   message: error.value.data.message,
-      // })
     }
     return response
   } catch (error) {
