@@ -47,6 +47,7 @@ export const useAuthStore = defineStore('auth', {
       }
 
       if (error.value) {
+        console.error(error.value)
         this.error = error.value.data.message
         this.showToaster('Error', this.error, true)
         setTimeout(() => {
