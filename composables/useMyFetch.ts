@@ -6,7 +6,7 @@ export const useMyFetch: typeof useFetch = async (request, opts?) => {
   // return useFetch(request, { baseURL: config.public.baseURL, ...opts })
 
   try {
-    const response = await useFetch(request, {
+    return await useFetch(request, {
       baseURL: config.public.baseURL,
       headers: {
         Authorization: `Bearer ${token.value}`,
@@ -15,17 +15,17 @@ export const useMyFetch: typeof useFetch = async (request, opts?) => {
       },
       ...opts,
     })
-    const { data, pending, error }: any = response
+    // const { data, pending, error }: any = response
 
-    if (error && error.value) {
-      // console.log('data, pending, error', data, pending, error)
-      console.error(error.value.data)
-      $toaster.error({
-        title: `Error, status: ${error.value.data.status}`,
-        message: error.value.data.message,
-      })
-    }
-    return response
+    // if (error && error.value) {
+    //   // console.log('data, pending, error', data, pending, error)
+    //   console.error(error.value.data)
+    //   $toaster.error({
+    //     title: `Error, status: ${error.value.data.status}`,
+    //     message: error.value.data.message,
+    //   })
+    // }
+    // return response
   } catch (error) {
     return error
   }
