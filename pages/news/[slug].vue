@@ -29,9 +29,7 @@ const route = useRoute()
 const { getNews } = useNewsStore()
 const { isLoading, errors, currentNews } = storeToRefs(useNewsStore())
 
-const { slug } = route.params
-await getNews(slug)
-// console.log('store', currentNews)
+await getNews(route.params.slug)
 
 const formattedCreatedAt = computed(() =>
   formatDate(currentNews.value.createdAt),
