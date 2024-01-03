@@ -1,20 +1,20 @@
 <script lang="ts" setup>
 defineProps<{
-  currentPage?: number
-  pageCount?: number
-  paginationLimit?: number
+  currentPage?: Number
+  pageCount?: Number
+  paginationLimit?: Number
 }>()
 
 // const emit = defineEmits(['updatePage'])
 const emits = defineEmits<{
-  (e: 'updatePage', id: number): void
+  (e: 'updatePage', id: Number): void
 }>()
 
 const route = useRoute()
 
-// const total: number = Math.ceil(props.itemsLength / props.itemsPerPage)
+// const total: Number = Math.ceil(props.itemsLength / props.itemsPerPage)
 
-const selectPage = (p: number) => emits('updatePage', p)
+const selectPage = (p: Number) => emits('updatePage', p)
 </script>
 
 <template>

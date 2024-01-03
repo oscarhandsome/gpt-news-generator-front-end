@@ -128,8 +128,8 @@ useSchemaOrg([
           class="flex items-center absolute top-0 left-0 font-bold text-xs text-gray-500 text-right lg:text-left rounded-br-lg py-1 px-2"
         >
           <StarIcon
-            v-for="star in currentNews.ratingsAverage"
-            :key="star"
+            v-for="(star, idx) in Math.ceil(currentNews.ratingsAverage)"
+            :key="idx"
             class="inline w-7 h-7 text-amber-500"
             aria-hidden="true"
           />
