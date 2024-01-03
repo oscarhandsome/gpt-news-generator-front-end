@@ -22,7 +22,7 @@ const defalutAuthValue: IAuthStore = {
   errors: {},
   error: '',
   success: false,
-  user: defaultUserValue,
+  user: defaultUserValue || null,
 }
 
 export const useAuthStore = defineStore('auth', {

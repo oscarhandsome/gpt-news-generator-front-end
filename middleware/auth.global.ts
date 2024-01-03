@@ -6,10 +6,10 @@ export default defineNuxtRouteMiddleware((to) => {
   const token = useCookie('token') // get token from cookies
 
   isAuthenticated.value = !!token.value
-  if (process.client)
-    user.value = localStorage.getItem('user')
-      ? JSON.parse(localStorage.getItem('user'))
-      : null
+  if (process.client) {
+    const localUser = localStorage.getItem('user')
+    user.value = localUser ? JSON.parse(localUser) : null
+  }
 
   if (
     (token.value && to?.name === 'auth-login') ||
