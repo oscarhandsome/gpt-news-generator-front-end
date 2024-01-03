@@ -24,8 +24,8 @@ export interface NewsPayloadInterface extends Pick<IBaseField, 'name'> {
 
 export interface NavLink {
   to: string
-  name: string
-  active: boolean
+  name?: string
+  active?: boolean
 }
 
 export interface InputProps {
