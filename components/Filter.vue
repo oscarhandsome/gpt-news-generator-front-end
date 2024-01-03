@@ -6,11 +6,9 @@ import { useSettingsStore } from '@/store/settings'
 const { famousPersons, newsList } = storeToRefs(useNewsStore())
 const { settings } = storeToRefs(useSettingsStore())
 
-console.log('settings', settings.value)
-
-interface OptionSelectUi {
-  name: string
-}
+// interface OptionSelectUi {
+//   name: string
+// }
 
 // const people: OptionSelectUi[] = [
 //   { name: 'Wade Cooper' },
