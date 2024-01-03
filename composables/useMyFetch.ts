@@ -1,5 +1,5 @@
 export const useMyFetch: typeof useFetch = async (request, opts?) => {
-  const { $toaster } = useNuxtApp()
+  // const { $toaster } = useNuxtApp()
   const config = useRuntimeConfig()
   const token = useCookie('token')
 
