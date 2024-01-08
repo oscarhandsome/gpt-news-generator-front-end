@@ -5,7 +5,11 @@ export default defineNuxtRouteMiddleware((to) => {
   const { isAuthenticated, user } = storeToRefs(useAuthStore()) // make isAuthenticated state reactive
   const token = useCookie('token') // get token from cookies
 
-  isAuthenticated.value = !!token.value
+  // isAuthenticated.value = !!token.value
+  if (token.value) {
+    // check if value exists
+    isAuthenticated.value = true // update the state to isAuthenticated
+  }
   if (process.client) {
     const localUser = localStorage.getItem('user')
     user.value = localUser ? JSON.parse(localUser) : null
