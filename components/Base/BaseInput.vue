@@ -45,7 +45,7 @@ const id = props.label.toLocaleLowerCase().replaceAll(' ', '-')
           : 'bg-gray-50 border-gray-300 text-gray-900 ',
       ]"
       :placeholder="placeholder"
-      @input="$emit('update:modelValue', $event.target?.value)"
+      @input="$emit('update:modelValue', $event.target.value)"
     />
     <p
       v-if="error"

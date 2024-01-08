@@ -107,36 +107,31 @@ onBeforeUnmount(() => {
           <div class="flex flex-grow h-1 bg-gray-300"></div>
         </div>
 
-        <div>
-          <BaseInput
-            :model-value="data.email"
-            label="Email"
-            type="string"
-            :error="errors.email"
-            placeholder="name@example.com"
-            required
-            @update:model-value="data.email = $event"
-          />
-        </div>
-        <div>
-          <BaseInput
-            :model-value="data.password"
-            label="Password"
-            name="password"
-            type="password"
-            :error="errors.password"
-            placeholder="••••••••"
-            required
-            @update:model-value="data.password = $event"
-          />
-        </div>
+        <BaseInput
+          v-model="data.email"
+          label="Email"
+          type="string"
+          error=""
+          placeholder="name@example.com"
+          required
+        />
+        <BaseInput
+          v-model="data.password"
+          label="Password"
+          name="password"
+          type="password"
+          error=""
+          placeholder="••••••••••••••••••••"
+          required
+        />
+
         <div class="flex items-start">
           <BaseCheckbox
             id="remember"
             label="Remember me"
             :model-value="data.remember"
             name="remember"
-            :error="errors.remember"
+            error=""
             class="h-5"
             @update:model-value="data.remember = $event"
           />
@@ -146,6 +141,7 @@ onBeforeUnmount(() => {
             >Lost Password?
           </nuxt-link>
         </div>
+
         <button
           aria-label="Login"
           type="submit"
@@ -153,6 +149,7 @@ onBeforeUnmount(() => {
         >
           Login to your account
         </button>
+
         <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
           Not registered?
           <nuxt-link
