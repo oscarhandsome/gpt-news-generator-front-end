@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { CheckIcon, HomeIcon } from '@heroicons/vue/24/solid'
+// import { CheckIcon, HomeIcon } from '@heroicons/vue/24/solid'
 
 import { GoogleSignInButton, type CredentialResponse } from 'vue3-google-signin'
 import { storeToRefs } from 'pinia' // import storeToRefs helper hook from pinia
@@ -56,7 +56,7 @@ const handleAuthSuccess = async (response: CredentialResponse) => {
 }
 
 // handle an error event
-const handleAuthError = (error) => {
+const handleAuthError = (error: any) => {
   console.error('Signup failed')
   console.error('error', error)
   error.value = 'Sorry Terms of Use and Privacy Policy not accepted.'

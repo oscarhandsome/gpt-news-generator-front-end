@@ -17,7 +17,7 @@ definePageMeta({
 })
 
 const { authenticateUser } = useAuthStore() // use authenticateUser action from  auth store
-const { isAuthenticated, success, isLoading, error, errors } = storeToRefs(
+const { isAuthenticated, success, isLoading, error } = storeToRefs(
   useAuthStore(),
 ) // make isAuthenticated state reactive with storeToRefs
 
@@ -29,6 +29,7 @@ const data = ref({
 const router = useRouter()
 
 const login = async () => {
+  console.log(data.value)
   await authenticateUser(data.value) // call authenticateUser and pass the user object
   if (isAuthenticated.value) router.push('/') // redirect to homepage if user is isAuthenticated
 }

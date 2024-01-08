@@ -4,20 +4,6 @@ import type { InputProps } from '@/types'
 defineEmits(['update:modelValue'])
 const props = defineProps<InputProps>()
 const id = props.label.toLocaleLowerCase().replaceAll(' ', '-')
-
-// const errorLocal = ref(props.error)
-// console.log('errorLocal:', errorLocal)
-// watch(props, (oldVal, newVal) => {
-//   // if (!newVal.modelValue?.length) errorLocal = ''
-//   console.log('newVal', newVal.error)
-//   errorLocal.value = newVal.error
-// })
-
-// const clearError = () => {
-//   console.log('errorLocal.value:', errorLocal.value)
-//   errorLocal.value = ''
-//   console.log('errorLocal.value:', errorLocal.value)
-// }
 </script>
 
 <template>
@@ -45,7 +31,9 @@ const id = props.label.toLocaleLowerCase().replaceAll(' ', '-')
           : 'bg-gray-50 border-gray-300 text-gray-900 ',
       ]"
       :placeholder="placeholder"
-      @input="$emit('update:modelValue', $event.target.value)"
+      @input="
+        $emit('update:modelValue', ($event.target as HTMLInputElement).value)
+      "
     />
     <p
       v-if="error"

@@ -5,12 +5,13 @@ interface IBaseField {
   name: string
 }
 
-export interface UserPayloadInterface extends Pick<IBaseField, 'name'> {
-  email: string
-  password: string
-  passwordConfirm: string
-  remember: boolean
-  token: string
+// export interface UserPayloadInterface extends Pick<IBaseField, 'name'> {
+export interface UserPayloadInterface {
+  email?: string
+  password?: string
+  passwordConfirm?: string
+  remember?: boolean
+  token?: string
 }
 
 export interface NewsPayloadInterface extends Pick<IBaseField, 'name'> {
@@ -30,12 +31,12 @@ export interface NavLink {
 
 export interface InputProps {
   label: string
-  error: string | undefined | []
+  error: string | undefined | string[]
   required?: boolean
   placeholder?: string
   autofocus?: boolean
-  type?: 'string' | 'number' | 'email' | 'password'
-  modelValue?: string | undefined | null
+  type: 'string' | 'number' | 'email' | 'password'
+  modelValue: string
   tooltip?: string
 }
 
@@ -51,7 +52,7 @@ export interface Option extends Pick<IBaseField, 'id' | 'name'> {
 
 export interface SelectProps {
   label: string
-  error: string | undefined | []
+  error: string | undefined | string[]
   required?: boolean
   options: Option[] | []
   modelValue: string

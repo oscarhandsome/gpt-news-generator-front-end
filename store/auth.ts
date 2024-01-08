@@ -69,7 +69,7 @@ export const useAuthStore = defineStore('auth', {
 
       if (error) console.error(error)
     },
-    async signUp(payload: any) {
+    async signUp(payload: UserPayloadInterface) {
       const { $toaster } = useNuxtApp()
       this.isLoading = true
       this.clearErrors(true)
