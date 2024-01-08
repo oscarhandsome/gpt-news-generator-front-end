@@ -118,15 +118,15 @@ export interface News extends IBaseField {
   type: string
 }
 
-export type QueryOptions = {
-  limit?: number
-  sort?: 'desc' | 'asc'
-  category?: string
-}
+// export type QueryOptions = {
+//   limit?: number
+//   sort?: 'desc' | 'asc'
+//   category?: string
+// }
 
-export type QueryParameters = Record<
-  string,
-  string | number | boolean | undefined
->
+// export type QueryParameters = Record<
+//   string,
+//   string | number | boolean | undefined
+// >
 
-export type Category = string
+// export type Category = string
