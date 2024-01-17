@@ -26,7 +26,7 @@
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "5.0.0-alpha.2",
     "nuxi": "^3.9.1",
-    "nuxt": "^3.8.0",
+    "nuxt": "^3.9.2",
     "nuxt-schema-org": "^3.0.1",
     "nuxt-security": "^0.14.4",
     "nuxt3-stripe": "^1.1.1",
@@ -44,7 +44,8 @@
     "floating-vue": "2.0.0-beta.24",
     "node-fetch-native": "1.2.0",
     "nuxt-vue3-google-signin": "^0.0.9",
-    "pnpm": "^8.6.6"
+    "pnpm": "^8.6.6",
+    "untyped": "1.4.0"
   },
   "pnpm": {
     "overrides": {
