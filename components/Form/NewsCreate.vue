@@ -56,7 +56,10 @@ const newsTypesOptions = ref([
 
 const imagesModelOptions = ref(imagesModelIdOptions)
 
-const submitForm = () => createNews(data)
+const submitForm = () => {
+  console.log(data)
+  // createNews(data)
+}
 
 // if (Object.keys(currentNews).length) router.push(`/news/${currentNews.slug}`)
 
@@ -161,7 +164,9 @@ onBeforeUnmount(() => {
           label="Image Model Id"
           error=""
           class="mb-3"
-          @update:model-value="data.imageModelId = $event"
+          @update:model-value="
+            data.imageModelId = imagesModelOptions[parseInt($event)].value
+          "
         />
 
         <BaseSlider

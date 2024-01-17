@@ -1,7 +1,7 @@
 interface IBaseField {
   createdAt?: string
   updatedAt?: string
-  id: string
+  id: string | number
   name: string
 }
 
