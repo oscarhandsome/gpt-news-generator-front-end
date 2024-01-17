@@ -56,10 +56,7 @@ const newsTypesOptions = ref([
 
 const imagesModelOptions = ref(imagesModelIdOptions)
 
-const submitForm = () => {
-  console.log(data)
-  // createNews(data)
-}
+const submitForm = () => createNews(data)
 
 // if (Object.keys(currentNews).length) router.push(`/news/${currentNews.slug}`)
 
