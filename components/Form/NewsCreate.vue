@@ -97,7 +97,9 @@ useSeoMeta({
           :model-value="data.type"
           :error="errors.type"
           class="mb-3"
-          @update:model-value="data.type = $event"
+          @update:model-value="
+            data.type = newsTypesOptions[parseInt($event)].value
+          "
         />
 
         <BaseInput
