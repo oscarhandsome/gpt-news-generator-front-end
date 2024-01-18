@@ -10,7 +10,7 @@ const id = props.label.toLocaleLowerCase().replaceAll(' ', '-')
   <div>
     <div class="flex items-center mb-2">
       <label
-        for="steps-range"
+        :for="id"
         class="block text-sm font-medium text-gray-900 dark:text-white"
         >{{ label }}: {{ modelValue }}</label
       >

@@ -27,7 +27,6 @@ const submitForm = () => updateUserData(data)
           v-model="data.name"
           placeholder="John Doe"
           label="Current position"
-          type="string"
           :error="errors.name"
           required
           class="mb-3"
@@ -37,7 +36,6 @@ const submitForm = () => updateUserData(data)
         <BaseInput
           v-model="data.position"
           label="Position"
-          type="string"
           :error="errors.position"
           placeholder="Correspondent"
           required

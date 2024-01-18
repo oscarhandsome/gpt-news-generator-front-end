@@ -13,9 +13,8 @@ definePageMeta({
 // const config = useRuntimeConfig()
 
 const { signUp, clearErrors } = useAuthStore() // use authenticateUser action from  auth store
-const { isAuthenticated, success, error, errors, isLoading } = storeToRefs(
-  useAuthStore(),
-) // make isAuthenticated state reactive with storeToRefs
+const { isAuthenticated, success, error, errors, isLoading } =
+  storeToRefs(useAuthStore()) // make isAuthenticated state reactive with storeToRefs
 
 // const isLoading = ref(false)
 const checkboxActive = ref(false)
@@ -190,7 +189,6 @@ onBeforeUnmount(() => {
           <BaseInput
             v-model="data.name"
             label="Name"
-            type="string"
             :error="errors.name"
             placeholder="John Doe"
             required

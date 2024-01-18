@@ -35,15 +35,17 @@ export interface InputProps {
   required?: boolean
   placeholder?: string
   autofocus?: boolean
-  type: 'string' | 'number' | 'email' | 'password'
+  type?: 'number' | 'email' | 'password'
   modelValue: string
   tooltip?: string
 }
 
-export interface InputSliderProps extends InputProps {
+export interface InputSliderProps
+  extends Omit<InputProps, 'modelValue' | 'type'> {
   min: number
   max: number
   step: number
+  modelValue: string | number
 }
 
 export interface Option extends Pick<IBaseField, 'id' | 'name'> {

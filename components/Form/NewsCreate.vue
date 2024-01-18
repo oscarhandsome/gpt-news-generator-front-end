@@ -63,6 +63,12 @@ const submitForm = () => createNews(data)
 onBeforeUnmount(() => {
   errors.value = clearObject(errors.value)
 })
+
+// SEO
+
+useSeoMeta({
+  title: () => 'Create news page | GPT Chat News Generator',
+})
 </script>
 
 <template>
@@ -79,7 +85,6 @@ onBeforeUnmount(() => {
           v-model="data.name"
           placeholder="Magnificent new news!"
           label="Name"
-          type="string"
           :error="errors.name"
           required
           class="mb-3"
@@ -98,7 +103,6 @@ onBeforeUnmount(() => {
         <BaseInput
           v-model="data.famousPerson"
           label="Famous person"
-          type="string"
           :error="errors.famousPerson"
           placeholder="Arnold Schwarzenegger"
           required
@@ -109,7 +113,6 @@ onBeforeUnmount(() => {
         <BaseInput
           v-model="data.place"
           label="Place"
-          type="string"
           :error="errors.place"
           placeholder="Laguna Beach California"
           required

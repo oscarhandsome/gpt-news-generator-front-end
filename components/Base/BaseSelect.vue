@@ -4,6 +4,8 @@ import type { SelectProps } from '@/types'
 defineEmits(['update:modelValue'])
 const props = defineProps<SelectProps>()
 const id = props.label.toLocaleLowerCase().replaceAll(' ', '-')
+
+const selectedValue = computed(() => props.options.value === props.modelValue)
 </script>
 
 <template>
@@ -20,7 +22,7 @@ const id = props.label.toLocaleLowerCase().replaceAll(' ', '-')
     <select
       :id="id"
       :ref="id"
-      :value="modelValue"
+      :value="selectedValue"
       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
       :class="{ 'ring-rose-500': error }"
       @input="

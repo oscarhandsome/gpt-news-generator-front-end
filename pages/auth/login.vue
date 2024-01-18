@@ -17,9 +17,8 @@ definePageMeta({
 })
 
 const { authenticateUser } = useAuthStore() // use authenticateUser action from  auth store
-const { isAuthenticated, success, isLoading, error } = storeToRefs(
-  useAuthStore(),
-) // make isAuthenticated state reactive with storeToRefs
+const { isAuthenticated, success, isLoading, error } =
+  storeToRefs(useAuthStore()) // make isAuthenticated state reactive with storeToRefs
 
 const data = ref({
   email: '',
@@ -111,7 +110,6 @@ onBeforeUnmount(() => {
         <BaseInput
           v-model="data.email"
           label="Email"
-          type="string"
           error=""
           placeholder="name@example.com"
           required
