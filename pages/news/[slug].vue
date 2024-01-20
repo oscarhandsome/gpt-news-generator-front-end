@@ -166,25 +166,24 @@ useSchemaOrg([
 
         <div
           v-if="currentNews.images && currentNews.images.length"
-          class="flex flex-wrap"
+          class="flex flex-wrap gap-2"
         >
           <div
             v-for="(image, idx) in currentNews.images"
             :key="idx"
-            class="flex mb-2 xl:mb-0 mr-2"
+            class="flex cursor-pointer"
+            @click="toggleFullImageView(image)"
           >
-            <div class="cursor-pointer" @click="toggleFullImageView(image)">
-              <nuxt-img
-                v-if="image"
-                :src="image"
-                :alt="`${currentNews.name}_image_${idx}`"
-                loading="lazy"
-                width="170"
-                height="170"
-                placeholder="/placeholder.png"
-                class="rounded-lg w-36 h-36 xl:w-48 xl:h-48"
-              />
-            </div>
+            <nuxt-img
+              v-if="image"
+              :src="image"
+              :alt="`${currentNews.name}_image_${idx}`"
+              loading="lazy"
+              width="150"
+              height="150"
+              placeholder="/placeholder.png"
+              class="rounded-lg"
+            />
           </div>
         </div>
 
