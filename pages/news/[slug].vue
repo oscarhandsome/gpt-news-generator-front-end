@@ -110,7 +110,6 @@ useSchemaOrg([
   <BaseLoader v-if="isLoading" default />
   <div v-else class="mb-12">
     <!-- Details of news {{ $route.params.slug }} -->
-    <BaseBackButton class="mb-2 sm:mb-5" />
 
     <div class="lg:flex">
       <div
