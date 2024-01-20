@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { HandThumbUpIcon, HandThumbDownIcon } from '@heroicons/vue/20/solid'
+// import { HandThumbUpIcon, HandThumbDownIcon } from '@heroicons/vue/20/solid'
 import { formatDate } from '../../utils/utils'
 
 const props = defineProps({
