@@ -1,3 +1,5 @@
+import type { Component } from 'nuxt/schema'
+
 interface IBaseField {
   createdAt?: string
   updatedAt?: string
@@ -27,6 +29,7 @@ export interface NavLink {
   to: string
   name?: string
   active?: boolean
+  icon?: Component
 }
 
 export interface InputProps {

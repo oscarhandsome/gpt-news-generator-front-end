@@ -14,11 +14,16 @@ import {
   AtSymbolIcon,
   UserCircleIcon,
 } from '@heroicons/vue/20/solid'
+
 import { useAuthStore } from '~/store/auth'
 // import { User } from '@/types'
 
+import { dropdownMenu } from '@/assets/data/dropdown-links'
+
 const router = useRouter()
 const { user, logUserOut, isAuthenticated } = useAuthStore()
+
+const menu = ref(dropdownMenu)
 
 const logout = () => {
   logUserOut()
@@ -56,135 +61,20 @@ const logout = () => {
           class="absolute z-10 right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white dark:bg-gray-200 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
         >
           <div class="px-1 py-1">
-            <MenuItem v-slot="{ active }">
-              <nuxt-link
-                to="/news/create"
-                :class="[
-                  active ? 'bg-violet-500 text-white' : 'text-gray-900',
-                  'group flex w-full items-center rounded-md px-2 py-2 text-sm',
-                ]"
-              >
-                <DocumentIcon
-                  :active="active"
+            <TheHeaderDropdownItem
+              v-for="(item, idx) in menu"
+              :key="idx"
+              :path="item.to"
+            >
+              <template #icon>
+                <component
+                  :is="item.icon"
                   class="mr-2 h-5 w-5 text-violet-400"
                   aria-hidden="true"
-                />
-                Create news
-              </nuxt-link>
-            </MenuItem>
-            <MenuItem v-slot="{ active }">
-              <nuxt-link
-                to="/subscriptions/my-subsriptions"
-                :class="[
-                  active ? 'bg-violet-500 text-white' : 'text-gray-900',
-                  'group flex w-full items-center rounded-md px-2 py-2 text-sm',
-                ]"
-              >
-                <CreditCardIcon
-                  :active="active"
-                  class="mr-2 h-5 w-5 text-violet-400"
-                  aria-hidden="true"
-                />
-                My subsriptions
-              </nuxt-link>
-            </MenuItem>
-            <MenuItem v-slot="{ active }">
-              <nuxt-link
-                to="/news/my-news"
-                :class="[
-                  active ? 'bg-violet-500 text-white' : 'text-gray-900',
-                  'group flex w-full items-center rounded-md px-2 py-2 text-sm',
-                ]"
-              >
-                <ViewListIcon
-                  :active="active"
-                  class="mr-2 h-5 w-5 text-violet-400"
-                  aria-hidden="true"
-                />
-                My news
-              </nuxt-link>
-            </MenuItem>
-            <MenuItem v-slot="{ active }">
-              <nuxt-link
-                to="/me"
-                :class="[
-                  active ? 'bg-violet-500 text-white' : 'text-gray-900',
-                  'group flex w-full items-center rounded-md px-2 py-2 text-sm',
-                ]"
-              >
-                <EditIcon
-                  :active="active"
-                  class="mr-2 h-5 w-5 text-violet-400"
-                  aria-hidden="true"
-                />
-                Edit account
-              </nuxt-link>
-            </MenuItem>
-            <!-- <MenuItem v-slot="{ active }">
-              <button
-                :class="[
-                  active ? 'bg-violet-500 text-white' : 'text-gray-900',
-                  'group flex w-full items-center rounded-md px-2 py-2 text-sm',
-                ]"
-              >
-                <DuplicateIcon
-                  :active="active"
-                  class="mr-2 h-5 w-5 text-violet-400"
-                  aria-hidden="true"
-                />
-                Duplicate
-              </button>
-            </MenuItem>
-          </div>
-          <div class="px-1 py-1">
-            <MenuItem v-slot="{ active }">
-              <button
-                :class="[
-                  active ? 'bg-violet-500 text-white' : 'text-gray-900',
-                  'group flex w-full items-center rounded-md px-2 py-2 text-sm',
-                ]"
-              >
-                <ArchiveIcon
-                  :active="active"
-                  class="mr-2 h-5 w-5 text-violet-400"
-                  aria-hidden="true"
-                />
-                Archive
-              </button>
-            </MenuItem>
-            <MenuItem v-slot="{ active }">
-              <button
-                :class="[
-                  active ? 'bg-violet-500 text-white' : 'text-gray-900',
-                  'group flex w-full items-center rounded-md px-2 py-2 text-sm',
-                ]"
-              >
-                <MoveIcon
-                  :active="active"
-                  class="mr-2 h-5 w-5 text-violet-400"
-                  aria-hidden="true"
-                />
-                Move
-              </button>
-            </MenuItem>
-          </div>
-
-          <div class="px-1 py-1">
-            <MenuItem v-slot="{ active }">
-              <button
-                :class="[
-                  active ? 'bg-violet-500 text-white' : 'text-gray-900',
-                  'group flex w-full items-center rounded-md px-2 py-2 text-sm',
-                ]"
-              >
-                <DeleteIcon
-                  :active="active"
-                  class="mr-2 h-5 w-5 text-violet-400"
-                  aria-hidden="true"
-                />
-                Delete
-              </button>
-            </MenuItem> -->
+                ></component>
+              </template>
+              {{ item.name }}
+            </TheHeaderDropdownItem>
           </div>
 
           <div class="px-1 py-1 cursor-pointer">
