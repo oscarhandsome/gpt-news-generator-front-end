@@ -46,15 +46,15 @@ onMounted(() => {
 
 watch(
   settings,
-  (newValue, oldValue) => {
-    console.log('newValue, oldValue', newValue, oldValue)
+  (newValue, _oldValue) => {
+    // console.log('newValue, oldValue', newValue, oldValue)
     // if (Number(route.query.page) !== 1)
     //   router.push({ path: route.path, query: { page: 1 } })
     paginationLimit.value = newValue.paginationLimit
     pageCount.value = Math.ceil(newsList.value.length / paginationLimit.value)
     // currentPage.value = Number(route.query.page)
-    console.log('paginationLimit.value', paginationLimit.value)
-    console.log('pageCount.value', pageCount.value)
+    // console.log('paginationLimit.value', paginationLimit.value)
+    // console.log('pageCount.value', pageCount.value)
     filteredItems.value = newsList.value.slice(
       (currentPage.value - 1) * paginationLimit.value,
       currentPage.value * paginationLimit.value,
