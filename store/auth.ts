@@ -179,7 +179,7 @@ export const useAuthStore = defineStore('auth', {
       //   `/users/emailConfirm/${payload}`,
       // )
       const { data, pending, error, refresh }: any = await useFetch(
-        `/users/emailConfirm/${payload}`,
+        `https://gpt-news-generator.onrender.com/users/emailConfirm/${payload}`,
         {
           method: 'post',
           headers: { 'Content-Type': 'application/json' },
