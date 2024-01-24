@@ -26,6 +26,7 @@ if (isAuthenticated.value && success.value) router.push('/')
 <template>
   <!-- LOADER -->
   <!-- <BaseLoader :show="isLoading" absolute /> -->
+  <div v-if="isLoading">Loading...</div>
   <div class="lg:my-5">
     <h1 class="text-2xl text-center mb-5">Email confirm page</h1>
 

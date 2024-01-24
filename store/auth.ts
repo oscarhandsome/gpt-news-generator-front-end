@@ -182,14 +182,16 @@ export const useAuthStore = defineStore('auth', {
       // console.log('pending.value', pending.value)
       // console.log('error.value', error.value)
       // console.log('refresh.value', refresh.value)
+
       // if (data.value && data.value.status === 'success') {
-      //   const token = useCookie('token') // useCookie new hook in nuxt 3
-      //   token.value = data?.value?.token // set token to cookie
-      //   this.isAuthenticated = true // set isAuthenticated  state value to true
-      //   this.user = data.value.data.user
-      //   localStorage.setItem('user', JSON.stringify(this.user))
-      //   this.success = true
-      // }
+      if (data.value) {
+        const token = useCookie('token') // useCookie new hook in nuxt 3
+        token.value = data.value.token // set token to cookie
+        this.isAuthenticated = true // set isAuthenticated  state value to true
+        this.user = data.value.data.user
+        localStorage.setItem('user', JSON.stringify(this.user))
+        this.success = true
+      }
 
       // if (error.value) {
       //   console.log('error.value.data', error.value.data)
