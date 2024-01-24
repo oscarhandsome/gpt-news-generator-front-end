@@ -29,8 +29,7 @@ if (isAuthenticated.value && success.value)
 
 <template>
   <!-- LOADER -->
-  <!-- <BaseLoader :show="isLoading" absolute /> -->
-  <BaseLoader v-if="isLoading" />
+  <BaseLoader v-if="isLoading" default />
   <div v-else class="lg:my-5">
     <h1 class="text-2xl text-center mb-5">Email confirm page</h1>
 
