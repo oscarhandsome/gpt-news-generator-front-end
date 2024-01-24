@@ -175,13 +175,20 @@ export const useAuthStore = defineStore('auth', {
       }, 3500)
     },
     async emailConfirm(payload: string) {
-      const { data, pending, error }: any = await Api.post(
+      // const { data, pending, error }: any = await Api.post(
+      //   `/users/emailConfirm/${payload}`,
+      // )
+      const { data, pending, error, refresh }: any = await useFetch(
         `/users/emailConfirm/${payload}`,
+        {
+          method: 'post',
+          headers: { 'Content-Type': 'application/json' },
+        },
       )
       console.log('data.value', data.value)
       console.log('pending.value', pending.value)
       console.log('error.value', error.value)
-      // console.log('refresh.value', refresh.value)
+      console.log('refresh.value', refresh.value)
       if (data.value && data.value.status === 'success') {
         const token = useCookie('token') // useCookie new hook in nuxt 3
         token.value = data?.value?.token // set token to cookie
