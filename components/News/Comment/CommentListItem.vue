@@ -92,12 +92,12 @@ const removeComment = async ({ id }: { id: string }) => {
       </div>
 
       <!-- Dropdown btn&menu -->
-      <NewsCommentDropdown
+      <!-- <NewsCommentDropdown
         :item-id="item.id"
         :item-user-id="item.user.id"
         @edit="edit"
         @remove="removeComment"
-      />
+      /> -->
     </footer>
     <p v-if="!isEdit" class="text-gray-500 dark:text-gray-400">
       {{ item.comment }}

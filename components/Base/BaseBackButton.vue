@@ -5,7 +5,7 @@ import { ArrowLeftCircleIcon } from '@heroicons/vue/20/solid'
 <template>
   <button
     aria-label="Back to prev page"
-    class="flex items-center bg-gray-100 border border-gray-300 dark:border-gray-700 hover:bg-black dark:bg-gray-700 hover:text-white active:bg-black active:text-white transition-colors rounded p-1"
+    class="flex items-center bg-gray-100 border border-gray-300 dark:border-gray-700 hover:bg-black dark:bg-gray-700 hover:text-white active:bg-black active:text-white transition-colors rounded"
     type="button"
     @click="$router.go(-1)"
   >
