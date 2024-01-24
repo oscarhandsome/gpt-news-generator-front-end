@@ -29,23 +29,20 @@ if (isAuthenticated.value && success.value)
 <template>
   <!-- LOADER -->
   <!-- <BaseLoader :show="isLoading" absolute /> -->
-  <div class="lg:my-5">
+  <BaseLoader v-if="isLoading" />
+  <div v-else class="lg:my-5">
     <h1 class="text-2xl text-center mb-5">Email confirm page</h1>
 
     <div
       class="w-full max-w-sm mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700"
     >
-      <div
-        v-if="!isLoading && success"
-        class="flex flex-col justify-center items-center"
-      >
+      <div v-if="success" class="flex flex-col justify-center items-center">
         <CheckIcon class="h-20 w-20 text-green-500 mb-5" />
         <p>You have logged successful!</p>
 
         <BaseMainPageButton />
       </div>
-      <BaseLoader v-if="isLoading" />
-      <div v-else-if="!isLoading && !success">
+      <div v-else>
         Something went wrong, please contact with support.
 
         <BaseMainPageButton />
