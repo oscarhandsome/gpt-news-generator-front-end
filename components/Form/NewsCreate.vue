@@ -6,12 +6,14 @@ import { imagesModelIdOptions } from '@/assets/data/imagesModelIdOptions'
 
 import { clearObject } from '@/utils/utils'
 
+import type { NewsForm } from 'types'
+
 const { createNews } = useNewsStore() // use authenticateUser action from  auth store
 const { isLoading, errors, error, success } = storeToRefs(useNewsStore()) // make isAuthenticated state reactive with storeToRefs
 
 // const router = useRouter()
 
-const data = reactive({
+const data = reactive<NewsForm>({
   name: '',
   type: 'funny',
   famousPerson: '',
@@ -56,10 +58,12 @@ const newsTypesOptions = ref([
 
 const imagesModelOptions = ref(imagesModelIdOptions)
 
-const submitForm = () => {
-  console.log(data)
-  // createNews(data)
-}
+const submitForm = async () =>
+  await createNews({
+    ...data,
+    imageModelId: imagesModelOptions.value[parseInt(data.imageModelId)].value,
+    type: newsTypesOptions.value[parseInt(data.type)].value,
+  })
 
 // if (Object.keys(currentNews).length) router.push(`/news/${currentNews.slug}`)
 
