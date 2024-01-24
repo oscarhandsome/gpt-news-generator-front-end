@@ -192,9 +192,10 @@ export const useAuthStore = defineStore('auth', {
         this.success = true
       }
 
-      // if (error.value) {
-      //   console.log('error.value.data', error.value.data)
-      // }
+      if (error.value) {
+        // console.log('error.value.data', error.value.data)
+        this.error = 'Email Confirm Error'
+      }
     },
     clear() {
       this.$patch(defalutAuthValue)
