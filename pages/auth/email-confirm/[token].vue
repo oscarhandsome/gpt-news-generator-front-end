@@ -20,13 +20,15 @@ const router = useRouter()
 // }
 if (route.params.token) await emailConfirm(`${route.params.token}`)
 // console.log('route', route.params.token)
-if (isAuthenticated.value && success.value) router.push('/')
+if (isAuthenticated.value && success.value)
+  setTimeout(() => {
+    router.push('/')
+  }, 2000)
 </script>
 
 <template>
   <!-- LOADER -->
   <!-- <BaseLoader :show="isLoading" absolute /> -->
-  <div v-if="isLoading">Loading...</div>
   <div class="lg:my-5">
     <h1 class="text-2xl text-center mb-5">Email confirm page</h1>
 
