@@ -1,11 +1,9 @@
 <script lang="ts" setup>
-import type { SelectProps } from '@/types'
+import type { ISelectProps } from '@/types'
 
 defineEmits(['update:modelValue'])
-const props = defineProps<SelectProps>()
+const props = defineProps<ISelectProps>()
 const id = props.label.toLocaleLowerCase().replaceAll(' ', '-')
-
-const selectedValue = computed(() => props.options.value === props.modelValue)
 </script>
 
 <template>
@@ -22,7 +20,7 @@ const selectedValue = computed(() => props.options.value === props.modelValue)
     <select
       :id="id"
       :ref="id"
-      :value="selectedValue"
+      :value="modelValue"
       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
       :class="{ 'ring-rose-500': error }"
       @input="

@@ -52,7 +52,7 @@ export interface Option extends Pick<IBaseField, 'id' | 'name'> {
   value: string
 }
 
-export interface SelectProps {
+export interface ISelectProps {
   label: string
   error: string | undefined | string[]
   required?: boolean

@@ -56,7 +56,10 @@ const newsTypesOptions = ref([
 
 const imagesModelOptions = ref(imagesModelIdOptions)
 
-const submitForm = () => createNews(data)
+const submitForm = () => {
+  console.log(data)
+  // createNews(data)
+}
 
 // if (Object.keys(currentNews).length) router.push(`/news/${currentNews.slug}`)
 
@@ -92,14 +95,12 @@ useSeoMeta({
         />
 
         <BaseSelect
+          v-model="data.type"
           label="Choose news type"
           :options="newsTypesOptions"
-          :model-value="data.type"
           :error="errors.type"
           class="mb-3"
-          @update:model-value="
-            data.type = newsTypesOptions[parseInt($event)].value
-          "
+          @update:model-value="data.type = $event"
         />
 
         <BaseInput
@@ -161,14 +162,12 @@ useSeoMeta({
       <div class="space-y-1 sm:space-y-2 md:space-y-3 lg:space-y-4">
         <BaseTitleSecondary title="Image configuration" class="mb-3" />
         <BaseSelect
-          :model-value="data.imageModelId"
+          v-model="data.imageModelId"
           :options="imagesModelOptions"
           label="Image Model Id"
           error=""
           class="mb-3"
-          @update:model-value="
-            data.imageModelId = imagesModelOptions[parseInt($event)].value
-          "
+          @update:model-value="data.imageModelId = $event"
         />
 
         <BaseSlider
