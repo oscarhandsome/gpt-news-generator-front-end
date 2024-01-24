@@ -18,7 +18,7 @@ const router = useRouter()
 // const emailConfirm = async () => {
 //   await emailConfirm(router.params.token) // call authenticateUser and pass the user object
 // }
-if (process.client) await emailConfirm(`${route.params.token}`)
+await emailConfirm(`${route.params.token}`)
 // console.log('route', route.params.token)
 if (isAuthenticated.value && success.value) router.push('/')
 </script>
