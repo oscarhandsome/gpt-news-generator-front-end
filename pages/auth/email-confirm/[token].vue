@@ -1,8 +1,8 @@
 <script lang="ts" setup>
+import { CheckIcon } from '@heroicons/vue/24/solid'
+
 import { storeToRefs } from 'pinia' // import storeToRefs helper hook from pinia
 import { useAuthStore } from '~/store/auth' // import the auth store we just created
-
-import { CheckIcon } from '@heroicons/vue/24/solid'
 
 definePageMeta({
   layout: 'custom',
@@ -18,7 +18,7 @@ const router = useRouter()
 // const emailConfirm = async () => {
 //   await emailConfirm(router.params.token) // call authenticateUser and pass the user object
 // }
-await emailConfirm(route?.params?.token)
+if (process.client) await emailConfirm(`${route.params.token}`)
 // console.log('route', route.params.token)
 if (isAuthenticated.value && success.value) router.push('/')
 </script>
