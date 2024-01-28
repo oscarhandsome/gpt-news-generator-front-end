@@ -89,8 +89,11 @@ useHead({
 
                   <div class="inline text-sm">
                     <ClockIcon
-                      class="inline h-3 w-3 text-purple-700 mr-1"
+                      class="inline h-3 w-3 mr-1"
                       aria-hidden="true"
+                      :class="{
+                        'text-purple-700': idx !== 0,
+                      }"
                     />
                     <time
                       :datetime="createdAt"
