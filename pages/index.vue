@@ -100,12 +100,19 @@ useHead({
         </div>
       </div>
     </div>
-    <div class="col-auto flex flex-col xl:gap-1">
-      <h2 class="border-b border-gray-500 font-bold text-xl">Short News</h2>
+    <div
+      class="col-auto flex flex-col xl:gap-1 border border-gray-200 shadow-sm"
+    >
+      <div class="p-2">
+        <h2 class="border-b border-gray-500 font-bold text-xl">Short News</h2>
+      </div>
       <div
-        v-for="{ id, name, slug, createdAt } in newsPartlyShort"
+        v-for="({ id, name, slug, createdAt }, idx) in newsPartlyShort"
         :key="id"
         class="text-xs p-1 xl:p-3"
+        :class="{
+          'border-b border-gray-200': idx !== newsPartlyShort.length - 1,
+        }"
       >
         <nuxt-link
           :to="`/news/${slug}`"
