@@ -1,6 +1,5 @@
-<script setup>
+<script lang="ts" setup>
 // import { ref } from 'vue'
-// import type { Option } from '@/types'
 
 import {
   Listbox,
@@ -11,22 +10,26 @@ import {
 } from '@headlessui/vue'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
 
-// defineProps<{
-//   items: Option[]
-// }>()
+import type { Option } from '@/types'
 
-const props = defineProps({
-  items: {
-    type: Object,
-    // default: false,
-  },
-  // selectedItem: {
-  //    type: Number,
-  //   default: 1,
-  // }
-})
+const props = defineProps<{
+  items: Option[]
+}>()
 
-const emits = defineEmits(['update'])
+// const props = defineProps({
+//   items: {
+//     type: Object,
+//     // default: false,
+//   },
+//   // selectedItem: {
+//   //    type: Number,
+//   //   default: 1,
+//   // }
+// })
+
+console.log('props.items', props.items)
+
+const emits = defineEmits(['update:modelValue'])
 
 // import { storeToRefs } from 'pinia'
 // import { useNewsStore } from '~/store/news'
@@ -49,7 +52,8 @@ const selectedItem = ref(props.items[0])
 // const selectedPerson = ref('Plese select person')
 
 watch(selectedItem, (_val) => {
-  emits('update', selectedItem.value.name)
+  console.log('_val', _val)
+  emits('update:modelValue', selectedItem.value.name)
 })
 </script>
 
@@ -58,7 +62,7 @@ watch(selectedItem, (_val) => {
     <Listbox v-model="selectedItem">
       <div class="relative">
         <ListboxButton
-          class="relative w-full cursor-default rounded-lg bg-white dark:text-black py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm"
+          class="relative w-full cursor-pointer rounded-lg bg-white dark:text-black py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm"
         >
           <span class="block truncate">{{ selectedItem.name }}</span>
           <span
@@ -89,7 +93,7 @@ watch(selectedItem, (_val) => {
               <li
                 :class="[
                   active ? 'bg-amber-100 text-amber-900' : 'text-gray-900',
-                  'relative cursor-default select-none py-2 pl-10 pr-4',
+                  'relative select-none py-2 pl-10 pr-4 cursor-pointer transition-colors',
                 ]"
               >
                 <span

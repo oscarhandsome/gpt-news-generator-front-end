@@ -147,11 +147,11 @@ export interface News extends IBaseField {
 //   imageCount: number
 // }
 
-// export type QueryOptions = {
-//   limit?: number
-//   sort?: 'desc' | 'asc'
-//   category?: string
-// }
+export type QueryOptions = {
+  limit?: number
+  sort?: 'desc' | 'asc'
+  category?: string
+}
 
 // export type QueryParameters = Record<
 //   string,
