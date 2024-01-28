@@ -95,10 +95,10 @@ useSchemaOrg([
     image: currentNews.value.imageCover,
     datePublished: currentNews.value.createdAt,
     dateModified: currentNews.value.createdAt,
-    // author: currentNews.value.autor.name,
+    // autor: currentNews.value.autor.name,
     thumbnailUrl: currentNews.value.imageCover,
-    // attaching an author when the identity is an organization
-    author: {
+    // attaching an autor when the identity is an organization
+    autor: {
       name: currentNews.value.autor.name,
       url: `/news/autor/${currentNews.value.autor.id}`,
     },

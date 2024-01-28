@@ -62,7 +62,7 @@ const config = useRuntimeConfig()
       </p>
 
       <ul>
-        <li>- Use the Service for any illegal or unauthorized purpose.</li>
+        <li>- Use the Service for any illegal or unautorized purpose.</li>
         <li>
           - Violate any laws in your jurisdiction (including but not limited to
           copyright laws).
@@ -72,7 +72,7 @@ const config = useRuntimeConfig()
           violates the rights of others.
         </li>
         <li>
-          - Attempt to gain unauthorized access to or disrupt any part of the
+          - Attempt to gain unautorized access to or disrupt any part of the
           Service.
         </li>
       </ul>

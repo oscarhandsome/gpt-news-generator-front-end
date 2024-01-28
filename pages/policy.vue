@@ -113,7 +113,7 @@ const config = useRuntimeConfig()
         <li>Correct any inaccuracies in your data.</li>
         <li>Delete your account and personal information.</li>
         <li>Withdraw consent for processing (where applicable).</li>
-        <li>Lodge a complaint with relevant authorities.</li>
+        <li>Lodge a complaint with relevant autorities.</li>
       </ul>
     </section>
 

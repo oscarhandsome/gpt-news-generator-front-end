@@ -149,4 +149,4 @@ export type NewsForm = {
 //   string | number | boolean | undefined
 // >
 
-// export type Category = string
+export type Category = string
