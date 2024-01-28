@@ -6,16 +6,19 @@ import { imagesModelIdOptions } from '@/assets/data/imagesModelIdOptions'
 
 import { clearObject } from '@/utils/utils'
 
-import type { NewsForm } from 'types'
+import type { NewsPayloadInterface } from '@/types'
+
+import { newsCategories } from '@/assets/data/categories'
 
 const { createNews } = useNewsStore() // use authenticateUser action from  auth store
 const { isLoading, errors, error, success } = storeToRefs(useNewsStore()) // make isAuthenticated state reactive with storeToRefs
 
 // const router = useRouter()
 
-const data = reactive<NewsForm>({
+const data = reactive<NewsPayloadInterface>({
   name: '',
   type: 'funny',
+  category: '',
   famousPerson: '',
   place: '',
   newsLength: 50,
@@ -58,12 +61,14 @@ const newsTypesOptions = ref([
 
 const imagesModelOptions = ref(imagesModelIdOptions)
 
-const submitForm = async () =>
-  await createNews({
-    ...data,
-    imageModelId: imagesModelOptions.value[parseInt(data.imageModelId)].value,
-    type: newsTypesOptions.value[parseInt(data.type)].value,
-  })
+const categoriesOptions = ref(newsCategories)
+
+const submitForm = async () => await createNews(data)
+// await createNews({
+//   ...data,
+//   imageModelId: imagesModelOptions.value[parseInt(data.imageModelId)].value,
+//   type: newsTypesOptions.value[parseInt(data.type)].value,
+// })
 
 // if (Object.keys(currentNews).length) router.push(`/news/${currentNews.slug}`)
 
@@ -105,6 +110,15 @@ useSeoMeta({
           :error="errors.type"
           class="mb-3"
           @update:model-value="data.type = $event"
+        />
+
+        <BaseSelect
+          v-model="data.category"
+          label="Category"
+          :options="categoriesOptions"
+          :error="errors.category"
+          class="mb-3"
+          @update:model-value="data.category = $event"
         />
 
         <BaseInput

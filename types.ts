@@ -18,11 +18,18 @@ export interface UserPayloadInterface {
 
 export interface NewsPayloadInterface extends Pick<IBaseField, 'name'> {
   type: string
+  category: string
   famousPerson: string
   place: string
   length: number
   checkboxPublic: boolean
   checkboxActive: boolean
+  newsLength: 50
+  ratingsAverage: number
+  imageModelId: string
+  promptStrength: number
+  steps: number
+  imageCount: number
 }
 
 export interface NavLink {
@@ -59,7 +66,7 @@ export interface ISelectProps {
   label: string
   error: string | undefined | string[]
   required?: boolean
-  options: Option[] | []
+  options: Option[] | [] | string[]
   modelValue: string
   tooltip?: string
 }
@@ -121,22 +128,24 @@ export interface News extends IBaseField {
   secretNews: boolean
   slug: string
   type: string
+  category: string
 }
 
-export type NewsForm = {
-  name: string
-  type: string
-  famousPerson: string
-  place: string
-  newsLength: 50
-  checkboxPublic: boolean
-  checkboxActive: boolean
-  ratingsAverage: number
-  imageModelId: string
-  promptStrength: number
-  steps: number
-  imageCount: number
-}
+// export type NewsForm = {
+//   name: string
+//   type: string
+//   category: string
+//   famousPerson: string
+//   place: string
+//   newsLength: 50
+//   checkboxPublic: boolean
+//   checkboxActive: boolean
+//   ratingsAverage: number
+//   imageModelId: string
+//   promptStrength: number
+//   steps: number
+//   imageCount: number
+// }
 
 // export type QueryOptions = {
 //   limit?: number

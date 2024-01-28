@@ -1,6 +1,6 @@
 import type { Category } from '~/types'
 
-export const newsCategories: Category[] = [
+const newsCategories: Category[] = [
   'Politics',
   'World News',
   'Business and Finance',
@@ -17,3 +17,5 @@ export const newsCategories: Category[] = [
   'Opinion and Editorial',
   'Weather',
 ]
+
+export { newsCategories }

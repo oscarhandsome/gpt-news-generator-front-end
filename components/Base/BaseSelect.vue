@@ -28,7 +28,7 @@ const id = props.label.toLocaleLowerCase().replaceAll(' ', '-')
       "
     >
       <option v-for="option in options" :key="option.value" :value="option.id">
-        {{ option.name }}
+        {{ option.name || option }}
       </option>
     </select>
     <p
