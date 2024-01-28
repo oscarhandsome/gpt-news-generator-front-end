@@ -86,13 +86,19 @@ useHead({
                   <div>
                     Author: <strong>{{ autor.name }}</strong>
                   </div>
-                  <time :datetime="createdAt" class="flex items-center">
+
+                  <div class="inline text-sm">
                     <ClockIcon
-                      class="inline flex-shrink-0 h-5 w-5 mr-1"
+                      class="inline h-3 w-3 text-purple-700 mr-1"
                       aria-hidden="true"
                     />
-                    {{ formatDate(createdAt, 2) }}
-                  </time>
+                    <time
+                      :datetime="createdAt"
+                      :class="{ ' text-gray-400': idx !== 0 }"
+                    >
+                      {{ formatDate(createdAt, 2) }}
+                    </time>
+                  </div>
                 </div>
               </div>
             </article>
@@ -118,10 +124,7 @@ useHead({
           :to="`/news/${slug}`"
           class="hover:text-blue-700 transition-colors"
         >
-          <ChevronRightIcon
-            class="inline flex-shrink-0 h-4 text-black"
-            aria-hidden="true"
-          />
+          <ChevronRightIcon class="inline h-4 text-black" aria-hidden="true" />
           {{ name }}
           <time
             pubdate
@@ -130,7 +133,7 @@ useHead({
             class="flex items-center text-xs text-gray-500 mt-1"
           >
             <ClockIcon
-              class="flex-shrink-0 h-3 w-3 text-purple-800 mr-1"
+              class="h-3 w-3 text-purple-800 mr-1"
               aria-hidden="true"
             />
             {{ formatDate(createdAt, 3) }}
