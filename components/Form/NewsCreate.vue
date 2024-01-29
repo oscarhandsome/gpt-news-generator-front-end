@@ -6,7 +6,7 @@ import { imagesModelIdOptions } from '@/assets/data/imagesModelIdOptions'
 
 import { clearObject } from '@/utils/utils'
 
-import type { NewsPayloadInterface } from '@/types'
+import type { NewsForm } from '@/types'
 
 import { newsCategories } from '@/assets/data/categories'
 
@@ -15,7 +15,7 @@ const { isLoading, errors, error, success } = storeToRefs(useNewsStore()) // mak
 
 // const router = useRouter()
 
-const data = reactive<NewsPayloadInterface>({
+const data: NewsForm = reactive({
   name: '',
   type: 'funny',
   category: '',

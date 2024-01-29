@@ -131,21 +131,21 @@ export interface News extends IBaseField {
   category: string
 }
 
-// export type NewsForm = {
-//   name: string
-//   type: string
-//   category: string
-//   famousPerson: string
-//   place: string
-//   newsLength: 50
-//   checkboxPublic: boolean
-//   checkboxActive: boolean
-//   ratingsAverage: number
-//   imageModelId: string
-//   promptStrength: number
-//   steps: number
-//   imageCount: number
-// }
+export type NewsForm = {
+  name: string
+  type: string
+  category: string
+  famousPerson: string
+  place: string
+  newsLength: 50
+  checkboxPublic: boolean
+  checkboxActive: boolean
+  ratingsAverage: number
+  imageModelId: string
+  promptStrength: number
+  steps: number
+  imageCount: number
+}
 
 export type QueryOptions = {
   limit?: number
