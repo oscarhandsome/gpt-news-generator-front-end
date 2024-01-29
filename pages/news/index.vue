@@ -87,7 +87,7 @@ useHead({
   <div
     class="flex sm:flex-row flex-col sm:justify-between sm:items-center mb-2 sm:mb-3 md:mb-5"
   >
-    <Filter />
+    <TheFilter />
 
     <div class="flex justify-end">
       <button
