@@ -27,7 +27,7 @@ const chooseSubscription = async (subscriptionId: string) => {
   isLoading.value = true
   // 1) Get checkout session from API
   // 2) Create checkout form + share credit cards
-  console.log('value', subscriptionId)
+  // console.log('value', subscriptionId)
 
   await getCheckoutSession(subscriptionId)
   if (checkoutSession && success) {

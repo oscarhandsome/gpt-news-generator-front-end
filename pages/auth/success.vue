@@ -3,8 +3,8 @@ definePageMeta({
   layout: 'custom',
 })
 
-const route = useRoute()
-console.log('route', route.params)
+// const route = useRoute()
+// console.log('route', route.params)
 </script>
 
 <template>

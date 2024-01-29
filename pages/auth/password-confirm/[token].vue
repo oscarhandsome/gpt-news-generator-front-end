@@ -25,7 +25,7 @@ const route = useRoute()
 // }
 if (route.params && route.params.token)
   await passwordConfirm(route?.params?.token)
-console.log('route', route.params.token)
+// console.log('route', route.params.token)
 </script>
 
 <template>

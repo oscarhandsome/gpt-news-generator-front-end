@@ -65,7 +65,7 @@ export const useSubscriptionStore = defineStore('subscription', {
         this.mySubscription = data.value.data.data
       }
       this.isLoading = pending.value
-      console.log('data', data)
+      // console.log('data', data)
       // if (!data.value) throw new Error('Something went wrong!')
       if (error.value) console.error('error', error)
     },

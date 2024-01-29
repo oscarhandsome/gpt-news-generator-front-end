@@ -25,7 +25,7 @@ const edit = ({ id }: { id: string }) => {
   comment.value = props.item.comment
   isEdit.value = true
   // this.$refs[`text-area-${id}`].click()
-  console.log('edit id:', id)
+  // console.log('edit id:', id)
 }
 
 const updateCurrentComment = async (value: { id: string; text: string }) => {

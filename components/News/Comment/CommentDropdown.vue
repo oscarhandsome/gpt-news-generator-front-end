@@ -35,7 +35,7 @@ const remove = () => {
   emits('remove', { id: props.itemId })
 }
 const report = () => {
-  console.log('report')
+  // console.log('report')
 }
 const close = () => {
   if (isOpen.value) isOpen.value = false
