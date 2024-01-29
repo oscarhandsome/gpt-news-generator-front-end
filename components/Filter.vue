@@ -63,8 +63,8 @@
         class="w-52"
         @update="updatePersons"
       />
-    </div>
-    <div class="flex items-center">
+    </div> -->
+    <!-- <div class="flex items-center">
       <span class="mr-2">Per page:</span>
       <BaseSelectUI
         v-model="limitPerPage"

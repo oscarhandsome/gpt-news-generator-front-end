@@ -126,7 +126,7 @@ useSchemaOrg([
         >
           <StarIcon
             v-for="(star, idx) in Math.ceil(currentNews.ratingsAverage)"
-            :key="idx"
+            :key="`star-${idx}`"
             class="inline w-7 h-7 text-amber-500"
             aria-hidden="true"
           />
@@ -169,7 +169,7 @@ useSchemaOrg([
         >
           <div
             v-for="(image, idx) in currentNews.images"
-            :key="idx"
+            :key="`image-${idx}`"
             class="flex cursor-pointer"
             @click="toggleFullImageView(image)"
           >

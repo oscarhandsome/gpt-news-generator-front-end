@@ -66,7 +66,7 @@ const chooseSubscription = async (subscriptionId: string) => {
     >
       <li
         v-for="(feature, idx) in item.features"
-        :key="idx"
+        :key="`subscr-${idx}`"
         class="flex space-x-3 items-center"
       >
         <svg

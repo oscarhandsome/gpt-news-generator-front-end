@@ -20,7 +20,7 @@ const selectPage = (p: Number) => emits('updatePage', p)
 <template>
   <nav aria-label="Page navigation example">
     <ul class="inline-flex -space-x-px text-sm">
-      <template v-for="(page, idx) in pageCount" :key="idx">
+      <template v-for="(page, idx) in pageCount" :key="`pagination-${idx}`">
         <li v-if="page === 1">
           <button
             aria-label="Go to previous page"

@@ -63,7 +63,7 @@ const logout = () => {
           <div class="px-1 py-1">
             <TheHeaderDropdownItem
               v-for="(item, idx) in menu"
-              :key="idx"
+              :key="`dropdown-${idx}`"
               :path="item.to"
             >
               <template #icon>

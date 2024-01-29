@@ -120,7 +120,7 @@ function toggleMenu() {
             <ul
               class="flex xl:flex-row xl:space-x-2 flex-col mt-4 font-medium xl:mt-0"
             >
-              <li v-for="(link, idx) in menuLinks" :key="idx">
+              <li v-for="(link, idx) in menuLinks" :key="`item-${idx}`">
                 <MyLink :to="link.to" :title="link.name" @click="toggleMenu" />
                 <!-- <TheHeaderNavLink :link="link" /> -->
               </li>
