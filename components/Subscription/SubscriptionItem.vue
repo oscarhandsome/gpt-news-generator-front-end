@@ -16,12 +16,12 @@ const { isAuthenticated } = storeToRefs(useAuthStore())
 
 const isLoading = ref(false)
 const route = useRoute()
-const router = useRouter()
+// const router = useRouter()
 const hidden = route.path === '/subscriptions/my-subsriptions'
 
 const chooseSubscription = async (subscriptionId: string) => {
   if (!isAuthenticated.value) {
-    router.push('/auth/registration')
+    navigateTo('/auth/registration')
     return
   }
   isLoading.value = true

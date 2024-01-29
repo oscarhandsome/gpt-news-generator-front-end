@@ -4,10 +4,6 @@ import { MenuItem } from '@headlessui/vue'
 const props = defineProps<{
   path: String
 }>()
-
-const router = useRouter()
-
-const navigateTo = () => router.push(`${props.path}`)
 </script>
 
 <template>
@@ -17,7 +13,7 @@ const navigateTo = () => router.push(`${props.path}`)
         active ? 'bg-violet-500 text-white' : 'text-gray-900',
         'group flex w-full items-center rounded-md px-2 py-2 text-sm',
       ]"
-      @click="navigateTo"
+      @click="navigateTo(`${props.path}`)"
     >
       <slot name="icon"></slot>
       <slot />

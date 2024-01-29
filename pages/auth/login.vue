@@ -25,12 +25,11 @@ const data = ref({
   password: '',
   remember: false,
 })
-const router = useRouter()
+// const router = useRouter()
 
 const login = async () => {
-  console.log(data.value)
   await authenticateUser(data.value) // call authenticateUser and pass the user object
-  if (isAuthenticated.value) router.push('/') // redirect to homepage if user is isAuthenticated
+  if (isAuthenticated.value) navigateTo('/') // redirect to homepage if user is isAuthenticated
 }
 
 // GOOGLE AUTH2.0
@@ -39,7 +38,7 @@ const handleLoginSuccess = async (response: CredentialResponse) => {
   const { credential } = response
   if (credential) {
     await authenticateUser({ token: credential })
-    if (isAuthenticated.value && success.value) router.push('/')
+    if (isAuthenticated.value && success.value) navigateTo('/')
   }
 }
 

@@ -23,7 +23,7 @@ if (route.params.token) await emailConfirm(`${route.params.token}`)
 // console.log('route', route.params.token)
 if (isAuthenticated.value && success.value)
   setTimeout(() => {
-    router.push('/')
+    navigateTo('/')
   }, 2000)
 </script>
 

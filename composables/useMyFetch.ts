@@ -1,4 +1,4 @@
-export const useMyFetch: typeof useFetch = async (request, opts?) => {
+export const useMyFetch = async (request: string, opts?: any) => {
   // const { $toaster } = useNuxtApp()
   const config = useRuntimeConfig()
   const token = useCookie('token')

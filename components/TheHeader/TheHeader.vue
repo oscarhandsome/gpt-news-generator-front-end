@@ -9,8 +9,6 @@ import { useAuthStore } from '~/store/auth' // import the auth store we just cre
 
 import { mainMenu } from '@/assets/data/menu-links'
 
-const router = useRouter()
-
 const { logUserOut } = useAuthStore() // use authenticateUser action from  auth store
 const { isAuthenticated } = storeToRefs(useAuthStore()) // make isAuthenticated state reactive with storeToRefs
 
@@ -18,7 +16,7 @@ const menuLinks = ref(mainMenu)
 
 const logout = () => {
   logUserOut()
-  router.push('/auth/login')
+  navigateTo('/auth/login')
 }
 
 const currentColor = ref('#FFF')

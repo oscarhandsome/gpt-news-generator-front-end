@@ -62,7 +62,7 @@ export const useNewsStore = defineStore('news', {
     // },
     async createNews(payload: NewsPayloadInterface) {
       const { $toaster } = useNuxtApp()
-      const router = useRouter()
+      // const router = useRouter()
       try {
         this.errors = clearObject(this.errors)
 
@@ -87,7 +87,7 @@ export const useNewsStore = defineStore('news', {
             title: 'Success',
             message: `News ${this.currentNews.name} successfully created!`,
           })
-          router.push(`/news/${this.currentNews.slug}`)
+          navigateTo(`/news/${this.currentNews.slug}`)
         }
 
         if (error.value) {

@@ -20,14 +20,14 @@ import { useAuthStore } from '~/store/auth'
 
 import { dropdownMenu } from '@/assets/data/dropdown-links'
 
-const router = useRouter()
+// const router = useRouter()
 const { user, logUserOut, isAuthenticated } = useAuthStore()
 
 const menu = ref(dropdownMenu)
 
 const logout = () => {
   logUserOut()
-  router.push('/auth/login')
+  navigateTo('/auth/login')
 }
 </script>
 

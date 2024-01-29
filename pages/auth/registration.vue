@@ -19,7 +19,7 @@ const { isAuthenticated, success, error, errors, isLoading } =
 // const isLoading = ref(false)
 const checkboxActive = ref(false)
 // const error = ref('')
-const router = useRouter()
+// const router = useRouter()
 
 const data = reactive({
   name: '',
@@ -38,7 +38,7 @@ const submitForm = async () => {
 
   try {
     await signUp(data)
-    if (success.value) router.push('/auth/success')
+    if (success.value) navigateTo('/auth/success')
   } catch (error) {
     console.error(error)
   }
@@ -50,7 +50,7 @@ const handleAuthSuccess = async (response: CredentialResponse) => {
   const { credential } = response
   if (credential) {
     await signUp({ token: credential })
-    if (isAuthenticated.value && success.value) router.push('/auth/success')
+    if (isAuthenticated.value && success.value) navigateTo('/auth/success')
   }
 }
 

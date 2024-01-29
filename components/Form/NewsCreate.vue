@@ -63,12 +63,12 @@ const imagesModelOptions = ref(imagesModelIdOptions)
 
 const categoriesOptions = ref(newsCategories)
 
-const submitForm = async () => await createNews(data)
-// await createNews({
-//   ...data,
-//   imageModelId: imagesModelOptions.value[parseInt(data.imageModelId)].value,
-//   type: newsTypesOptions.value[parseInt(data.type)].value,
-// })
+const submitForm = async () =>
+  await createNews({
+    ...data,
+    imageModelId: imagesModelOptions.value[parseInt(data.imageModelId)].value,
+    type: newsTypesOptions.value[parseInt(data.type)].value,
+  })
 
 // if (Object.keys(currentNews).length) router.push(`/news/${currentNews.slug}`)
 
