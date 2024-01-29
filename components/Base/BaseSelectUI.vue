@@ -27,7 +27,7 @@ const props = defineProps<{
 //   // }
 // })
 
-console.log('props.items', props.items)
+// console.log('props.items', props.items)
 
 const emits = defineEmits(['update:modelValue'])
 
@@ -52,7 +52,7 @@ const selectedItem = ref(props.items[0])
 // const selectedPerson = ref('Plese select person')
 
 watch(selectedItem, (_val) => {
-  console.log('_val', _val)
+  // console.log('_val', _val)
   emits('update:modelValue', selectedItem.value.name)
 })
 </script>

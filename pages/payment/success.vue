@@ -4,8 +4,8 @@ import { useBookingStore } from '~/store/booking'
 
 // // /?subscription=64e761b2e547816c34836cf0&user=64e7624fe547816c34836cf6&price=10
 const route = useRoute()
-const router = useRouter()
-console.log('route', route)
+// const router = useRouter()
+// console.log('route', route)
 // // const route = useRoute()
 // // const { data: mountain } = await useFetch(`https://api.nuxtjs.dev/mountains/${route.params.slug}`)
 
@@ -13,7 +13,7 @@ const { createBooking } = useBookingStore()
 const { isLoading } = storeToRefs(useBookingStore())
 
 const { subscription, user, price } = route.query
-console.log('subscription, user, price ', subscription, user, price)
+// console.log('subscription, user, price ', subscription, user, price)
 
 // if (!subscription && !user && !price) router.push('/')
 

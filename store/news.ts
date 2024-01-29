@@ -70,16 +70,16 @@ export const useNewsStore = defineStore('news', {
           if (!value) this.errors[key] = `Field required`
         }
 
-        console.log('this.errors', this.errors)
+        // console.log('this.errors', this.errors)
         if (Object.keys(this.errors).length) return
 
         this.isLoading = true
         const { data, pending, error }: any = await Api.post('/news', payload)
         this.isLoading = pending.value
 
-        console.log('data.value', data.value)
-        console.log('pending.value', pending.value)
-        console.log('error.value', error.value)
+        // console.log('data.value', data.value)
+        // console.log('pending.value', pending.value)
+        // console.log('error.value', error.value)
 
         if (data.value && data.value.status === 'success') {
           this.currentNews = data.value.data.news
@@ -105,7 +105,7 @@ export const useNewsStore = defineStore('news', {
           console.error('this.error', this.error)
         }
       } catch (error) {
-        console.log('error', error)
+        console.error('error', error)
       }
     },
     async getNews(payload: string) {

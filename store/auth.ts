@@ -102,7 +102,7 @@ export const useAuthStore = defineStore('auth', {
       // console.log('refresh.value', refresh.value)
 
       if (error.value) {
-        console.log('error.value.data', error.value.data)
+        // console.log('error.value.data', error.value.data)
         if (error.value.data.message) {
           this.error = error.value.data.message
           $toaster.error({
@@ -144,9 +144,9 @@ export const useAuthStore = defineStore('auth', {
       const { data, pending, error }: any = await Api.get(
         `/users/password-confirm/${payload}`,
       )
-      console.log('data.value', data.value)
-      console.log('pending.value', pending.value)
-      console.log('error.value', error.value)
+      // console.log('data.value', data.value)
+      // console.log('pending.value', pending.value)
+      // console.log('error.value', error.value)
       // console.log('refresh.value', refresh.value)
     },
     async updatePassword(payload: Object) {
@@ -155,7 +155,7 @@ export const useAuthStore = defineStore('auth', {
         '/users/updateMyPassword',
         payload,
       )
-      console.log(data, pending, error)
+      // console.log(data, pending, error)
       this.isLoadingLocal = pending.value
     },
     async updateUserData(payload: Object) {
@@ -164,7 +164,7 @@ export const useAuthStore = defineStore('auth', {
         '/users/updateMe',
         payload,
       )
-      console.log(data, pending, error)
+      // console.log(data, pending, error)
       this.isLoading = pending.value
     },
     clearErrors(all: boolean = false) {

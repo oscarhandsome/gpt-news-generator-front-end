@@ -56,7 +56,7 @@ export const useBookingStore = defineStore('booking', {
       if (error.value) console.error('error', error.value)
     },
     async createBooking({ subscription, user, price }: any) {
-      console.log('subscription, user, price', subscription, user, price)
+      // console.log('subscription, user, price', subscription, user, price)
       // $toast.show('this is a test')
       // useFetch from nuxt 3
       const token = useCookie('token')
@@ -77,14 +77,14 @@ export const useBookingStore = defineStore('booking', {
       )
       this.isLoading = pending
 
-      console.log('this.isLoading', this.isLoading)
-      console.log('data.value', data.value)
+      // console.log('this.isLoading', this.isLoading)
+      // console.log('data.value', data.value)
 
       if (data.value.status === 'success') {
         this.success = true
       }
 
-      console.log('data', data)
+      // console.log('data', data)
 
       if (!data.value) throw new Error('Something went wrong!')
     },
