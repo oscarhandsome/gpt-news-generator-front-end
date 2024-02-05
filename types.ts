@@ -147,6 +147,12 @@ export type NewsForm = {
   imageCount: number
 }
 
+export type Stats = {
+  news: string
+  contributors: string
+  organizations: string
+}
+
 export type QueryOptions = {
   limit?: number
   sort?: 'desc' | 'asc'
