@@ -13,7 +13,7 @@ const { fullImageUrl } = storeToRefs(useCommonStore())
 <template>
   <div
     v-if="fullImageUrl"
-    class="flex justify-center items-center w-full h-full"
+    class="flex justify-center items-center w-screen h-screen overflow-hidden"
   >
     <nuxt-img
       :src="fullImageUrl"
@@ -22,7 +22,7 @@ const { fullImageUrl } = storeToRefs(useCommonStore())
       width="512px"
       height="512px"
       placeholder="/placeholder.png"
-      class="rounded-lg object-cover w-full"
+      class="w-auto max-h-dvh h-screen"
     />
   </div>
 </template>
