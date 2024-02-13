@@ -91,6 +91,7 @@ export const useNewsStore = defineStore('news', {
         }
 
         if (error.value) {
+          console.error(error.value)
           // if (data.value.errors) this.errors = data.value.errors.value
           // this.error = 'Password or email incorrect!'
           this.error = error.value.data.message
