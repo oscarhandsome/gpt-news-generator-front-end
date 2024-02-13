@@ -32,7 +32,7 @@ const logout = () => {
 </script>
 
 <template>
-  <div v-if="user && isAuthenticated" class="relative sm:w-56 text-right">
+  <div v-if="isAuthenticated" class="relative sm:w-56 text-right">
     <Menu as="div" class="relative inline-block text-left">
       <div>
         <MenuButton
