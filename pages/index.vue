@@ -56,7 +56,10 @@ useHead({
         >
           <nuxt-link :to="`/news/${slug}`" class="flex flex-col">
             <article class="relative">
-              <div class="flex overflow-hidden" :class="{ 'h-96': idx === 0 }">
+              <div
+                class="flex bg-gray-200 overflow-hidden"
+                :class="{ 'h-96': idx === 0 }"
+              >
                 <nuxt-img
                   v-if="imageCover"
                   :src="imageCover"
