@@ -34,6 +34,7 @@ const value = ref(props.modelValue)
       :placeholder="placeholder"
       @keyup="$emit('update:modelValue', value)"
     />
+    <slot name="after-input"></slot>
     <p
       v-if="error"
       class="sm:absolute sm:top-full sm:left-0 text-xs text-red-600 transition-colors"
