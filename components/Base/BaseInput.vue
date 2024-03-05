@@ -25,6 +25,7 @@ const value = ref(props.modelValue)
       v-model="value"
       :name="id"
       :type="type ?? 'text'"
+      class="border text-sm rounded-lg focus:outline-none block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white transition-colors w-full p-2.5"
       :class="[
         error && !modelValue
           ? 'ring-rose-500  bg-red-100 border-red-300'
