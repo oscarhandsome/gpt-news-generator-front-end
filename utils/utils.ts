@@ -44,6 +44,7 @@ const formatDate: any = (dateISO: any, variant: number = 0) => {
 }
 
 const formatString: string = (str: string) => {
+  if (!str) return
   return str.charAt(0).toUpperCase() + str.slice(1).replaceAll('-', ' ')
 }
 

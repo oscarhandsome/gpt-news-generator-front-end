@@ -35,7 +35,7 @@ function toggleMenu() {
         <div class="flex justify-between items-center">
           <TheLogo />
 
-          <div class="flex items-center xl:order-2 xl:min-w-[240px]">
+          <div class="flex items-center xl:order-2">
             <div v-if="!isAuthenticated" class="flex items-center">
               <BaseButton to="/auth/login" class="flex items-center">
                 <UserCircleIcon

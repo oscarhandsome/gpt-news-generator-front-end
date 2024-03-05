@@ -3,6 +3,7 @@
 
 import { GoogleSignInButton, type CredentialResponse } from 'vue3-google-signin'
 import { storeToRefs } from 'pinia' // import storeToRefs helper hook from pinia
+import { EyeIcon, EyeSlashIcon } from '@heroicons/vue/20/solid'
 import { useAuthStore } from '~/store/auth' // import the auth store we just created
 
 definePageMeta({
@@ -27,6 +28,8 @@ const data = reactive({
   password: '',
   passwordConfirm: '',
 })
+
+const show = ref(false)
 
 const submitForm = async () => {
   if (!checkboxActive.value) {
@@ -62,6 +65,10 @@ const handleAuthError = (error: any) => {
   window.scrollTo(0, 0)
   clearErrors()
 }
+
+const toggleShow = () => (show.value = !show.value)
+
+const type = computed(() => (show.value ? 'text' : 'password'))
 
 onBeforeUnmount(() => {
   success.value = false
@@ -209,17 +216,36 @@ onBeforeUnmount(() => {
             v-model="data.password"
             label="Password"
             name="password"
-            type="password"
+            :type="type"
             :error="errors.password"
             placeholder="••••••••"
             required
-          />
+          >
+            <template #after-input>
+              <button
+                class="absolute bottom-[4px] right-[2px] flex items-center justify-center rounded-lg hover:bg-slate-200 transition-colors p-2"
+                type="button"
+                @click="toggleShow"
+              >
+                <EyeIcon
+                  v-if="show"
+                  class="h-5 w-5 text-gray-400"
+                  aria-hidden="true"
+                />
+                <EyeSlashIcon
+                  v-else
+                  class="h-5 w-5 text-gray-400"
+                  aria-hidden="true"
+                />
+              </button>
+            </template>
+          </BaseInput>
         </div>
         <div class="mb-10">
           <BaseInput
             v-model="data.passwordConfirm"
             label="Confirm password"
-            type="password"
+            :type="type"
             :error="errors.passwordConfirm"
             placeholder="••••••••"
             required

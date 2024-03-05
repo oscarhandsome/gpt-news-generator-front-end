@@ -4,6 +4,7 @@ import type { InputProps } from '@/types'
 defineEmits(['update:modelValue'])
 const props = defineProps<InputProps>()
 const id = props.label.toLocaleLowerCase().replaceAll(' ', '-')
+const value = ref(props.modelValue)
 </script>
 
 <template>
@@ -21,20 +22,24 @@ const id = props.label.toLocaleLowerCase().replaceAll(' ', '-')
     <input
       :id="id"
       :ref="id"
+      v-model="value"
       :name="id"
       :type="type ?? 'text'"
+<<<<<<< HEAD
       :value="modelValue"
       class="border text-sm rounded-lg focus:outline-none block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white transition-colors w-full p-2.5"
+=======
+      class="border text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 transition-colors w-full p-2.5"
+>>>>>>> fc39936ad4a6fdee571f0c04f9d487d440d31b6e
       :class="[
         error && !modelValue
           ? 'ring-rose-500  bg-red-100 border-red-300'
           : 'bg-gray-50 border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-500 dark:focus:border-blue-500',
       ]"
       :placeholder="placeholder"
-      @input="
-        $emit('update:modelValue', ($event.target as HTMLInputElement).value)
-      "
+      @keyup="$emit('update:modelValue', value)"
     />
+    <slot name="after-input"></slot>
     <p
       v-if="error && !modelValue"
       class="sm:absolute sm:top-full sm:left-0 text-xs text-red-600 transition-colors"

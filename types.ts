@@ -45,7 +45,7 @@ export interface InputProps {
   required?: boolean
   placeholder?: string
   autofocus?: boolean
-  type?: 'number' | 'email' | 'password'
+  type?: 'number' | 'email' | 'password' | 'text'
   modelValue: string
   tooltip?: string
 }
