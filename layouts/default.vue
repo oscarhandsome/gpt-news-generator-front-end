@@ -18,7 +18,7 @@ function toggleFeedbackModal() {
       <div
         class="container flex flex-col flex-grow w-full mx-auto px-2 sm:px-0"
       >
-        <!-- <TheBreadcrumb /> -->
+        <TheBreadcrumb />
         <slot />
       </div>
     </main>

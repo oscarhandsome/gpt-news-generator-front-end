@@ -21,12 +21,12 @@ export interface NewsPayloadInterface extends Pick<IBaseField, 'name'> {
   category: string
   famousPerson: string
   place: string
-  length: number
-  checkboxPublic: boolean
-  checkboxActive: boolean
+  // length: number
+  isPublic: boolean
+  isActive: boolean
   newsLength: 50
   ratingsAverage: number
-  imageModelId: string
+  // imageModelId: string
   promptStrength: number
   steps: number
   imageCount: number
@@ -110,11 +110,11 @@ export interface IComment extends Pick<IBaseField, 'createdAt' | 'id'> {
   parentId: string
 }
 
-export interface News extends IBaseField {
+export interface INews extends IBaseField {
   autor: IUser
   autors: IUser[]
-  checkboxActive: boolean
-  checkboxPublic: boolean
+  isActive: boolean
+  isPublic: boolean
   comments: IComment[]
   description: string
   durationWeeks: null
@@ -129,6 +129,7 @@ export interface News extends IBaseField {
   slug: string
   type: string
   category: string
+  workflowRunId: string
 }
 
 export type NewsForm = {
@@ -138,10 +139,10 @@ export type NewsForm = {
   famousPerson: string
   place: string
   newsLength: 50
-  checkboxPublic: boolean
-  checkboxActive: boolean
+  isPublic: boolean
+  isActive: boolean
   ratingsAverage: number
-  imageModelId: string
+  // imageModelId: string
   promptStrength: number
   steps: number
   imageCount: number

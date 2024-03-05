@@ -17,15 +17,15 @@ const { isLoading, errors, error, success } = storeToRefs(useNewsStore()) // mak
 
 const data: NewsForm = reactive({
   name: '',
-  type: 'funny',
+  type: '',
   category: '',
   famousPerson: '',
   place: '',
   newsLength: 50,
-  checkboxPublic: true,
-  checkboxActive: true,
+  isPublic: true,
+  isActive: false,
   ratingsAverage: 1.0,
-  imageModelId: '37d42ae9-5f5f-4399-b60b-014d35e762a5', // Realistic Vision v4.0
+  // imageModelId: '37d42ae9-5f5f-4399-b60b-014d35e762a5', // Realistic Vision v4.0
   promptStrength: 7,
   steps: 50,
   imageCount: 1,
@@ -59,16 +59,16 @@ const newsTypesOptions = ref([
   },
 ])
 
-const imagesModelOptions = ref(imagesModelIdOptions)
+// const imagesModelOptions = ref(imagesModelIdOptions)
 
 const categoriesOptions = ref(newsCategories)
 
-const submitForm = async () =>
-  await createNews({
-    ...data,
-    imageModelId: imagesModelOptions.value[parseInt(data.imageModelId)].value,
-    type: newsTypesOptions.value[parseInt(data.type)].value,
-  })
+const submitForm = async () => await createNews(data)
+// await createNews({
+//   ...data,
+//   imageModelId: imagesModelOptions.value[parseInt(data.imageModelId)].value,
+//   type: newsTypesOptions.value[parseInt(data.type)].value,
+// })
 
 // if (Object.keys(currentNews).length) router.push(`/news/${currentNews.slug}`)
 
@@ -80,6 +80,10 @@ onBeforeUnmount(() => {
 
 useSeoMeta({
   title: () => 'Create news page | GPT Chat News Generator',
+})
+
+watch(data, () => {
+  console.log({ ...data })
 })
 </script>
 
@@ -100,7 +104,6 @@ useSeoMeta({
           :error="errors.name"
           required
           class="mb-3"
-          @update:model-value="data.name = $event"
         />
 
         <BaseSelect
@@ -109,7 +112,6 @@ useSeoMeta({
           :options="newsTypesOptions"
           :error="errors.type"
           class="mb-3"
-          @update:model-value="data.type = $event"
         />
 
         <BaseSelect
@@ -118,7 +120,7 @@ useSeoMeta({
           :options="categoriesOptions"
           :error="errors.category"
           class="mb-3"
-          @update:model-value="data.category = $event"
+          required
         />
 
         <BaseInput
@@ -128,7 +130,6 @@ useSeoMeta({
           placeholder="Arnold Schwarzenegger"
           required
           class="mb-3"
-          @update:model-value="data.famousPerson = $event"
         />
 
         <BaseInput
@@ -138,7 +139,6 @@ useSeoMeta({
           placeholder="Laguna Beach California"
           required
           class="mb-3"
-          @update:model-value="data.place = $event"
         />
 
         <BaseSlider
@@ -149,27 +149,26 @@ useSeoMeta({
           :step="5"
           :error="errors.newsLength"
           class="mb-3"
-          @update:model-value="data.newsLength = $event"
         />
 
         <div class="mb-3">
-          <fieldset>
+          <fieldset class="gap-2">
             <legend class="sr-only">Checkbox variants</legend>
 
             <BaseCheckbox
-              :model-value="data.checkboxPublic"
+              v-model="data.isPublic"
+              :error="error.isPublic"
               label="Public view"
-              error=""
-              class="mb-4"
-              @update:model-value="data.checkboxPublic = $event"
+              class="mb-4 mr-2"
+              @update:model-value="data.isPublic = $event"
             />
 
             <BaseCheckbox
-              :model-value="data.checkboxActive"
+              v-model="data.isActive"
+              :error="error.isActive"
               label="Active"
-              error=""
               class="mb-4"
-              @update:model-value="data.checkboxActive = $event"
+              @update:model-value="data.isActive = $event"
             />
           </fieldset>
         </div>
@@ -179,14 +178,14 @@ useSeoMeta({
 
       <div class="space-y-1 sm:space-y-2 md:space-y-3 lg:space-y-4">
         <BaseTitleSecondary title="Image configuration" class="mb-3" />
-        <BaseSelect
+        <!-- <BaseSelect
           v-model="data.imageModelId"
           :options="imagesModelOptions"
           label="Image Model Id"
           error=""
           class="mb-3"
           @update:model-value="data.imageModelId = $event"
-        />
+        /> -->
 
         <BaseSlider
           v-model="data.promptStrength"
@@ -197,7 +196,6 @@ useSeoMeta({
           :step="1"
           error=""
           class="mb-3"
-          @update:model-value="data.promptStrength = Number($event)"
         />
 
         <BaseSlider
@@ -208,7 +206,6 @@ useSeoMeta({
           :max="70"
           :step="5"
           error=""
-          @update:model-value="data.steps = Number($event)"
         />
 
         <BaseSlider
@@ -218,7 +215,6 @@ useSeoMeta({
           :max="4"
           :step="1"
           error=""
-          @update:model-value="data.imageCount = Number($event)"
         />
 
         <button

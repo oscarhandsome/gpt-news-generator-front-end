@@ -5,16 +5,17 @@ import {
   StarIcon,
 } from '@heroicons/vue/20/solid'
 
-import { useGtm } from '@gtm-support/vue-gtm'
+// import { useGtm } from '@gtm-support/vue-gtm'
 
 // import { mapState } from 'pinia'
 import { storeToRefs } from 'pinia'
 import { useNewsStore } from '@/store/news'
+import { useAuthStore } from '~/store/auth'
 import { formatDate } from '@/utils/utils'
 
 import { useCommonStore } from '@/store/common'
 
-const { setModal, setFullImageUrl } = useCommonStore()
+import { clearObject } from '@/utils/utils'
 
 defineProps({
   view: {
@@ -25,11 +26,13 @@ defineProps({
 
 const route = useRoute()
 // const store = useNewsStore()
+const { setModal, setFullImageUrl } = useCommonStore()
+const { isAuthenticated, user } = storeToRefs(useAuthStore())
 
-const { getNews } = useNewsStore()
+const { getNews, getNewsImagesResuls, updateNews } = useNewsStore()
 const { isLoading, errors, currentNews } = storeToRefs(useNewsStore())
 
-await getNews(route.params.slug)
+await getNews(`${route.params.slug}`)
 
 const formattedCreatedAt = computed(() =>
   formatDate(currentNews.value.createdAt),
@@ -41,8 +44,16 @@ const toggleFullImageView = (imageUrl: string) => {
 }
 
 onBeforeUnmount(() => {
-  currentNews.value = []
-  currentNews.value = {}
+  currentNews.value = clearObject(currentNews.value)
+})
+
+watch(currentNews.value, async () => {
+  console.log(currentNews.value)
+  await updateNews({
+    id: currentNews.value.id,
+    isActive: currentNews.value.isActive,
+    isPublic: currentNews.value.isPublic,
+  })
 })
 
 // SEO
@@ -153,6 +164,35 @@ useSchemaOrg([
       </div>
 
       <div class="pb-2 lg:ml-4 xl:ml-6">
+        <div v-if="isAuthenticated && currentNews.autor.id === user.id">
+          <button
+            v-if="currentNews.images && !currentNews.images.length"
+            class="border border-gray-500 hover:bg-gray-300 active:bg-gray-300 transition-colors rounded-lg px-2 py-1 mb-2"
+            @click="
+              getNewsImagesResuls({
+                id: currentNews.id,
+                workflowRunId: currentNews.workflowRunId,
+              })
+            "
+          >
+            Get images
+          </button>
+          <div class="flex items-center gap-2 bg-slate-100 rounded-lg p-2 mb-2">
+            <BaseSwitch
+              v-model="currentNews.isActive"
+              @update:model-value="currentNews.isActive"
+            >
+              <template #label>Active:</template>
+            </BaseSwitch>
+            <BaseSwitch
+              v-model="currentNews.isPublic"
+              @update:model-value="currentNews.isPublic"
+            >
+              <template #label>Public:</template>
+            </BaseSwitch>
+          </div>
+        </div>
+
         <h1
           class="mb-2 text-2xl xl:text-4xl font-bold tracking-tight text-gray-900 dark:text-white font-chomsky"
         >

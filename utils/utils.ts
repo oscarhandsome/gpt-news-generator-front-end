@@ -1,4 +1,4 @@
-const clearObject: object = (obj: { [key: string]: any }) => {
+const clearObject: any = (obj: { [key: string]: any }) => {
   Object.keys(obj).forEach((key) => {
     delete obj[key]
   })
@@ -43,4 +43,8 @@ const formatDate: any = (dateISO: any, variant: number = 0) => {
   if (variant === 5) return `${year}-${month}-${day}`
 }
 
-export { clearObject, formatDate }
+const formatString: string = (str: string) => {
+  return str.charAt(0).toUpperCase() + str.slice(1).replaceAll('-', ' ')
+}
+
+export { clearObject, formatDate, formatString }

@@ -21,15 +21,15 @@ export const useNewsStore = defineStore('news', {
     success: false,
   }),
   actions: {
-    async getAllNews(payload?: Object) {
+    async getAllNews() {
       this.isLoading = true
-      const { data, pending }: any = await Api.get('/news', payload)
+      const { data, pending }: any = await Api.get('/news')
       if (data.value) {
         this.news = data.value.data.data
-        const unique = [...new Set(this.news.map((item) => item.famousPerson))]
-        this.famousPersons = unique.map((name) => ({
-          name,
-        }))
+        // const unique = [...new Set(this.news.map((item) => item.famousPerson))]
+        // this.famousPersons = unique.map((name) => ({
+        //   name,
+        // }))
       }
       this.isLoading = pending.value
     },
@@ -66,12 +66,12 @@ export const useNewsStore = defineStore('news', {
       try {
         this.errors = clearObject(this.errors)
 
-        for (const [key, value] of Object.entries(payload)) {
-          if (!value) this.errors[key] = `Field required`
-        }
+        // for (const [key, value] of Object.entries(payload)) {
+        //   if (!value) this.errors[key] = `Field required`
+        // }
 
         // console.log('this.errors', this.errors)
-        if (Object.keys(this.errors).length) return
+        // if (Object.keys(this.errors).length) throw new Error('we have errors')
 
         this.isLoading = true
         const { data, pending, error }: any = await Api.post('/news', payload)
@@ -143,6 +143,34 @@ export const useNewsStore = defineStore('news', {
 
     //   this.isLoading = false
     // },
+    async updateNews(payload: any) {
+      const { $toaster } = useNuxtApp()
+      this.isLoadingLocal = true
+      const { data, pending, error }: any = await Api.patch(
+        `/news/${payload.id}`,
+        payload,
+      )
+      this.isLoadingLocal = pending.value
+
+      if (data.value && data.value.status === 'success') {
+        $toaster.info({
+          title: 'Success',
+          message: `News ${this.currentNews.name} successfully updated!`,
+        })
+      }
+
+      if (error.value) {
+        console.error(error.value)
+        // if (data.value.errors) this.errors = data.value.errors.value
+        // this.error = 'Password or email incorrect!'
+        this.error = error.value.data.message
+        $toaster.error({
+          title: 'Error',
+          message: this.error,
+          type: 'error',
+        })
+      }
+    },
     async removeNews() {},
     async getMyNews() {
       this.isLoading = true
@@ -154,6 +182,15 @@ export const useNewsStore = defineStore('news', {
       this.isLoading = true
       const { data, pending }: any = await Api.get(`/news/autor/${payload}`)
       if (data.value) this.news = data.value.data.data
+      this.isLoading = pending.value
+    },
+    async getNewsImagesResuls(payload: { id: string; workflowRunId: string }) {
+      this.isLoading = true
+      // this.currentNews = await Api.get(`/news/${payload}`)
+      const { data, pending }: any = await Api.get(
+        `/news/${payload.id}/getImageResuts/${payload.workflowRunId}`,
+      )
+      if (data.value) this.currentNews = data.value.data.data
       this.isLoading = pending.value
     },
   },

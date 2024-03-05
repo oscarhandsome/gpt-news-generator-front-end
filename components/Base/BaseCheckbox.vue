@@ -4,6 +4,7 @@ import type { CheckboxProps } from '@/types'
 defineEmits(['update:modelValue'])
 const props = defineProps<CheckboxProps>()
 const id = props.label.toLocaleLowerCase().replaceAll(' ', '-')
+// const checked = ref(props.modelValue)
 </script>
 
 <template>
@@ -26,4 +27,3 @@ const id = props.label.toLocaleLowerCase().replaceAll(' ', '-')
     <slot name="after-label"></slot>
   </div>
 </template>
-nuxt
