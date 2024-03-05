@@ -44,7 +44,7 @@ const pageName = computed(() => formatString(route.params.slug))
             Home
           </nuxt-link>
         </li>
-        <li v-if="route.name !== 'index'">
+        <li v-if="pageName">
           <div class="flex items-center">
             <svg
               class="w-3 h-3 text-gray-400 mx-1"
