@@ -45,6 +45,6 @@
     "node-fetch-native": "1.2.0",
     "nuxt-vue3-google-signin": "^0.0.9",
     "untyped": "1.4.0",
-    "vue3-picture-swipe": "^3.0.6"
+    "vue3-picture-swipe": "3.0.6"
   }
 }
