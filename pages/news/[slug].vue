@@ -207,8 +207,7 @@ useSchemaOrg([
           v-if="currentNews.images && currentNews.images.length"
           class="flex flex-wrap gap-2"
         >
-          <LazyNewsPhotoSwipe :images="currentNews.images" />
-          <!-- <div
+          <div
             v-for="(image, idx) in currentNews.images"
             :key="`image-${idx}`"
             class="flex cursor-pointer"
@@ -224,7 +223,7 @@ useSchemaOrg([
               placeholder="/placeholder.png"
               class="rounded-lg"
             />
-          </div> -->
+          </div>
         </div>
 
         <div class="border border-gray-300 border-dashed my-2 sm:my-5"></div>

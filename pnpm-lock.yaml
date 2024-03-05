@@ -35,9 +35,6 @@ dependencies:
   untyped:
     specifier: 1.4.0
     version: 1.4.0
-  vue3-picture-swipe:
-    specifier: ^3.0.6
-    version: 3.0.6
 
 devDependencies:
   '@cssninja/nuxt-toaster':
@@ -10411,10 +10408,6 @@ packages:
       vue: ^3
     dependencies:
       vue: 3.4.16(typescript@5.3.3)
-    dev: false
-
-  /vue3-picture-swipe@3.0.6:
-    resolution: {integrity: sha512-tCoWJr5cXZMk8hlycPPdo9UCl5m3ZChDVdDhHdiJedtkTZL6H0wYV6mZvL8Lz6e80kpiIXxsoltJobcePnKB0A==}
     dev: false
 
   /vue@3.4.16(typescript@5.3.3):
