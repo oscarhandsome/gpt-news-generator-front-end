@@ -25,12 +25,6 @@ const value = ref(props.modelValue)
       v-model="value"
       :name="id"
       :type="type ?? 'text'"
-<<<<<<< HEAD
-      :value="modelValue"
-      class="border text-sm rounded-lg focus:outline-none block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white transition-colors w-full p-2.5"
-=======
-      class="border text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 transition-colors w-full p-2.5"
->>>>>>> fc39936ad4a6fdee571f0c04f9d487d440d31b6e
       :class="[
         error && !modelValue
           ? 'ring-rose-500  bg-red-100 border-red-300'
