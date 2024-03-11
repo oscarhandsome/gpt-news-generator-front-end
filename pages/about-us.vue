@@ -11,8 +11,6 @@
   <p class="text-2xl font-bold mb-5"><b>About Us</b></p>
   <div class="mb-10">
     <p>
-      ---
-      <br />
       <b class=" text-xl">GPT Chat News Generator Application</b>
       <br />
       In today's rapidly evolving information age, there's no denying the power
@@ -65,11 +63,7 @@
       to continuously innovating and enhancing our platform's capabilities.</li>
        </ul>
       <br />
-      ---
-      <br />
       <b>Join us on this exciting journey of reimagining news generation!</b>
-      <br />
-      ---
       <br />
       For any queries or feedback, feel free to [contact us](#).
       <br />
