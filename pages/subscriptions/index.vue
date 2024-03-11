@@ -14,7 +14,7 @@ const { subscriptions, mySubscription } = storeToRefs(useSubscriptionStore())
 
 // const router = useRouter()
 
-await getSubscriptions()
+await getSubscriptions({ sort: 'price' })
 await getMySubscriptions()
 
 const currentSubId = ref('')

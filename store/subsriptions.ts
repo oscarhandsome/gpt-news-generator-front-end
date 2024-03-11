@@ -21,9 +21,12 @@ export const useSubscriptionStore = defineStore('subscription', {
     user: null,
   }),
   actions: {
-    async getSubscriptions() {
+    async getSubscriptions(payload) {
       this.isLoading = true
-      const { data, pending, error }: any = await Api.get('/subscriptions')
+      const { data, pending, error }: any = await Api.get(
+        '/subscriptions',
+        payload,
+      )
       if (data.value) this.subscriptions = data.value.data.data
       this.isLoading = pending.value
       if (error.value) console.error('error', error)
