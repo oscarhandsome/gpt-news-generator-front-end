@@ -9,7 +9,6 @@ class Api {
   // }
 
   public async get(path: string, params: object = {}) {
-    console.log('params in get', params)
     return await useMyFetch(`${path}`, { method: 'GET', params })
   }
 
