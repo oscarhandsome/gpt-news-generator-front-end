@@ -7,10 +7,14 @@ import {
   ListboxButton,
   ListboxOptions,
   ListboxOption,
+  provideUseId,
 } from '@headlessui/vue'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
 
 import type { Option } from '@/types'
+
+// Avoid hydration error
+provideUseId(() => useId())
 
 const props = defineProps<{
   items: Option[]
@@ -52,7 +56,7 @@ const selectedItem = ref(props.items[0])
 // const selectedPerson = ref('Plese select person')
 
 watch(selectedItem, (_val) => {
-  // console.log('_val', _val)
+  // console.log('selectedItem _val', _val)
   emits('update:modelValue', selectedItem.value.name)
 })
 </script>

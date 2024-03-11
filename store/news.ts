@@ -21,15 +21,20 @@ export const useNewsStore = defineStore('news', {
     success: false,
   }),
   actions: {
-    async getAllNews() {
+    async getAllNews(payload?) {
       this.isLoading = true
-      const { data, pending }: any = await Api.get('/news')
+      const { data, pending }: any = await Api.get('/news', payload)
       if (data.value) {
         this.news = data.value.data.data
-        // const unique = [...new Set(this.news.map((item) => item.famousPerson))]
-        // this.famousPersons = unique.map((name) => ({
-        //   name,
-        // }))
+
+        if (!payload) {
+          const unique = [
+            ...new Set(this.news.map((item) => item.famousPerson)),
+          ]
+          this.famousPersons = unique.map((name) => ({
+            name,
+          }))
+        }
       }
       this.isLoading = pending.value
     },

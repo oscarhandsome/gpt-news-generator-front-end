@@ -9,8 +9,8 @@ dependencies:
     specifier: ^2.1.0
     version: 2.2.0(vue@3.4.16)
   '@headlessui/vue':
-    specifier: 1.7.16
-    version: 1.7.16(vue@3.4.16)
+    specifier: 1.7.19
+    version: 1.7.19(vue@3.4.16)
   '@heroicons/vue':
     specifier: ^2.0.18
     version: 2.1.1(vue@3.4.16)
@@ -1009,12 +1009,13 @@ packages:
       vue-router: 4.2.5(vue@3.4.16)
     dev: false
 
-  /@headlessui/vue@1.7.16(vue@3.4.16):
-    resolution: {integrity: sha512-nKT+nf/q6x198SsyK54mSszaQl/z+QxtASmgMEJtpxSX2Q0OPJX0upS/9daDyiECpeAsvjkoOrm2O/6PyBQ+Qg==}
+  /@headlessui/vue@1.7.19(vue@3.4.16):
+    resolution: {integrity: sha512-VFjKPybogux/5/QYGSq4zgG/x3RcxId15W8uguAJAjPBxelI23dwjOjTx/mIiMkM/Hd3rzFxcf2aIp56eEWRcA==}
     engines: {node: '>=10'}
     peerDependencies:
       vue: ^3.2.0
     dependencies:
+      '@tanstack/vue-virtual': 3.1.3(vue@3.4.16)
       vue: 3.4.16(typescript@5.3.3)
     dev: false
 
@@ -2274,6 +2275,19 @@ packages:
   /@stripe/stripe-js@1.54.2:
     resolution: {integrity: sha512-R1PwtDvUfs99cAjfuQ/WpwJ3c92+DAMy9xGApjqlWQMj0FKQabUAys2swfTRNzuYAYJh7NqK2dzcYVNkKLEKUg==}
     dev: true
+
+  /@tanstack/virtual-core@3.1.3:
+    resolution: {integrity: sha512-Y5B4EYyv1j9V8LzeAoOVeTg0LI7Fo5InYKgAjkY1Pu9GjtUwX/EKxNcU7ng3sKr99WEf+bPTcktAeybyMOYo+g==}
+    dev: false
+
+  /@tanstack/vue-virtual@3.1.3(vue@3.4.16):
+    resolution: {integrity: sha512-OoRCSgp8Bc85Te3pg4OHFUukbWZeB25/O5rNd7MgMtrYIfJjNOaicZeJcvwqK6lDVTMpzohWUMVK/loqR1H8ig==}
+    peerDependencies:
+      vue: ^2.7.0 || ^3.0.0
+    dependencies:
+      '@tanstack/virtual-core': 3.1.3
+      vue: 3.4.16(typescript@5.3.3)
+    dev: false
 
   /@trysound/sax@0.2.0:
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
@@ -7410,7 +7424,7 @@ packages:
     dependencies:
       '@nuxt/kit': 3.10.1
       unimport: 0.6.8
-      vue3-google-signin: 1.3.2(vue@3.4.16)
+      vue3-google-signin: 1.3.4(vue@3.4.16)
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -10402,8 +10416,8 @@ packages:
       '@vue/devtools-api': 6.5.1
       vue: 3.4.16(typescript@5.3.3)
 
-  /vue3-google-signin@1.3.2(vue@3.4.16):
-    resolution: {integrity: sha512-RrAJTpxiGG5qieT3bQv6IZ8HheHMLLPLp8n2+30bfwKn5snIJvB/lFBEUOifjlmOKAzNVgELqjcChrwrZTZzuw==}
+  /vue3-google-signin@1.3.4(vue@3.4.16):
+    resolution: {integrity: sha512-vNu8PhZxWAeb9kqdNcTvaZv6n0eldyTTE+CxDgCMf3J0olzQsk6HPor3lTLhxNyW69TwY/nFiwiF/iVQC33ymg==}
     peerDependencies:
       vue: ^3
     dependencies:

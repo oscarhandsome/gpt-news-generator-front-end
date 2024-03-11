@@ -22,12 +22,12 @@ await getAllNews()
 
 const paginationLimit = ref(settings.value.paginationLimit)
 const currentPage = ref(Number(route.query.page) || 1)
-const filteredItems = ref(
-  newsList.value.slice(
-    (currentPage.value - 1) * paginationLimit.value,
-    currentPage.value * paginationLimit.value,
-  ),
-)
+// const filteredItems = ref(
+//   newsList.value.slice(
+//     (currentPage.value - 1) * paginationLimit.value,
+//     currentPage.value * paginationLimit.value,
+//   ),
+// )
 const pageCount = ref(Math.ceil(newsList.value.length / paginationLimit.value))
 
 const updatePage = (page: number = 1) => {
@@ -42,6 +42,13 @@ const updatePage = (page: number = 1) => {
 
 onMounted(() => {
   router.push({ query: { page: route.query.page || 1 } })
+})
+
+const filteredItems = computed(() => {
+  return newsList.value.slice(
+    (currentPage.value - 1) * paginationLimit.value,
+    currentPage.value * paginationLimit.value,
+  )
 })
 
 watch(

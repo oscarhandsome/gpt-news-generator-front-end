@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Switch } from '@headlessui/vue'
+import { Switch, provideUseId } from '@headlessui/vue'
 const enabled = defineModel<boolean>({ default: false })
 // const props = defineProps({
 //   modelValue: {
@@ -14,6 +14,9 @@ const enabled = defineModel<boolean>({ default: false })
 // watch(enabled, (newValue) => {
 //   emit('update:modelValue', newValue)
 // })
+
+// Avoid hydration error
+provideUseId(() => useId())
 </script>
 
 <template>

@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@gtm-support/vue-gtm": "^2.1.0",
-    "@headlessui/vue": "1.7.16",
+    "@headlessui/vue": "1.7.19",
     "@heroicons/vue": "^2.0.18",
     "@sentry/tracing": "^7.77.0",
     "@sentry/vue": "^7.77.0",

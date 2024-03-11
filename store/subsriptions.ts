@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { UserPayloadInterface } from '@/types'
+import type { ISubsription } from '@/types'
 // import { useToast } from 'tailvue'
 import Api from '~/services/api'
 
@@ -13,8 +13,8 @@ import Api from '~/services/api'
 
 export const useSubscriptionStore = defineStore('subscription', {
   state: () => ({
-    subscriptions: null,
-    mySubscription: null,
+    subscriptions: [] as ISubsription[],
+    mySubscription: [] as ISubsription[],
     isLoading: false,
     errors: [],
     success: false,
