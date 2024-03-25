@@ -62,10 +62,10 @@ watch(currentNews.value, async () => {
 // useHead({
 //   title: currentNews.value.name,
 //   meta: [
-//     {
-//       name: 'description',
-//       content: currentNews.value.description,
-//     },
+//     { name: 'description', content: currentNews.value.description },
+//     { property: 'og:description', content: currentNews.value.description },
+//     { property: 'og:image', content: currentNews.value.image },
+//     { name: 'twitter:card', content: 'summary_large_image' },
 //   ],
 // })
 
