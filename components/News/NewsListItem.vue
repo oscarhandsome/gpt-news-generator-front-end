@@ -37,6 +37,7 @@ const formattedCreatedAt = computed(() => formatDate(props.item.createdAt))
           :modifiers="{ roundCorner: '0:100' }"
           class="w-full rounded-t-lg"
           :class="{ 'h-32 rounded-b-lg': view === 'list' }"
+          preload
         />
         <img
           v-else
