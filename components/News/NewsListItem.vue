@@ -94,7 +94,10 @@ const formattedCreatedAt = computed(() => formatDate(props.item.createdAt))
       </div> -->
     </nuxt-link>
 
-    <nuxt-link :to="`/news/autor/${item.autor.id}`">
+    <nuxt-link
+      v-if="item.autor && item.autor.id"
+      :to="`/news/autor/${item.autor.id}`"
+    >
       <UserInfo
         :user="item.autor"
         class="py-1 pb-5 sm:py-5 px-2 sm:px-5 mt-auto hover:bg-gray-200 active:bg-gray-200 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 dark:active:bg-gray-700 rounded-b-lg"
