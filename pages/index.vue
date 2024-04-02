@@ -35,7 +35,7 @@ const paginate = (array: INews[], pageSize: number, pageNumber: number) => {
 
 const moveListBack = () => {
   if (pageNumber.value <= 1) return
-  pageNumber.value = pageNumber.value - 1
+  pageNumber.value -= 1
 }
 const moveListForward = () => {
   if (pageNumber.value >= newsList.value.length / pageSize.value) return
