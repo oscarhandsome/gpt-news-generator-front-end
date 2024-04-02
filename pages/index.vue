@@ -22,12 +22,9 @@ const pageNumber = ref(1)
 await getAllNews()
 
 const newsPartly = computed(() => newsList.value.slice(0, 7))
-const newsPartlyShort = computed({
-  get() {
-    return paginate(newsList.value, pageSize.value, pageNumber.value)
-  },
-  set() {},
-})
+const newsPartlyShort = computed(() =>
+  paginate(newsList.value, pageSize.value, pageNumber.value),
+)
 
 const paginate = (array: INews[], pageSize: number, pageNumber: number) => {
   return array.slice((pageNumber - 1) * pageSize, pageNumber * pageSize)
@@ -38,7 +35,8 @@ const moveListBack = () => {
   pageNumber.value -= 1
 }
 const moveListForward = () => {
-  if (pageNumber.value >= newsList.value.length / pageSize.value) return
+  if (pageNumber.value >= Math.round(newsList.value.length / pageSize.value))
+    return
   pageNumber.value += 1
 }
 
