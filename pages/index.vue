@@ -1,8 +1,13 @@
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia' // import storeToRefs helper hook from pinia
-import { ClockIcon, ChevronRightIcon } from '@heroicons/vue/20/solid'
+import {
+  ClockIcon,
+  ChevronRightIcon,
+  ChevronLeftIcon,
+} from '@heroicons/vue/20/solid'
 import { formatDate } from '@/utils/utils'
 import { useNewsStore } from '@/store/news'
+import type { INews } from '~/types'
 // definePageMeta({
 //   middleware: 'auth',
 // })
@@ -11,10 +16,31 @@ import { useNewsStore } from '@/store/news'
 const { getAllNews } = useNewsStore()
 const { isLoading, errors, newsList } = storeToRefs(useNewsStore())
 
+const pageSize = ref(15)
+const pageNumber = ref(1)
+
 await getAllNews()
 
 const newsPartly = computed(() => newsList.value.slice(0, 7))
-const newsPartlyShort = computed(() => newsList.value.slice(0, 15))
+const newsPartlyShort = computed({
+  get() {
+    return paginate(newsList.value, pageSize.value, pageNumber.value)
+  },
+  set() {},
+})
+
+const paginate = (array: INews[], pageSize: number, pageNumber: number) => {
+  return array.slice((pageNumber - 1) * pageSize, pageNumber * pageSize)
+}
+
+const moveListBack = () => {
+  if (pageNumber.value <= 1) return
+  pageNumber.value = pageNumber.value - 1
+}
+const moveListForward = () => {
+  if (pageNumber.value >= newsList.value.length / pageSize.value) return
+  pageNumber.value += 1
+}
 
 // SEO: Page metadata
 // Page metadata
@@ -113,7 +139,7 @@ useHead({
       </div>
     </div>
     <div
-      class="col-auto flex flex-col xl:gap-1 border border-gray-200 shadow-sm"
+      class="relative col-auto flex flex-col xl:gap-1 border border-gray-200 shadow-sm"
     >
       <div class="p-2">
         <h2 class="border-b border-gray-500 font-bold text-xl">Short News</h2>
@@ -145,6 +171,21 @@ useHead({
             {{ formatDate(createdAt, 3) }}
           </time>
         </nuxt-link>
+      </div>
+
+      <div class="absolute -bottom-[15px] left-1/2 -translate-x-1/2">
+        <button
+          class="border border-gray-200 hover:bg-gray-300 active:bg-gray-300 transition-colors p-1"
+          @click="moveListBack"
+        >
+          <ChevronLeftIcon class="block h-4" aria-hidden="true" />
+        </button>
+        <button
+          class="border border-gray-200 hover:bg-gray-300 active:bg-gray-300 transition-colors p-1"
+          @click="moveListForward"
+        >
+          <ChevronRightIcon class="block h-4" aria-hidden="true" />
+        </button>
       </div>
     </div>
   </div>
