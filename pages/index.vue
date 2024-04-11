@@ -173,13 +173,13 @@ useHead({
 
       <div class="absolute -bottom-[15px] left-1/2 -translate-x-1/2">
         <button
-          class="border border-gray-200 hover:bg-gray-300 active:bg-gray-300 transition-colors p-1"
+          class="border bg-white dark:bg-black border-gray-200 hover:bg-gray-300 active:bg-gray-300 transition-colors p-1"
           @click="moveListBack"
         >
           <ChevronLeftIcon class="block h-4" aria-hidden="true" />
         </button>
         <button
-          class="border border-gray-200 hover:bg-gray-300 active:bg-gray-300 transition-colors p-1"
+          class="border bg-white dark:bg-black border-gray-200 hover:bg-gray-300 active:bg-gray-300 transition-colors p-1"
           @click="moveListForward"
         >
           <ChevronRightIcon class="block h-4" aria-hidden="true" />
