@@ -99,7 +99,7 @@ useHead({
                 :class="{ 'absolute -bottom-10 left-5 text-white': idx === 0 }"
               >
                 <div
-                  class="inline text-white bg-purple-950 px-1 mb-3 mr-5"
+                  class="inline bg-purple-950 px-1 mb-3 mr-5"
                   :class="{
                     'lg:absolute lg:bottom-28 left-2 text-white': idx !== 0,
                   }"
@@ -140,7 +140,7 @@ useHead({
       class="relative col-auto flex flex-col xl:gap-1 border border-gray-200 shadow-sm"
     >
       <div class="p-2">
-        <h2 class="border-b border-gray-500 font-bold text-xl">Short News</h2>
+        <div class="border-b border-gray-500 font-bold text-xl">Short News</div>
       </div>
       <div
         v-for="({ id, name, slug, createdAt }, idx) in newsPartlyShort"
@@ -173,16 +173,20 @@ useHead({
 
       <div class="absolute -bottom-[15px] left-1/2 -translate-x-1/2">
         <button
+          type="button"
           class="border bg-white dark:bg-black border-gray-200 hover:bg-gray-300 active:bg-gray-300 transition-colors p-1"
           @click="moveListBack"
         >
           <ChevronLeftIcon class="block h-4" aria-hidden="true" />
+          <span class="hidden">Back</span>
         </button>
         <button
+          type="button"
           class="border bg-white dark:bg-black border-gray-200 hover:bg-gray-300 active:bg-gray-300 transition-colors p-1"
           @click="moveListForward"
         >
           <ChevronRightIcon class="block h-4" aria-hidden="true" />
+          <span class="hidden">Forward</span>
         </button>
       </div>
     </div>
