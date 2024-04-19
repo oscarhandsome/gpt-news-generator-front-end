@@ -43,7 +43,6 @@
     "click-outside-vue3": "^4.0.1",
     "floating-vue": "2.0.0-beta.24",
     "node-fetch-native": "1.2.0",
-    "nuxt-vue3-google-signin": "^0.0.9",
-    "untyped": "1.4.0"
+    "nuxt-vue3-google-signin": "^0.0.9"
   }
 }

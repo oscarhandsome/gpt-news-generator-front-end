@@ -82,7 +82,10 @@ useHead({
             <article class="relative">
               <div
                 class="flex bg-gray-200 overflow-hidden"
-                :class="{ 'h-96': idx === 0 }"
+                :class="{
+                  'sm:h-60 md:h-60 lg:h-96 xl:h-[400px]': idx === 0,
+                  'sm:h-36 xl:h-auto': idx !== 0,
+                }"
               >
                 <nuxt-img
                   v-if="imageCover"
@@ -96,25 +99,29 @@ useHead({
               </div>
               <div
                 class="news-info"
-                :class="{ 'absolute -bottom-10 left-5 text-white': idx === 0 }"
+                :class="{
+                  'absolute bottom-2 xl:-bottom-10 left-2 sm:left-5 text-white ':
+                    idx === 0,
+                }"
               >
                 <div
-                  class="inline bg-purple-950 px-1 mb-3 mr-5"
+                  class="inline bg-purple-950 px-1 sm:mb-3 mr-5"
                   :class="{
-                    'lg:absolute lg:bottom-28 left-2 text-white': idx !== 0,
+                    'absolute bottom-[80px] sm:bottom-20 md:bottom-24 lg:bottom-28 left-2 text-white':
+                      idx !== 0,
                   }"
                 >
                   {{ type.charAt(0).toUpperCase() + type.slice(1) }}
                 </div>
-                <div class="font-bold text-lg mb-3">
+                <div class="font-bold lg:text-lg text-sm md:mb-3">
                   {{ idx === 0 ? name : `${name.slice(0, 50)}...` }}
                 </div>
-                <div class="text-sm">
+                <div class="text-xs sm:text-sm">
                   <div>
                     Author: <strong>{{ autor.name }}</strong>
                   </div>
 
-                  <div class="inline text-sm">
+                  <div class="inline text-xs sm:text-sm">
                     <ClockIcon
                       class="inline h-3 w-3 mr-1"
                       aria-hidden="true"
