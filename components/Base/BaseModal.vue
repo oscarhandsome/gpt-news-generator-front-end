@@ -43,7 +43,7 @@ function setIsOpen(value) {
         <!-- Container to center the panel -->
         <div class="flex min-h-full items-center justify-center">
           <!-- The actual dialog panel -->
-          <DialogPanel class="relative rounded-lg bg-white">
+          <DialogPanel class="relative rounded-lg bg-white dark:bg-gray-700">
             <DialogTitle v-if="title">{{ title }}</DialogTitle>
             <slot />
 

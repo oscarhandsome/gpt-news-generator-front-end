@@ -14,30 +14,36 @@ import type { INews } from '~/types'
 // const view = ref('tile')
 
 const { getAllNews } = useNewsStore()
-const { isLoading, errors, newsList } = storeToRefs(useNewsStore())
+const { isLoading, newsList } = storeToRefs(useNewsStore())
 
-const pageSize = ref(15)
-const pageNumber = ref(1)
+const newsPerPage = ref(14)
+const currentPage = ref(1)
 
 await getAllNews()
 
+const paginate = (array: INews[], newsPerPage: number, currentPage: number) => {
+  return array.slice((currentPage - 1) * newsPerPage, currentPage * newsPerPage)
+}
+
 const newsPartly = computed(() => newsList.value.slice(0, 7))
 const newsPartlyShort = computed(() =>
-  paginate(newsList.value, pageSize.value, pageNumber.value),
+  paginate(newsList.value, newsPerPage.value, currentPage.value),
 )
 
-const paginate = (array: INews[], pageSize: number, pageNumber: number) => {
-  return array.slice((pageNumber - 1) * pageSize, pageNumber * pageSize)
-}
+const totalPages = computed(() =>
+  Math.round(newsList.value.length / newsPerPage.value),
+)
 
 const moveListBack = () => {
-  if (pageNumber.value <= 1) return
-  pageNumber.value -= 1
+  if (currentPage.value <= 1) return
+  currentPage.value -= 1
 }
 const moveListForward = () => {
-  if (pageNumber.value >= Math.round(newsList.value.length / pageSize.value))
+  if (
+    currentPage.value >= Math.round(newsList.value.length / newsPerPage.value)
+  )
     return
-  pageNumber.value += 1
+  currentPage.value += 1
 }
 
 // SEO: Page metadata
@@ -143,34 +149,44 @@ useHead({
         </div>
       </div>
     </div>
+
+    <!-- Short News -->
     <div
-      class="relative col-auto flex flex-col xl:gap-1 border border-gray-200 shadow-sm"
+      v-if="newsPartly && newsPartly.length"
+      class="relative col-auto flex flex-col xl:gap-1 border border-gray-200 dark:border-gray-600 shadow-sm"
     >
-      <div class="p-2">
-        <div class="border-b border-gray-500 font-bold text-xl">Short News</div>
+      <div
+        class="border-b border-gray-500 dark:border-gray-600 font-bold text-xl p-2"
+      >
+        Short News
       </div>
+
       <div
         v-for="({ id, name, slug, createdAt }, idx) in newsPartlyShort"
         :key="id"
         class="text-xs p-1 xl:p-3"
         :class="{
-          'border-b border-gray-200': idx !== newsPartlyShort.length - 1,
+          'border-b border-gray-200 dark:border-gray-600':
+            idx !== newsPartlyShort.length - 1,
         }"
       >
         <nuxt-link
           :to="`/news/${slug}`"
           class="hover:text-blue-700 transition-colors"
         >
-          <ChevronRightIcon class="inline h-4 text-black" aria-hidden="true" />
+          <ChevronRightIcon
+            class="inline h-4 text-black dark:text-white"
+            aria-hidden="true"
+          />
           {{ name }}
           <time
             pubdate
             :datetime="formatDate(createdAt, 5)"
             :title="formatDate(createdAt, 2)"
-            class="flex items-center text-xs text-gray-500 mt-1"
+            class="flex items-center text-xs text-gray-500 dark:text-gray-400 mt-1"
           >
             <ClockIcon
-              class="h-3 w-3 text-purple-800 mr-1"
+              class="h-3 w-3 text-purple-800 dark:text-white mr-1"
               aria-hidden="true"
             />
             {{ formatDate(createdAt, 3) }}
@@ -181,7 +197,8 @@ useHead({
       <div class="absolute -bottom-[15px] left-1/2 -translate-x-1/2">
         <button
           type="button"
-          class="border bg-white dark:bg-black border-gray-200 hover:bg-gray-300 active:bg-gray-300 transition-colors p-1"
+          class="border bg-white dark:bg-black border-gray-200 hover:bg-gray-300 active:bg-gray-300 dark:border-gray-400 dark:hover:bg-gray-500 disabled:bg-gray-700 disabled:cursor-not-allowed transition-colors p-1"
+          :disabled="currentPage <= 1"
           @click="moveListBack"
         >
           <ChevronLeftIcon class="block h-4" aria-hidden="true" />
@@ -189,7 +206,8 @@ useHead({
         </button>
         <button
           type="button"
-          class="border bg-white dark:bg-black border-gray-200 hover:bg-gray-300 active:bg-gray-300 transition-colors p-1"
+          class="border bg-white dark:bg-black border-gray-200 hover:bg-gray-300 active:bg-gray-300 dark:border-gray-400 dark:hover:bg-gray-500 disabled:bg-gray-700 disabled:cursor-not-allowed transition-colors p-1"
+          :disabled="currentPage === totalPages"
           @click="moveListForward"
         >
           <ChevronRightIcon class="block h-4" aria-hidden="true" />

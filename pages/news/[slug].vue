@@ -11,11 +11,9 @@ import {
 import { storeToRefs } from 'pinia'
 import { useNewsStore } from '@/store/news'
 import { useAuthStore } from '~/store/auth'
-import { formatDate } from '@/utils/utils'
+import { formatDate, clearObject } from '@/utils/utils'
 
 import { useCommonStore } from '@/store/common'
-
-import { clearObject } from '@/utils/utils'
 
 defineProps({
   view: {
@@ -152,13 +150,13 @@ useSchemaOrg([
             width="512"
             height="512"
             placeholder="/placeholder.png"
-            class="rounded-lg mx-auto"
+            class="rounded-lg mx-auto dark:bg-gray-700"
           />
           <img
             v-else
             src="/images/no-image.jpeg"
             alt="no-image"
-            class="rounded-lg mx-auto"
+            class="rounded-lg mx-auto dark:bg-gray-700"
           />
         </div>
       </div>
@@ -221,7 +219,7 @@ useSchemaOrg([
               width="150"
               height="150"
               placeholder="/placeholder.png"
-              class="rounded-lg"
+              class="rounded-lg dark:bg-gray-700"
             />
           </div>
         </div>
