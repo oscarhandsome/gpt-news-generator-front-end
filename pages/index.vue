@@ -158,7 +158,7 @@ useHead({
       <div
         class="border-b border-gray-500 dark:border-gray-600 font-bold text-xl p-2"
       >
-        Short News {{ currentPage }} === {{ totalPages }}
+        Short News
       </div>
 
       <div
