@@ -158,7 +158,7 @@ useHead({
       <div
         class="border-b border-gray-500 dark:border-gray-600 font-bold text-xl p-2"
       >
-        Short News
+        Short News {{ currentPage }} === {{ totalPages }}
       </div>
 
       <div
@@ -197,7 +197,8 @@ useHead({
       <div class="absolute -bottom-[15px] left-1/2 -translate-x-1/2">
         <button
           type="button"
-          class="border bg-white dark:bg-black border-gray-200 hover:bg-gray-300 active:bg-gray-300 dark:border-gray-400 dark:hover:bg-gray-500 disabled:bg-gray-700 disabled:cursor-not-allowed transition-colors p-1"
+          aria-label="Previous part short news"
+          class="border bg-white dark:bg-black border-gray-200 hover:bg-gray-300 active:bg-gray-300 dark:border-gray-400 dark:hover:bg-gray-500 disabled:bg-gray-300 disabled:dark:bg-gray-700 disabled:cursor-not-allowed transition-colors p-1"
           :disabled="currentPage <= 1"
           @click="moveListBack"
         >
@@ -206,7 +207,8 @@ useHead({
         </button>
         <button
           type="button"
-          class="border bg-white dark:bg-black border-gray-200 hover:bg-gray-300 active:bg-gray-300 dark:border-gray-400 dark:hover:bg-gray-500 disabled:bg-gray-700 disabled:cursor-not-allowed transition-colors p-1"
+          aria-label="Next part short news"
+          class="border bg-white dark:bg-black border-gray-200 hover:bg-gray-300 active:bg-gray-300 dark:border-gray-400 dark:hover:bg-gray-500 disabled:bg-gray-300 disabled:dark:bg-gray-700 disabled:cursor-not-allowed transition-colors p-1"
           :disabled="currentPage === totalPages"
           @click="moveListForward"
         >
