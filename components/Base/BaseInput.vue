@@ -3,7 +3,9 @@ import type { InputProps } from '@/types'
 
 defineEmits(['update:modelValue'])
 const props = defineProps<InputProps>()
-const id = props.label.toLocaleLowerCase().replaceAll(' ', '-')
+const id = props.label
+  ? props.label.toLocaleLowerCase().replaceAll(' ', '-')
+  : Math.random()
 const value = ref(props.modelValue)
 </script>
 

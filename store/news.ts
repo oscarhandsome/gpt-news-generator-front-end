@@ -176,6 +176,34 @@ export const useNewsStore = defineStore('news', {
         })
       }
     },
+    async updateFullNews(payload: any) {
+      const { $toaster } = useNuxtApp()
+      this.isLoadingLocal = true
+      const { data, pending, error }: any = await Api.put(
+        `/news/${payload.id}`,
+        payload,
+      )
+      this.isLoadingLocal = pending.value
+
+      if (data.value && data.value.status === 'success') {
+        $toaster.info({
+          title: 'Success',
+          message: `News ${this.currentNews.name} successfully updated!`,
+        })
+      }
+
+      if (error.value) {
+        console.error(error.value)
+        // if (data.value.errors) this.errors = data.value.errors.value
+        // this.error = 'Password or email incorrect!'
+        this.error = error.value.data.message
+        $toaster.error({
+          title: 'Error',
+          message: this.error,
+          type: 'error',
+        })
+      }
+    },
     async removeNews() {},
     async getMyNews() {
       this.isLoading = true
@@ -190,13 +218,23 @@ export const useNewsStore = defineStore('news', {
       this.isLoading = pending.value
     },
     async getNewsImagesResuls(payload: { id: string; workflowRunId: string }) {
-      this.isLoading = true
+      this.isLoadingLocal = true
       // this.currentNews = await Api.get(`/news/${payload}`)
       const { data, pending }: any = await Api.get(
         `/news/${payload.id}/getImageResuts/${payload.workflowRunId}`,
       )
       if (data.value) this.currentNews = data.value.data.data
-      this.isLoading = pending.value
+      this.isLoadingLocal = pending.value
+    },
+    async generateNewImages(payload: { id: string; prompt: string }) {
+      console.log({ ...payload })
+      this.isLoadingLocal = true
+      const { data, pending }: any = await Api.post(
+        `/news/${payload.id}`,
+        payload,
+      )
+      console.log('data.value', data.value)
+      this.isLoadingLocal = pending.value
     },
   },
   getters: {

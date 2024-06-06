@@ -30,7 +30,10 @@ function toggleMenu() {
 
 <template>
   <header>
-    <nav class="bg-black text-white dark:bg-gray-800 px-4 xl:px-6 mb-2 sm:mb-5">
+    <nav
+      class="bg-black text-white dark:bg-gray-800 px-4 xl:px-6 mb-2 sm:mb-5"
+      aria-label="Primary nav"
+    >
       <div class="container mx-auto">
         <div class="flex justify-between items-center">
           <TheLogo />

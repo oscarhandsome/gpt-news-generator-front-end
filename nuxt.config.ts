@@ -28,6 +28,7 @@ export default defineNuxtConfig({
     // 'nuxt-security',
     '@cssninja/nuxt-toaster',
     '@nuxtjs/html-validator', // https://nuxt.com/modules/html-validator
+    'floating-vue/nuxt', // https://floating-vue.starpad.dev/guide/installation#nuxt-3
   ],
   stripe: {
     // Server

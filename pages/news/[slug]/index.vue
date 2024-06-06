@@ -28,7 +28,8 @@ const { setModal, setFullImageUrl } = useCommonStore()
 const { isAuthenticated, user } = storeToRefs(useAuthStore())
 
 const { getNews, getNewsImagesResuls, updateNews } = useNewsStore()
-const { isLoading, errors, currentNews } = storeToRefs(useNewsStore())
+const { isLoading, isLoadingLocal, errors, currentNews } =
+  storeToRefs(useNewsStore())
 
 await getNews(`${route.params.slug}`)
 
@@ -41,9 +42,9 @@ const toggleFullImageView = (imageUrl: string) => {
   setModal(true)
 }
 
-onBeforeUnmount(() => {
-  currentNews.value = clearObject(currentNews.value)
-})
+// onBeforeUnmount(() => {
+//   currentNews.value = clearObject(currentNews.value)
+// })
 
 watch(currentNews.value, async () => {
   console.log(currentNews.value)
@@ -161,20 +162,8 @@ useSchemaOrg([
         </div>
       </div>
 
-      <div class="pb-2 lg:ml-4 xl:ml-6">
+      <div class="w-full pb-2 lg:ml-4 xl:ml-6">
         <div v-if="isAuthenticated && currentNews.autor.id === user.id">
-          <button
-            v-if="currentNews.images && !currentNews.images.length"
-            class="border border-gray-500 hover:bg-gray-300 active:bg-gray-300 transition-colors rounded-lg px-2 py-1 mb-2"
-            @click="
-              getNewsImagesResuls({
-                id: currentNews.id,
-                workflowRunId: currentNews.workflowRunId,
-              })
-            "
-          >
-            Get images
-          </button>
           <div class="flex items-center gap-2 bg-slate-100 rounded-lg p-2 mb-2">
             <BaseSwitch
               v-model="currentNews.isActive"
@@ -188,6 +177,31 @@ useSchemaOrg([
             >
               <template #label>Public:</template>
             </BaseSwitch>
+
+            <BaseSpinner v-if="isLoadingLocal" />
+            <button
+              v-if="
+                !isLoadingLocal &&
+                currentNews.images &&
+                !currentNews.images.length
+              "
+              class="text-white bg-blue-600 hover:bg-blue-500 active:bg-blue-500 transition-colors rounded-lg px-2"
+              @click="
+                getNewsImagesResuls({
+                  id: currentNews.id,
+                  workflowRunId: currentNews.workflowRunId,
+                })
+              "
+            >
+              Get images & info
+            </button>
+
+            <nuxt-link
+              class="ml-auto text-white bg-blue-600 hover:bg-blue-500 active:bg-blue-500 transition-colors rounded-lg px-2"
+              :to="`/news/${currentNews.slug}/edit`"
+            >
+              Edit
+            </nuxt-link>
           </div>
         </div>
 
