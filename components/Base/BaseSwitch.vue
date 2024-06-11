@@ -24,7 +24,7 @@ provideUseId(() => useId())
     <slot name="label"></slot>
     <Switch
       v-model="enabled"
-      :class="enabled ? 'bg-blue-600' : 'bg-gray-200'"
+      :class="enabled ? 'bg-amber-500 ' : 'bg-black'"
       class="relative inline-flex h-6 w-11 items-center rounded-full"
     >
       <span class="sr-only">Enable notifications</span>

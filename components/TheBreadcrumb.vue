@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { ArrowLeftCircleIcon } from '@heroicons/vue/20/solid'
 import { formatString } from '@/utils/utils'
 
 const route = useRoute()
@@ -21,7 +22,17 @@ const pageName = computed(() => formatString(route.params.slug))
 
 <template>
   <div class="flex items-center mb-2 sm:mb-5">
-    <BaseBackButton v-if="$route.params.slug" class="mr-2" />
+    <BaseButton
+      v-if="$route.params.slug || $route.name === 'subscriptions'"
+      aria-label="Back to prev page"
+      btn-type="button"
+      btn-styles="secondary"
+      class="mr-2"
+      @clicked="$router.go(-1)"
+    >
+      <ArrowLeftCircleIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
+      <span class="ml-2 pr-2">Back</span>
+    </BaseButton>
 
     <nav class="flex" aria-label="Breadcrumb">
       <ol class="inline-flex items-center space-x-1 md:space-x-3">

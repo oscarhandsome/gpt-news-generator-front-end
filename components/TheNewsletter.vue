@@ -1,5 +1,8 @@
 <template>
-  <section class="bg-white dark:bg-gray-900">
+  <section
+    aria-labelledby="section-title-newsletter"
+    class="bg-white dark:bg-gray-900"
+  >
     <div class="py-4 px-4 mx-auto max-w-screen-xl lg:py-8 lg:px-6">
       <div class="mx-auto max-w-screen-md sm:text-center">
         <h2
@@ -13,7 +16,7 @@
           Stay up to date with the roadmap progress, announcements and exclusive
           discounts feel free to sign up with your email.
         </p>
-        <form action="#">
+        <form action="#" role="form">
           <div
             class="items-center mx-auto mb-3 space-y-4 max-w-screen-sm sm:flex sm:space-y-0"
           >

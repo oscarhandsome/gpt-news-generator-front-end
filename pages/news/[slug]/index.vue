@@ -196,12 +196,20 @@ useSchemaOrg([
               Get images & info
             </button>
 
-            <nuxt-link
+            <!-- <nuxt-link
               class="ml-auto text-white bg-blue-600 hover:bg-blue-500 active:bg-blue-500 transition-colors rounded-lg px-2"
               :to="`/news/${currentNews.slug}/edit`"
             >
               Edit
-            </nuxt-link>
+            </nuxt-link> -->
+            <BaseButton
+              aria-label="Navigate to edit this news"
+              btn-type="button"
+              class="px-2 ml-auto"
+              @clicked="navigateTo(`/news/${currentNews.slug}/edit`)"
+            >
+              Edit
+            </BaseButton>
           </div>
         </div>
 

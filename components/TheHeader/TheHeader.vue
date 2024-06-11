@@ -29,10 +29,11 @@ function toggleMenu() {
 </script>
 
 <template>
-  <header>
+  <header role="banner">
     <nav
       class="bg-black text-white dark:bg-gray-800 px-4 xl:px-6 mb-2 sm:mb-5"
       aria-label="Primary nav"
+      role="navigation"
     >
       <div class="container mx-auto">
         <div class="flex justify-between items-center">
@@ -40,22 +41,22 @@ function toggleMenu() {
 
           <div class="flex items-center xl:order-2">
             <div v-if="!isAuthenticated" class="flex items-center">
-              <BaseButton to="/auth/login" class="flex items-center">
+              <TheHeaderButton to="/auth/login">
                 <UserCircleIcon
                   class="h-5 sm:h-6 w-5 sm:w-6 sm:mr-2 shrink-0"
                 />
                 <span class="hidden sm:block">Log in</span>
-              </BaseButton>
-              <BaseButton
+              </TheHeaderButton>
+              <TheHeaderButton
                 to="/auth/registration"
                 active
-                class="flex items-center ml-1 sm:ml-3"
+                class="ml-1 sm:ml-3"
               >
                 <ArrowRightOnRectangleIcon
                   class="h-5 sm:h-6 w-5 sm:w-6 sm:mr-2 shrink-0"
                 />
                 <span class="hidden sm:block">Get started</span>
-              </BaseButton>
+              </TheHeaderButton>
             </div>
             <div v-else class="z-20">
               <client-only>

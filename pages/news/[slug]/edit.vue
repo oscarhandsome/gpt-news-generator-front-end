@@ -89,6 +89,7 @@ onMounted(() => {
 
 useHead({
   meta: [{ name: 'Edit page for news', content: 'Edit page for news' }],
+  title: 'Edit page for news',
 })
 </script>
 
@@ -170,20 +171,40 @@ useHead({
 
             <BaseSpinner v-if="isLoadingLocal" />
             <div v-else class="flex items-center">
-              <button
+              <!-- <button
                 class="text-white bg-blue-600 hover:bg-blue-500 active:bg-blue-500 transition-colors rounded-lg px-2"
                 @click="getImages(currentNews.id, currentNews.workflowRunId)"
               >
                 Get images & info
-              </button>
+              </button> -->
+              <BaseButton
+                v-if="getNewImagesBtnVisibility"
+                aria-label="Get New Images"
+                btn-type="button"
+                btn-styles="tertiary"
+                class="px-2"
+                @clicked="getImages(currentNews.id, currentNews.workflowRunId)"
+              >
+                Get images & info
+              </BaseButton>
 
-              <button
+              <!-- <button
                 v-if="getNewImagesBtnVisibility"
                 class="border border-gray-500 hover:bg-gray-300 active:bg-gray-300 transition-colors rounded-lg px-2 mx-2"
                 @click="createNewImages(currentNews.id)"
               >
                 Generate new images
-              </button>
+              </button> -->
+              <BaseButton
+                v-if="getNewImagesBtnVisibility"
+                aria-label="Navigate to edit this news"
+                btn-type="button"
+                btn-styles="secondary"
+                class="px-2 mx-2"
+                @clicked="createNewImages(currentNews.id)"
+              >
+                Generate new images
+              </BaseButton>
               <VTooltip v-else>
                 <ExclamationTriangleIcon
                   class="h-5 w-5 text-red-400 mx-2"
@@ -203,14 +224,14 @@ useHead({
           label="News name"
           error=""
           class="mb-2"
-          @update:model-value="form.name"
+          @update:model-value="form.name = $event"
         />
         <BaseTextarea
           :message="form.description"
           label="Description"
           error=""
           class="mb-2"
-          @update:model-value="form.description"
+          @update:model-value="form.description = $event"
         />
 
         <div
