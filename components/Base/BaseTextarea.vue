@@ -5,13 +5,13 @@ const props = defineProps({
     type: String,
     default: '',
   },
-  message: {
+  modelValue: {
     type: String,
     default: '',
   },
 })
 
-const text = ref(props.message)
+const text = ref(props.modelValue)
 </script>
 
 <template>

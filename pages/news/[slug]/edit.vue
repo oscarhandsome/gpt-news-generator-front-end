@@ -247,7 +247,7 @@ useHead({
           @update:model-value="form.name = $event"
         />
         <BaseTextarea
-          :message="form.description"
+          :model-value="form.description"
           label="Description"
           error=""
           class="mb-2"
