@@ -100,6 +100,7 @@ const getHistoryToggle = async (id: string) => {
 
 const restoreHistory = (item: INews) => {
   form.value = Object.assign(form.value, item)
+  window.scrollTo(0, 0)
   $toaster.info({
     title: 'Notification',
     message: 'Dont forget to save changes!',
