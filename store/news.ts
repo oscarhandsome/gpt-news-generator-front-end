@@ -3,7 +3,7 @@ import Api from '~/services/api'
 
 import { clearObject } from '@/utils/utils'
 
-import type { NewsPayloadInterface, News } from '@/types'
+import type { NewsPayloadInterface, INews } from '@/types'
 
 // function onlyUnique(value: string, index: number, array: string[]) {
 //   return array.indexOf(value) === index
@@ -11,8 +11,8 @@ import type { NewsPayloadInterface, News } from '@/types'
 
 export const useNewsStore = defineStore('news', {
   state: () => ({
-    news: [] as News[],
-    currentNews: {} as News,
+    news: [] as INews[],
+    currentNews: {} as INews,
     famousPersons: [] as String[],
     isLoading: false,
     isLoadingLocal: false,

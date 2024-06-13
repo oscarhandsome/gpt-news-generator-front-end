@@ -87,10 +87,10 @@ useHead({
           <nuxt-link :to="`/news/${slug}`" class="flex flex-col">
             <article class="relative">
               <div
-                class="flex bg-gray-200 overflow-hidden"
+                class="flex items-start bg-gray-200 overflow-hidden"
                 :class="{
-                  'sm:h-60 md:h-60 lg:h-96 xl:h-[400px]': idx === 0,
-                  'sm:h-36 xl:h-auto': idx !== 0,
+                  'sm:h-72 md:h-60 lg:h-96 xl:h-[400px]': idx === 0,
+                  'sm:h-48 xl:h-auto': idx !== 0,
                 }"
               >
                 <nuxt-img
@@ -106,7 +106,7 @@ useHead({
               <div
                 class="news-info"
                 :class="{
-                  'absolute bottom-2 xl:-bottom-10 left-2 sm:left-5 text-white ':
+                  'absolute bottom-2 xl:-bottom-10 left-2 sm:left-5 text-white mr-2':
                     idx === 0,
                 }"
               >

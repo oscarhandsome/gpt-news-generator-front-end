@@ -13,9 +13,12 @@ import {
 import { storeToRefs } from 'pinia'
 import { useNewsStore } from '@/store/news'
 import { useAuthStore } from '~/store/auth'
+import { useHistoryStore } from '@/store/history'
 import { formatDate, clearObject } from '@/utils/utils'
 
 import { useCommonStore } from '@/store/common'
+
+import type { INews } from '@/types'
 
 defineProps({
   view: {
@@ -33,6 +36,9 @@ const { getNews, getNewsImagesResuls, updateFullNews, generateNewImages } =
   useNewsStore()
 const { isLoading, currentNews, isLoadingLocal } = storeToRefs(useNewsStore())
 
+const { getHistory } = useHistoryStore()
+const { history, isLoadingHistory } = storeToRefs(useHistoryStore())
+
 if (!currentNews.value || !currentNews.value.slug)
   await getNews(`${route.params.slug}`)
 
@@ -44,6 +50,7 @@ const form = ref({
   images: currentNews.value.images,
 })
 const getNewImagesBtnVisibility = ref(true)
+const historyVisibility = ref(false)
 
 const formattedCreatedAt = computed(() =>
   formatDate(currentNews.value.createdAt),
@@ -75,6 +82,20 @@ const onSubmit = async () => {
     ...form.value,
   })
   router.push(`/news/${currentNews.value.slug}`)
+}
+
+const getHistoryToggle = async (id: string) => {
+  historyVisibility.value = true
+  await getHistory({ id })
+}
+
+const restoreHistory = (item: INews) => {
+  form.value = {
+    ...item,
+  }
+}
+const setImageAsImageCover = (idx: number) => {
+  form.value.imageCover = currentNews.value.images[idx]
 }
 
 onMounted(() => {
@@ -178,7 +199,6 @@ useHead({
                 Get images & info
               </button> -->
               <BaseButton
-                v-if="getNewImagesBtnVisibility"
                 aria-label="Get New Images"
                 btn-type="button"
                 btn-styles="tertiary"
@@ -241,7 +261,7 @@ useHead({
           <div
             v-for="(image, idx) in currentNews.images"
             :key="`image-${idx}`"
-            class="relative flex"
+            class="img-additional-parent relative flex"
           >
             <nuxt-img
               v-if="image"
@@ -265,6 +285,17 @@ useHead({
                 aria-hidden="true"
               />
             </button>
+
+            <BaseButton
+              title="Set as Image Cover"
+              aria-label="Set as Image Cover additional image"
+              class="img-set-image-cover flex flex-col absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white"
+              type="button"
+              btn-styles="secondary"
+              @clicked="setImageAsImageCover(idx)"
+            >
+              <span>Set as main</span>
+            </BaseButton>
           </div>
         </div>
       </div>
@@ -281,4 +312,90 @@ useHead({
       </button>
     </div>
   </form>
+
+  <div v-if="!isLoading">
+    <div class="flex items-center mb-2">
+      <div class="font-bold">History</div>
+      <BaseButton
+        class="ml-2 px-2"
+        btn-styles="secondary"
+        @clicked="getHistoryToggle(currentNews.id)"
+        >Get history</BaseButton
+      >
+      <BaseSpinner v-if="isLoadingHistory" />
+    </div>
+    <div
+      v-if="historyVisibility && history && history.length"
+      class="border border-gray-300 rounded-lg lg:p-4 p-2"
+    >
+      <ul
+        class="ps-1 sm:ps-2 md:ps-5 mt-1 md:mt-2 space-y-1 list-disc list-inside"
+      >
+        <template v-for="item in history" :key="item.id">
+          <li>
+            <span class="font-bold">Date:</span>
+            {{ formatDate(item.createdAt) }}
+          </li>
+          <li><span class="font-bold">Name:</span> {{ item.name }}</li>
+          <li>
+            <span class="font-bold">Description:</span> {{ item.description }}
+          </li>
+          <li class="relative">
+            <span class="font-bold">Statuses:</span>
+            Active:
+            <NewsStatusIcons :status="item.isActive" />
+
+            Public:
+            <NewsStatusIcons :status="item.isPublic" />
+
+            <div
+              v-if="item.images && item.images.length"
+              class="flex flex-wrap gap-2"
+            >
+              <div
+                v-for="(image, idx) in item.images"
+                :key="`image-${idx}`"
+                class="relative flex"
+              >
+                <nuxt-img
+                  v-if="image"
+                  :src="image"
+                  :alt="`${currentNews.name}_image_${idx}`"
+                  loading="lazy"
+                  width="100"
+                  height="100"
+                  placeholder="/placeholder.png"
+                  class="rounded-lg dark:bg-gray-700"
+                />
+              </div>
+            </div>
+
+            <BaseButton
+              class="absolute bottom-2 right-2 px-2"
+              btn-styles="secondary"
+              @clicked="restoreHistory(item)"
+            >
+              Restore
+            </BaseButton>
+          </li>
+
+          <div class="border-b-4 border-gray-200 pb-2 mb-1"></div>
+        </template>
+      </ul>
+    </div>
+  </div>
 </template>
+
+<style lang="css" scoped>
+.img-additional-parent {
+  cursor: pointer;
+  transition: all cubic-bezier(0.39, 0.575, 0.565, 1) ease-in;
+}
+.img-additional-parent:hover .img-set-image-cover,
+.img-additional-parent:active .img-set-image-cover {
+  opacity: 1;
+}
+.img-set-image-cover {
+  opacity: 0;
+}
+</style>
