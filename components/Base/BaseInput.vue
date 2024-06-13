@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+// import type { InputHTMLAttributes } from 'vue'
 import type { InputProps } from '@/types'
 
 defineEmits(['update:modelValue'])
@@ -7,6 +8,8 @@ const id = props.label
   ? props.label.toLocaleLowerCase().replaceAll(' ', '-')
   : Math.random()
 const value = ref(props.modelValue)
+
+watchEffect(() => (value.value = props.modelValue))
 </script>
 
 <template>

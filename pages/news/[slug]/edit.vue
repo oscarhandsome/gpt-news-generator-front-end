@@ -14,11 +14,13 @@ import { storeToRefs } from 'pinia'
 import { useNewsStore } from '@/store/news'
 import { useAuthStore } from '~/store/auth'
 import { useHistoryStore } from '@/store/history'
-import { formatDate, clearObject } from '@/utils/utils'
+import { formatDate } from '@/utils/utils'
 
-import { useCommonStore } from '@/store/common'
+// import { useCommonStore } from '@/store/common'
 
 import type { INews } from '@/types'
+
+const { $toaster } = useNuxtApp()
 
 defineProps({
   view: {
@@ -42,15 +44,22 @@ const { history, isLoadingHistory } = storeToRefs(useHistoryStore())
 if (!currentNews.value || !currentNews.value.slug)
   await getNews(`${route.params.slug}`)
 
-const form = ref({
+const form = ref<INews>({
   ...currentNews.value,
   name: currentNews.value.name,
-  desription: currentNews.value.description,
+  description: currentNews.value.description,
   imageCover: currentNews.value.imageCover,
   images: currentNews.value.images,
 })
 const getNewImagesBtnVisibility = ref(true)
 const historyVisibility = ref(false)
+
+const errors = ref({
+  name: '',
+  description: '',
+  imageCover: '',
+  images: '',
+})
 
 const formattedCreatedAt = computed(() =>
   formatDate(currentNews.value.createdAt),
@@ -58,7 +67,7 @@ const formattedCreatedAt = computed(() =>
 
 const removeImage = (id: number) => form.value.images.splice(id, 1)
 
-const removeMainImage = () => (form.value.imageCover = null)
+const removeMainImage = () => (form.value.imageCover = '')
 
 const createNewImages = async (id: string) => {
   getNewImagesBtnVisibility.value = false
@@ -90,9 +99,11 @@ const getHistoryToggle = async (id: string) => {
 }
 
 const restoreHistory = (item: INews) => {
-  form.value = {
-    ...item,
-  }
+  form.value = Object.assign(form.value, item)
+  $toaster.info({
+    title: 'Notification',
+    message: 'Dont forget to save changes!',
+  })
 }
 const setImageAsImageCover = (idx: number) => {
   form.value.imageCover = currentNews.value.images[idx]
@@ -102,7 +113,7 @@ onMounted(() => {
   form.value = {
     ...currentNews.value,
     name: currentNews.value.name,
-    desription: currentNews.value.description,
+    description: currentNews.value.description,
     imageCover: currentNews.value.imageCover,
     images: currentNews.value.images,
   }
@@ -239,34 +250,36 @@ useHead({
           </div>
         </div>
 
-        <BaseInput
-          :model-value="form.name"
-          label="News name"
-          error=""
-          class="mb-2"
-          @update:model-value="form.name = $event"
-        />
-        <BaseTextarea
-          :model-value="form.description"
-          label="Description"
-          error=""
-          class="mb-2"
-          @update:model-value="form.description = $event"
-        />
+        <client-only>
+          <BaseInput
+            :model-value="form.name"
+            label="News name"
+            :error="errors.name"
+            class="mb-2"
+            @update:model-value="form.name = $event"
+          />
+          <BaseTextarea
+            :model-value="form.description"
+            label="description"
+            :error="errors.description"
+            class="mb-2"
+            @update:model-value="form.description = $event"
+          />
+        </client-only>
 
         <div
-          v-if="currentNews.images && currentNews.images.length"
+          v-if="form.images && form.images.length"
           class="flex flex-wrap gap-2"
         >
           <div
-            v-for="(image, idx) in currentNews.images"
+            v-for="(image, idx) in form.images"
             :key="`image-${idx}`"
             class="img-additional-parent relative flex"
           >
             <nuxt-img
               v-if="image"
               :src="image"
-              :alt="`${currentNews.name}_image_${idx}`"
+              :alt="`${form.name}_image_${idx}`"
               loading="lazy"
               width="150"
               height="150"
@@ -338,7 +351,7 @@ useHead({
           </li>
           <li><span class="font-bold">Name:</span> {{ item.name }}</li>
           <li>
-            <span class="font-bold">Description:</span> {{ item.description }}
+            <span class="font-bold">description:</span> {{ item.description }}
           </li>
           <li class="relative">
             <span class="font-bold">Statuses:</span>
