@@ -1,8 +1,5 @@
 <template>
-  <section
-    aria-labelledby="section-title-newsletter"
-    class="bg-white dark:bg-gray-900"
-  >
+  <section class="bg-white dark:bg-gray-900">
     <div class="py-4 px-4 mx-auto max-w-screen-xl lg:py-8 lg:px-6">
       <div class="mx-auto max-w-screen-md sm:text-center">
         <h2
