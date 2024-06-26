@@ -128,7 +128,7 @@ useHead({
 
 <template>
   <BaseLoader v-if="isLoading" default />
-  <form v-else class="mb-12" @submit.prevent="onSubmit">
+  <form v-else class="mb-12" role="edit news form" @submit.prevent="onSubmit">
     <!-- Details of news {{ $route.params.slug }} -->
 
     <div class="lg:flex">

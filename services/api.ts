@@ -1,6 +1,7 @@
 // import { useFetch } from '@nuxt/http'
 // import { useCookies } from '@nuxtjs/cookie-universal-nuxt'
 import { useMyFetch } from '@/composables/useMyFetch'
+import { useSimpleFetch } from '@/composables/useSimpleFetch'
 
 class Api {
   // constructor() {
@@ -27,7 +28,7 @@ class Api {
   }
 
   public async put(path: string, body: object = {}) {
-    return await useMyFetch(path, {
+    return await useSimpleFetch(path, {
       method: 'PUT',
       body: JSON.stringify(body),
     })
