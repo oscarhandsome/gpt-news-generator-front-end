@@ -29,6 +29,7 @@ export default defineNuxtConfig({
     '@cssninja/nuxt-toaster',
     '@nuxtjs/html-validator', // https://nuxt.com/modules/html-validator
     'floating-vue/nuxt', // https://floating-vue.starpad.dev/guide/installation#nuxt-3
+    '@zadigetvoltaire/nuxt-gtm',
   ],
   stripe: {
     // Server
@@ -114,4 +115,15 @@ export default defineNuxtConfig({
   //     },
   //   ],
   // ],
+  gtm: {
+    id: 'GTM-KKM5JNCJ',
+    defer: false,
+    compatibility: false,
+    enabled: true,
+    debug: true,
+    loadScript: true,
+    enableRouterSync: true,
+    trackOnNextTick: false,
+    devtools: true,
+  },
 })
